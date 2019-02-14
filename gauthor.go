@@ -31,14 +31,23 @@ type cmd struct {
 	err                  error
 }
 
-func (c *cmd) run(prog string, args ...string) {
+func (c *cmd) git(args ...string) (string, string) {
+	return c.run("git", args...)
+}
+
+func (c *cmd) run(prog string, args ...string) (string, string) {
 	if c.err != nil {
-		return
+		return "", ""
 	}
+	var (
+		outBuf bytes.Buffer
+		errBuf bytes.Buffer
+	)
 	cmd := exec.Command(prog, args...)
-	cmd.Stdout = c.outStream
-	cmd.Stderr = c.errStream
+	cmd.Stdout = io.MultiWriter(&outBuf, c.outStream)
+	cmd.Stderr = io.MultiWriter(&errBuf, c.errStream)
 	c.err = cmd.Run()
+	return outBuf.String(), errBuf.String()
 }
 
 func (ga *gauthor) run() error {
@@ -63,6 +72,7 @@ func (ga *gauthor) run() error {
 		return err
 	}
 	gh := &ghch.Ghch{
+		RepoPath:    ".",
 		Write:       true,
 		NextVersion: nextVer,
 	}
@@ -70,12 +80,15 @@ func (ga *gauthor) run() error {
 		return err
 	}
 	c := &cmd{outStream: ga.outStream, errStream: ga.errStream}
-	c.run("git", "add", "version.go", "CHANGELOG.md")
-	c.run("git", "commit", "-m",
+	fmt.Fprint(ga.outStream, "on branch ")
+	branch, _ := c.git("symbolic-ref", "--short", "HEAD")
+	_ = branch
+	c.git("add", "version.go", "CHANGELOG.md")
+	c.git("commit", "-m",
 		fmt.Sprintf("Checking in changes prior to tagging of version v%s", nextVer))
-	c.run("git", "tag", fmt.Sprintf("v%s", nextVer))
+	c.git("tag", fmt.Sprintf("v%s", nextVer))
 	// release branch should be specified? (default: master)
-	c.run("git", "push")
-	c.run("git", "push", "--tags")
+	c.git("push")
+	c.git("push", "--tags")
 	return c.err
 }
