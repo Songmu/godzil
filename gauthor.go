@@ -17,6 +17,9 @@ func Run(argv []string, outStream, errStream io.Writer) error {
 	log.SetOutput(errStream)
 	fs := flag.NewFlagSet("gauthor", flag.ContinueOnError)
 	fs.SetOutput(errStream)
+	// path to version.go
+	// path to changelog.md
+	// release branch
 	fs.Parse(argv)
 	ag := &gauthor{outStream: outStream, errStream: errStream}
 	return ag.run()
