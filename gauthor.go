@@ -9,8 +9,8 @@ import (
 	"os/exec"
 
 	"github.com/Songmu/ghch"
-	"github.com/Songmu/gobump"
 	"github.com/Songmu/prompter"
+	"github.com/motemen/gobump"
 )
 
 func Run(argv []string, outStream, errStream io.Writer) error {
@@ -20,6 +20,7 @@ func Run(argv []string, outStream, errStream io.Writer) error {
 	// path to version.go
 	// path to changelog.md
 	// release branch
+	// allow-dirty
 	fs.Parse(argv)
 	ag := &gauthor{outStream: outStream, errStream: errStream}
 	return ag.run()
@@ -53,6 +54,18 @@ func (c *cmd) run(prog string, args ...string) (string, string) {
 	return outBuf.String(), errBuf.String()
 }
 
+func git(args ...string) (string, string, error) {
+	var (
+		outBuf bytes.Buffer
+		errBuf bytes.Buffer
+	)
+	cmd := exec.Command("git", args...)
+	cmd.Stdout = &outBuf
+	cmd.Stderr = &errBuf
+	err := cmd.Run()
+	return outBuf.String(), errBuf.String(), err
+}
+
 func (ga *gauthor) run() error {
 	buf := &bytes.Buffer{}
 	gb := &gobump.Gobump{
@@ -60,7 +73,7 @@ func (ga *gauthor) run() error {
 		Raw:       true,
 		OutStream: buf,
 	}
-	if err := gb.Run(); err != nil {
+	if _, err := gb.Run(); err != nil {
 		return err
 	}
 	fmt.Fprintf(ga.outStream, "current version: %s", buf.String())
@@ -71,22 +84,28 @@ func (ga *gauthor) run() error {
 			Exact: nextVer,
 		},
 	}
-	if err := gb2.Run(); err != nil {
+	filesMap, err := gb2.Run()
+	if err != nil {
 		return err
+	}
+	var versions []string
+	for f := range filesMap {
+		versions = append(versions, f)
 	}
 	gh := &ghch.Ghch{
 		RepoPath:    ".",
 		Write:       true,
 		NextVersion: nextVer,
 	}
+	// XXX show the diffs
 	if err := gh.Run(); err != nil {
 		return err
 	}
-	c := &cmd{outStream: ga.outStream, errStream: ga.errStream}
-	fmt.Fprint(ga.outStream, "on branch ")
-	branch, _ := c.git("symbolic-ref", "--short", "HEAD")
+	branch, _, _ := git("symbolic-ref", "--short", "HEAD")
 	_ = branch
-	c.git("add", "version.go", "CHANGELOG.md")
+
+	c := &cmd{outStream: ga.outStream, errStream: ga.errStream}
+	c.git(append([]string{"git", "CHANGELOG.md"}, versions...)...)
 	c.git("commit", "-m",
 		fmt.Sprintf("Checking in changes prior to tagging of version v%s", nextVer))
 	c.git("tag", fmt.Sprintf("v%s", nextVer))
