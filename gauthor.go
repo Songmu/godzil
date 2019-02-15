@@ -92,12 +92,18 @@ func (ga *gauthor) run() error {
 	for f := range filesMap {
 		versions = append(versions, f)
 	}
+
+	fmt.Fprintf(ga.outStream, "following changes will be released")
 	gh := &ghch.Ghch{
 		RepoPath:    ".",
-		Write:       true,
 		NextVersion: nextVer,
+		Format:      "markdown",
+		OutStream:   ga.outStream,
 	}
-	// XXX show the diffs
+	if err := gh.Run(); err != nil {
+		return err
+	}
+	gh.Write = true
 	if err := gh.Run(); err != nil {
 		return err
 	}
@@ -110,6 +116,7 @@ func (ga *gauthor) run() error {
 		fmt.Sprintf("Checking in changes prior to tagging of version v%s", nextVer))
 	c.git("tag", fmt.Sprintf("v%s", nextVer))
 	// release branch should be specified? (default: master)
+	// detect remote?
 	c.git("push")
 	c.git("push", "--tags")
 	return c.err
