@@ -72,7 +72,7 @@ func git(args ...string) (string, string, error) {
 	cmd.Stdout = &outBuf
 	cmd.Stderr = &errBuf
 	err := cmd.Run()
-	return outBuf.String(), errBuf.String(), err
+	return strings.TrimSpace(outBuf.String()), strings.TrimSpace(errBuf.String()), err
 }
 
 func (re *release) do() error {
@@ -84,6 +84,14 @@ func (re *release) do() error {
 		if strings.TrimSpace(out) != "" {
 			return xerrors.Errorf("can't release on dirty index (or you can use --allow-dirty)\n%s", out)
 		}
+	}
+	branch, _, err := git("symbolic-ref", "--short", "HEAD")
+	if err != nil {
+		return xerrors.Errorf("faild to release when git symbolic-ref: %w", err)
+	}
+	if branch != re.branch {
+		return xerrors.Errorf("you are not on releasing branch %q, current branch is %q",
+			re.branch, branch)
 	}
 
 	buf := &bytes.Buffer{}
@@ -126,8 +134,6 @@ func (re *release) do() error {
 	if err := gh.Run(); err != nil {
 		return err
 	}
-	branch, _, _ := git("symbolic-ref", "--short", "HEAD")
-	_ = branch
 
 	c := &cmd{outStream: re.outStream, errStream: re.errStream}
 	c.git(append([]string{"git", "CHANGELOG.md"}, versions...)...)
