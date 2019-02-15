@@ -136,7 +136,10 @@ func (re *release) do() error {
 	}
 
 	c := &cmd{outStream: re.outStream, errStream: re.errStream}
-	c.git(append([]string{"git", "CHANGELOG.md"}, versions...)...)
+	c.git(append([]string{"add", "CHANGELOG.md"}, versions...)...)
+	if re.dryRun {
+		return c.err
+	}
 	c.git("commit", "-m",
 		fmt.Sprintf("Checking in changes prior to tagging of version v%s", nextVer))
 	c.git("tag", fmt.Sprintf("v%s", nextVer))
