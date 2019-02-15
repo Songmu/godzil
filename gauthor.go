@@ -1,4 +1,4 @@
-package gauthor
+package godzilla
 
 import (
 	"flag"
@@ -11,7 +11,7 @@ import (
 func Run(argv []string, outStream, errStream io.Writer) error {
 	log.SetOutput(errStream)
 	// global flagset
-	fs := flag.NewFlagSet("gauthor", flag.ContinueOnError)
+	fs := flag.NewFlagSet("godzilla", flag.ContinueOnError)
 	fs.SetOutput(errStream)
 	if err := fs.Parse(argv); err != nil {
 		return err
