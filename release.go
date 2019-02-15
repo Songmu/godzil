@@ -120,7 +120,7 @@ func (re *release) do() error {
 		versions = append(versions, f)
 	}
 
-	fmt.Fprintf(re.outStream, "following changes will be released")
+	fmt.Fprintln(re.outStream, "following changes will be released")
 	gh := &ghch.Ghch{
 		RepoPath:    re.path,
 		NextVersion: nextVer,
@@ -143,7 +143,7 @@ func (re *release) do() error {
 	c.git("commit", "-m",
 		fmt.Sprintf("Checking in changes prior to tagging of version v%s", nextVer))
 	c.git("tag", fmt.Sprintf("v%s", nextVer))
-	// detect remote?
+	// how to detect remote exists?
 	c.git("push")
 	c.git("push", "--tags")
 	return c.err
