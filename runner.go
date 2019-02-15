@@ -1,4 +1,4 @@
-package gauthor
+package godzilla
 
 import "io"
 
