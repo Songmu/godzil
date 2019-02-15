@@ -122,7 +122,7 @@ func (re *release) do() error {
 
 	fmt.Fprintf(re.outStream, "following changes will be released")
 	gh := &ghch.Ghch{
-		RepoPath:    ".",
+		RepoPath:    re.path,
 		NextVersion: nextVer,
 		Format:      "markdown",
 		OutStream:   re.outStream,
@@ -140,7 +140,6 @@ func (re *release) do() error {
 	c.git("commit", "-m",
 		fmt.Sprintf("Checking in changes prior to tagging of version v%s", nextVer))
 	c.git("tag", fmt.Sprintf("v%s", nextVer))
-	// release branch should be specified? (default: master)
 	// detect remote?
 	c.git("push")
 	c.git("push", "--tags")
