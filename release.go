@@ -6,13 +6,17 @@ import (
 	"fmt"
 	"io"
 	"os/exec"
+	"strings"
 
 	"github.com/Songmu/ghch"
 	"github.com/Songmu/prompter"
 	"github.com/motemen/gobump"
+	"golang.org/x/xerrors"
 )
 
 type release struct {
+	allowDirty, dryRun   bool
+	branch, path         string
 	outStream, errStream io.Writer
 }
 
@@ -20,12 +24,17 @@ func (re *release) run(argv []string, outStream, errStream io.Writer) error {
 	re.outStream = outStream
 	re.errStream = errStream
 	fs := flag.NewFlagSet("gauthor release", flag.ContinueOnError)
-	// path to version.go
-	// release branch
-	// allow-dirty
+	fs.StringVar(&re.branch, "branch", "master", "releasing branch")
+	fs.BoolVar(&re.allowDirty, "allow-dirty", false, "allow dirty index")
+	fs.BoolVar(&re.dryRun, "dry-run", false, "dry run")
+
 	fs.SetOutput(errStream)
 	if err := fs.Parse(argv); err != nil {
 		return err
+	}
+	re.path = fs.Arg(0)
+	if re.path != "" {
+		re.path = "."
 	}
 	return re.do()
 }
@@ -67,6 +76,16 @@ func git(args ...string) (string, string, error) {
 }
 
 func (re *release) do() error {
+	if !re.allowDirty {
+		out, _, err := git("status", "--porcelain")
+		if err != nil {
+			return xerrors.Errorf("faild to release when git status: %w", err)
+		}
+		if strings.TrimSpace(out) != "" {
+			return xerrors.Errorf("can't release on dirty index (or you can use --allow-dirty)\n%s", out)
+		}
+	}
+
 	buf := &bytes.Buffer{}
 	gb := &gobump.Gobump{
 		Show:      true,
