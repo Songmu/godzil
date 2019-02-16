@@ -10,9 +10,6 @@ export GO111MODULE=on
 deps:
 	go get ${u} -d
 
-test-deps:
-	go get ${u} -d -t
-
 devel-deps: deps
 	GO111MODULE=off go get ${u} \
 	  golang.org/x/lint/golint            \
@@ -21,7 +18,7 @@ devel-deps: deps
 	  github.com/Songmu/goxz/cmd/goxz     \
 	  github.com/tcnksm/ghr
 
-test: test-deps
+test: deps
 	go test
 
 lint: devel-deps
@@ -46,4 +43,4 @@ upload:
 
 release: bump crossbuild upload
 
-.PHONY: test deps test-deps devel-deps lint cover build bump crossbuild upload release
+.PHONY: test deps devel-deps lint cover build bump crossbuild upload release
