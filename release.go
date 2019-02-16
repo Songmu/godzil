@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"os/exec"
 	"regexp"
 	"strings"
 
@@ -27,11 +26,11 @@ func (re *release) run(argv []string, outStream, errStream io.Writer) error {
 	re.outStream = outStream
 	re.errStream = errStream
 	fs := flag.NewFlagSet("godzil release", flag.ContinueOnError)
+	fs.SetOutput(errStream)
 	fs.StringVar(&re.branch, "branch", "master", "releasing branch")
 	fs.BoolVar(&re.allowDirty, "allow-dirty", false, "allow dirty index")
 	fs.BoolVar(&re.dryRun, "dry-run", false, "dry run")
 
-	fs.SetOutput(errStream)
 	if err := fs.Parse(argv); err != nil {
 		return err
 	}
@@ -42,43 +41,7 @@ func (re *release) run(argv []string, outStream, errStream io.Writer) error {
 	return re.do()
 }
 
-type cmd struct {
-	outStream, errStream io.Writer
-	err                  error
-}
-
-func (c *cmd) git(args ...string) (string, string) {
-	return c.run("git", args...)
-}
-
-func (c *cmd) run(prog string, args ...string) (string, string) {
-	if c.err != nil {
-		return "", ""
-	}
-	var (
-		outBuf bytes.Buffer
-		errBuf bytes.Buffer
-	)
-	cmd := exec.Command(prog, args...)
-	cmd.Stdout = io.MultiWriter(&outBuf, c.outStream)
-	cmd.Stderr = io.MultiWriter(&errBuf, c.errStream)
-	c.err = cmd.Run()
-	return outBuf.String(), errBuf.String()
-}
-
 var gitReg = regexp.MustCompile(`^(?:git|https)(?:@|://)([^/:]+(?::[0-9]{1,5})?)[/:](.*)$`)
-
-func git(args ...string) (string, string, error) {
-	var (
-		outBuf bytes.Buffer
-		errBuf bytes.Buffer
-	)
-	cmd := exec.Command("git", args...)
-	cmd.Stdout = &outBuf
-	cmd.Stderr = &errBuf
-	err := cmd.Run()
-	return strings.TrimSpace(outBuf.String()), strings.TrimSpace(errBuf.String()), err
-}
 
 func (re *release) do() error {
 	if !re.allowDirty {
@@ -112,7 +75,6 @@ func (re *release) do() error {
 		if len(m) < 2 {
 			return xerrors.Errorf("strange remote URL: %s", remoteURL)
 		}
-		apibase := os.Getenv("GITHUB_API")
 		if m[1] != "github.com" {
 			apibase = fmt.Sprintf("https://%s/api/v3", m[1])
 		}
