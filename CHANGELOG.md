@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.3](https://github.com/Songmu/godzil/compare/v0.0.2...0.0.3) (2019-02-17)
+
+* enhance commit log when releasing [#11](https://github.com/Songmu/godzil/pull/11) ([Songmu](https://github.com/Songmu))
+
 ## [0.0.2](https://github.com/Songmu/godzil/compare/v0.0.1...0.0.2) (2019-02-17)
 
 * introduce go.mod [#10](https://github.com/Songmu/godzil/pull/10) ([Songmu](https://github.com/Songmu))
