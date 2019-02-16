@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"os"
 	"os/exec"
 	"regexp"
 	"strings"
@@ -101,17 +102,20 @@ func (re *release) do() error {
 	if err != nil {
 		return xerrors.Errorf("can't find a remote branch of %q: %w", branch, err)
 	}
-	remoteURL, _, err := git("config", fmt.Sprintf("remote.%s.url", remote))
-	if err != nil {
-		return xerrors.Errorf("can't find a remote URL of %q: %w", remote, err)
-	}
-	m := gitReg.FindStringSubmatch(remoteURL)
-	if len(m) < 2 {
-		return xerrors.Errorf("strange remote URL: %s", remoteURL)
-	}
-	var apibase string
-	if m[1] != "github.com" {
-		apibase = fmt.Sprintf("https://%s/api/v3", m[1])
+	apibase := os.Getenv("GITHUB_API")
+	if apibase == "" {
+		remoteURL, _, err := git("config", fmt.Sprintf("remote.%s.url", remote))
+		if err != nil {
+			return xerrors.Errorf("can't find a remote URL of %q: %w", remote, err)
+		}
+		m := gitReg.FindStringSubmatch(remoteURL)
+		if len(m) < 2 {
+			return xerrors.Errorf("strange remote URL: %s", remoteURL)
+		}
+		apibase := os.Getenv("GITHUB_API")
+		if m[1] != "github.com" {
+			apibase = fmt.Sprintf("https://%s/api/v3", m[1])
+		}
 	}
 	buf := &bytes.Buffer{}
 	gb := &gobump.Gobump{
