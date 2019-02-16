@@ -1,24 +1,28 @@
-VERSION = $(shell gobump show -r)
+VERSION = $(shell godzil show-version)
 CURRENT_REVISION = $(shell git rev-parse --short HEAD)
-BUILD_LDFLAGS = "-s -w -X github.com/Songmu/peep.revision=$(CURRENT_REVISION)"
+BUILD_LDFLAGS = "-s -w -X github.com/Songmu/godzil.revision=$(CURRENT_REVISION)"
 ifdef update
   u=-u
 endif
 
+export GO111MODULE=on
+
 deps:
-	go get ${u} github.com/golang/dep/cmd/dep
-	dep ensure
+	go get ${u} -d
+
+test-deps:
+	go get ${u} -d -t
 
 devel-deps: deps
-	go get ${u} golang.org/x/lint/golint \
-	  github.com/mattn/goveralls              \
-	  github.com/motemen/gobump/cmd/gobump    \
-	  github.com/Songmu/goxz/cmd/goxz         \
-	  github.com/Songmu/ghch/cmd/ghch         \
+	GO111MODULE=off go get ${u} \
+	  golang.org/x/lint/golint            \
+	  github.com/mattn/goveralls          \
+	  github.com/Songmu/godzil/cmd/godzil \
+	  github.com/Songmu/goxz/cmd/goxz     \
 	  github.com/tcnksm/ghr
 
-test: deps
-	go test ./...
+test: test-deps
+	go test
 
 lint: devel-deps
 	go vet
@@ -28,10 +32,10 @@ cover: devel-deps
 	goveralls
 
 build: deps
-	go build -ldflags=$(BUILD_LDFLAGS) ./cmd/peep
+	go build -ldflags=$(BUILD_LDFLAGS) ./cmd/godzil
 
 bump: devel-deps
-	_tools/releng
+	godzil release
 
 crossbuild:
 	goxz -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
@@ -42,4 +46,4 @@ upload:
 
 release: bump crossbuild upload
 
-.PHONY: test deps devel-deps lint cover build bump crossbuild upload release
+.PHONY: test deps test-deps devel-deps lint cover build bump crossbuild upload release
