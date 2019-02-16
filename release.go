@@ -5,10 +5,12 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"os"
 	"os/exec"
 	"regexp"
 	"strings"
 
+	"github.com/Masterminds/semver"
 	"github.com/Songmu/ghch"
 	"github.com/Songmu/prompter"
 	"github.com/motemen/gobump"
@@ -100,17 +102,20 @@ func (re *release) do() error {
 	if err != nil {
 		return xerrors.Errorf("can't find a remote branch of %q: %w", branch, err)
 	}
-	remoteURL, _, err := git("config", fmt.Sprintf("remote.%s.url", remote))
-	if err != nil {
-		return xerrors.Errorf("can't find a remote URL of %q: %w", remote, err)
-	}
-	m := gitReg.FindStringSubmatch(remoteURL)
-	if len(m) < 2 {
-		return xerrors.Errorf("strange remote URL: %s", remoteURL)
-	}
-	var apibase string
-	if m[1] != "github.com" {
-		apibase = fmt.Sprintf("https://%s/api/v3", m[1])
+	apibase := os.Getenv("GITHUB_API")
+	if apibase == "" {
+		remoteURL, _, err := git("config", fmt.Sprintf("remote.%s.url", remote))
+		if err != nil {
+			return xerrors.Errorf("can't find a remote URL of %q: %w", remote, err)
+		}
+		m := gitReg.FindStringSubmatch(remoteURL)
+		if len(m) < 2 {
+			return xerrors.Errorf("strange remote URL: %s", remoteURL)
+		}
+		apibase := os.Getenv("GITHUB_API")
+		if m[1] != "github.com" {
+			apibase = fmt.Sprintf("https://%s/api/v3", m[1])
+		}
 	}
 	buf := &bytes.Buffer{}
 	gb := &gobump.Gobump{
@@ -121,12 +126,24 @@ func (re *release) do() error {
 	if _, err := gb.Run(); err != nil {
 		return err
 	}
-	fmt.Fprintf(re.outStream, "current version: %s", buf.String())
-	nextVer := prompter.Prompt("input next version", "")
+	currVerStr := strings.TrimSpace(buf.String())
+	vers := strings.Split(currVerStr, "\n")
+	currVer, _ := semver.NewVersion(vers[0])
+	fmt.Fprintf(re.outStream, "current version: %s\n", currVer.Original())
+	nextVer, err := semver.NewVersion(prompter.Prompt("input next version", ""))
+	if err != nil {
+		return xerrors.Errorf("invalid version: %w", err)
+	}
+	if !nextVer.GreaterThan(currVer) {
+		return xerrors.Errorf("next version %q isn't greather than current version %q",
+			nextVer.Original(),
+			currVer.Original())
+	}
+
 	gb2 := &gobump.Gobump{
 		Write: true,
 		Config: gobump.Config{
-			Exact: nextVer,
+			Exact: nextVer.Original(),
 		},
 	}
 	filesMap, err := gb2.Run()
@@ -141,7 +158,7 @@ func (re *release) do() error {
 	fmt.Fprintln(re.outStream, "following changes will be released")
 	gh := &ghch.Ghch{
 		RepoPath:    re.path,
-		NextVersion: nextVer,
+		NextVersion: nextVer.Original(),
 		BaseURL:     apibase,
 		Format:      "markdown",
 		OutStream:   re.outStream,
