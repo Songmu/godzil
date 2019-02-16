@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os/exec"
+	"regexp"
 	"strings"
 
 	"github.com/Songmu/ghch"
@@ -63,6 +64,8 @@ func (c *cmd) run(prog string, args ...string) (string, string) {
 	return outBuf.String(), errBuf.String()
 }
 
+var gitReg = regexp.MustCompile(`^(?:git|https)(?:@|://)([^/:]+(?::[0-9]{1,5})?)[/:](.*)$`)
+
 func git(args ...string) (string, string, error) {
 	var (
 		outBuf bytes.Buffer
@@ -93,7 +96,22 @@ func (re *release) do() error {
 		return xerrors.Errorf("you are not on releasing branch %q, current branch is %q",
 			re.branch, branch)
 	}
-
+	remote, _, err := git("config", fmt.Sprintf("branch.%s.remote", branch))
+	if err != nil {
+		return xerrors.Errorf("can't find a remote branch of %q: %w", branch, err)
+	}
+	remoteURL, _, err := git("config", fmt.Sprintf("remote.%s.url", remote))
+	if err != nil {
+		return xerrors.Errorf("can't find a remote URL of %q: %w", remote, err)
+	}
+	m := gitReg.FindStringSubmatch(remoteURL)
+	if len(m) < 2 {
+		return xerrors.Errorf("strange remote URL: %s", remoteURL)
+	}
+	var apibase string
+	if m[1] != "github.com" {
+		apibase = fmt.Sprintf("https://%s/api/v3", m[1])
+	}
 	buf := &bytes.Buffer{}
 	gb := &gobump.Gobump{
 		Show:      true,
@@ -124,6 +142,7 @@ func (re *release) do() error {
 	gh := &ghch.Ghch{
 		RepoPath:    re.path,
 		NextVersion: nextVer,
+		BaseURL:     apibase,
 		Format:      "markdown",
 		OutStream:   re.outStream,
 	}
@@ -136,14 +155,13 @@ func (re *release) do() error {
 	}
 
 	c := &cmd{outStream: re.outStream, errStream: re.errStream}
-	c.git(append([]string{"add", "CHANGELOG.md"}, versions...)...)
+	c.git(append([]string{"add", gh.ChangelogMd}, versions...)...)
 	if re.dryRun {
 		return c.err
 	}
 	c.git("commit", "-m",
 		fmt.Sprintf("Checking in changes prior to tagging of version v%s", nextVer))
 	c.git("tag", fmt.Sprintf("v%s", nextVer))
-	// how to detect remote exists?
 	c.git("push")
 	c.git("push", "--tags")
 	return c.err
