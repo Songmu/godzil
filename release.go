@@ -118,12 +118,13 @@ func (re *release) do() error {
 	}
 
 	fmt.Fprintln(re.outStream, "following changes will be released")
+	buf2 := &bytes.Buffer{}
 	gh := &ghch.Ghch{
 		RepoPath:    re.path,
 		NextVersion: nextVer.Original(),
 		BaseURL:     apibase,
 		Format:      "markdown",
-		OutStream:   re.outStream,
+		OutStream:   io.MultiWriter(re.outStream, buf2),
 	}
 	if err := gh.Run(); err != nil {
 		return err
@@ -139,7 +140,9 @@ func (re *release) do() error {
 		return c.err
 	}
 	c.git("commit", "-m",
-		fmt.Sprintf("Checking in changes prior to tagging of version v%s", nextVer))
+		fmt.Sprintf("Checking in changes prior to tagging of version v%s\n\n%s",
+			nextVer,
+			strings.TrimSpace(buf2.String())))
 	c.git("tag", fmt.Sprintf("v%s", nextVer))
 	c.git("push")
 	c.git("push", "--tags")
