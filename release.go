@@ -9,6 +9,7 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/Masterminds/semver"
 	"github.com/Songmu/ghch"
 	"github.com/Songmu/prompter"
 	"github.com/motemen/gobump"
@@ -121,12 +122,18 @@ func (re *release) do() error {
 	if _, err := gb.Run(); err != nil {
 		return err
 	}
-	fmt.Fprintf(re.outStream, "current version: %s", buf.String())
-	nextVer := prompter.Prompt("input next version", "")
+	currVerStr := strings.TrimSpace(buf.String())
+	vers := strings.Split(currVerStr, "\n")
+	currVer, _ := semver.NewVersion(vers[0])
+	fmt.Fprintf(re.outStream, "current version: %s\n", currVer.Original())
+	nextVer, err := semver.NewVersion(prompter.Prompt("input next version", ""))
+	if err != nil {
+		return xerrors.Errorf("invalid version: %w", err)
+	}
 	gb2 := &gobump.Gobump{
 		Write: true,
 		Config: gobump.Config{
-			Exact: nextVer,
+			Exact: nextVer.Original(),
 		},
 	}
 	filesMap, err := gb2.Run()
@@ -141,7 +148,7 @@ func (re *release) do() error {
 	fmt.Fprintln(re.outStream, "following changes will be released")
 	gh := &ghch.Ghch{
 		RepoPath:    re.path,
-		NextVersion: nextVer,
+		NextVersion: nextVer.Original(),
 		BaseURL:     apibase,
 		Format:      "markdown",
 		OutStream:   re.outStream,
