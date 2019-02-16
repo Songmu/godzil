@@ -130,6 +130,12 @@ func (re *release) do() error {
 	if err != nil {
 		return xerrors.Errorf("invalid version: %w", err)
 	}
+	if !nextVer.GreaterThan(currVer) {
+		return xerrors.Errorf("next version %q isn't greather than current version %q",
+			nextVer.Original(),
+			currVer.Original())
+	}
+
 	gb2 := &gobump.Gobump{
 		Write: true,
 		Config: gobump.Config{
