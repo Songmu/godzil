@@ -124,7 +124,7 @@ func (re *release) do() error {
 		OutStream: buf,
 	}
 	if _, err := gb.Run(); err != nil {
-		return err
+		return xerrors.Errorf("no version declaraion found: %w", err)
 	}
 	currVerStr := strings.TrimSpace(buf.String())
 	vers := strings.Split(currVerStr, "\n")
