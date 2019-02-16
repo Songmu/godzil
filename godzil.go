@@ -28,8 +28,9 @@ func Run(argv []string, outStream, errStream io.Writer) error {
 }
 
 var dispatch = map[string]runner{
-	"release": &release{},
-	"new":     &new{},
+	"release":      &release{},
+	"new":          &new{},
+	"show-version": &showVersion{},
 }
 
 type runner interface {
