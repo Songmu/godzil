@@ -155,7 +155,7 @@ func (re *release) do() error {
 	}
 
 	c := &cmd{outStream: re.outStream, errStream: re.errStream}
-	c.git(append([]string{"add", "CHANGELOG.md"}, versions...)...)
+	c.git(append([]string{"add", gh.ChangelogMd}, versions...)...)
 	if re.dryRun {
 		return c.err
 	}
