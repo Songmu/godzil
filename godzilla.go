@@ -30,3 +30,7 @@ func Run(argv []string, outStream, errStream io.Writer) error {
 var dispatch = map[string]runner{
 	"release": &release{},
 }
+
+type runner interface {
+	run([]string, io.Writer, io.Writer) error
+}
