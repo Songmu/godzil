@@ -1,4 +1,4 @@
-package godzilla
+package godzil
 
 import "testing"
 

@@ -1,4 +1,4 @@
-package godzilla
+package godzil
 
 import (
 	"bytes"
@@ -26,7 +26,7 @@ type release struct {
 func (re *release) run(argv []string, outStream, errStream io.Writer) error {
 	re.outStream = outStream
 	re.errStream = errStream
-	fs := flag.NewFlagSet("godzilla release", flag.ContinueOnError)
+	fs := flag.NewFlagSet("godzil release", flag.ContinueOnError)
 	fs.StringVar(&re.branch, "branch", "master", "releasing branch")
 	fs.BoolVar(&re.allowDirty, "allow-dirty", false, "allow dirty index")
 	fs.BoolVar(&re.dryRun, "dry-run", false, "dry run")

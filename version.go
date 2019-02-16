@@ -1,4 +1,4 @@
-package godzilla
+package godzil
 
 const version = "0.0.1"
 
