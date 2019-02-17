@@ -80,19 +80,26 @@ func (ne *new) do() error {
 			return xerrors.Errorf("failed to scaffold while resolving targetPath %q: %w",
 				targetPathTmpl, err)
 		}
-
 		targetPath := buf.String()
 		if err := os.MkdirAll(filepath.Dir(targetPath), 0755); err != nil {
 			return xerrors.Errorf("failed to scaffold while MkdirAll of %q: %w",
 				targetPath, err)
 		}
-		targetF, err := os.Create(targetPath)
+		err := func() (rerr error) {
+			targetF, err := os.Create(targetPath)
+			if err != nil {
+				return err
+			}
+			defer func() {
+				e := targetF.Close()
+				if rerr == nil && e != nil {
+					rerr = e
+				}
+			}()
+			return template.Must(template.New(f.Path+".tmpl").Parse(string(f.Data))).
+				Execute(targetF, ne)
+		}()
 		if err != nil {
-			return xerrors.Errorf("failed to scaffold while creating %q: %w",
-				targetPath, err)
-		}
-		defer targetF.Close()
-		if err := template.Must(template.New(f.Path+".tmpl").Parse(string(f.Data))).Execute(targetF, ne); err != nil {
 			return xerrors.Errorf("failed to scaffold while templating %q: %w",
 				targetPath, err)
 		}
