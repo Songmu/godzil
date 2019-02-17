@@ -2,6 +2,7 @@ package godzil
 
 import (
 	"flag"
+	"fmt"
 	"io"
 	"log"
 
@@ -11,12 +12,17 @@ import (
 // Run the godzil
 func Run(argv []string, outStream, errStream io.Writer) error {
 	log.SetOutput(errStream)
-	// global flagset
-	fs := flag.NewFlagSet("godzil", flag.ContinueOnError)
+	fs := flag.NewFlagSet(
+		fmt.Sprintf("godzil (v%s rev:%s)", version, revision), flag.ContinueOnError)
 	fs.SetOutput(errStream)
+	ver := fs.Bool("version", false, "display version")
 	if err := fs.Parse(argv); err != nil {
 		return err
 	}
+	if *ver {
+		return printVersion(outStream)
+	}
+
 	argv = fs.Args()
 	if len(argv) < 1 {
 		return xerrors.New("no subcommand specified")
@@ -26,6 +32,11 @@ func Run(argv []string, outStream, errStream io.Writer) error {
 		return xerrors.Errorf("unknown subcommand: %s", argv[0])
 	}
 	return rnr.run(argv[1:], outStream, errStream)
+}
+
+func printVersion(out io.Writer) error {
+	_, err := fmt.Fprintf(out, "godzil v%s (rev:%s)\n", version, revision)
+	return err
 }
 
 var dispatch = map[string]runner{
