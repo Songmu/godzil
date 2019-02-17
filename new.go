@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"flag"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -86,6 +87,7 @@ func (ne *new) do() error {
 				targetPath, err)
 		}
 		err := func() (rerr error) {
+			log.Printf("Writing %s\n", targetPath)
 			targetF, err := os.Create(targetPath)
 			if err != nil {
 				return err
@@ -104,11 +106,15 @@ func (ne *new) do() error {
 				targetPath, err)
 		}
 	}
-
+	log.Println("% git init && git add .")
 	c := &cmd{outStream: ne.outStream, errStream: ne.errStream}
 	c.git("-C", projDir, "init")
 	c.git("-C", projDir, "add", ".")
 
-	return c.err
+	if c.err != nil {
+		return c.err
+	}
+	log.Printf("Finished to create %s in %s\n", ne.PackagePath, projDir)
+	return nil
 	// 4. create remote repository?
 }
