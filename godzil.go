@@ -8,6 +8,7 @@ import (
 	"golang.org/x/xerrors"
 )
 
+// Run the godzil
 func Run(argv []string, outStream, errStream io.Writer) error {
 	log.SetOutput(errStream)
 	// global flagset
