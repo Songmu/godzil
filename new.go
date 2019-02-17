@@ -41,7 +41,7 @@ func (ne *new) run(argv []string, outStream, errStream io.Writer) error {
 	// config? ~/.config/godzil/godzil.yaml
 
 	// TOOD:
-	// 1. create project repository ({{.Root}}/github.com/{{.User}}/{{.Pkg}})
+	// 1. create project repository ({{.Root}}/{{.GitHubHost}}/{{.User}}/{{.Pkg}})
 	// 2. scaffold from templates
 	// 3. git init && git add
 	// 4. create remote repository?

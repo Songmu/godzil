@@ -10,6 +10,8 @@ github.com/blang/semver v3.5.1+incompatible h1:cQNTCjp13qL8KC3Nbxr/y2Bqb63oX6wdn
 github.com/blang/semver v3.5.1+incompatible/go.mod h1:kRBLl5iJ+tD4TcOOxsy/0fnwebNt5EWlYSAyrTnjyyk=
 github.com/fhs/go-netrc v1.0.0 h1:jbXXfpcwkeNHq5lXXXQO9DTWD7wUqWxgnyPKUe5H4I0=
 github.com/fhs/go-netrc v1.0.0/go.mod h1:tGgE+SHFQhgo1jg+hG6/uCxBJv5Pnq7pTMjvaEWrOu8=
+github.com/jessevdk/go-assets v0.0.0-20160921144138-4f4301a06e15 h1:cW/amwGEJK5MSKntPXRjX4dxs/nGxGT8gXKIsKFmHGc=
+github.com/jessevdk/go-assets v0.0.0-20160921144138-4f4301a06e15/go.mod h1:Fdm/oWRW+CH8PRbLntksCNtmcCBximKPkVQYvmMl80k=
 github.com/jessevdk/go-flags v1.4.0 h1:4IU2WS7AumrZ/40jfhf4QVDMsQwqA7VEHozFRrGARJA=
 github.com/jessevdk/go-flags v1.4.0/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJSGM75WSRxI=
 github.com/jingweno/go-sawyer v0.0.0-20140729165055-1999ae5763d6 h1:2RMaSBb+6kdtJtT7SZfx4OtcjEuRQpAZ9UFU9OiT1BQ=
