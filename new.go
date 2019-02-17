@@ -67,14 +67,14 @@ func (ne *new) do() error {
 	}
 	// create project directory and templating
 	for _, f := range templates.Files {
-		const prefix = "/assets/basic"
+		const prefix = "/testdata/assets/basic"
 		if f.IsDir() {
 			continue
 		}
 		if !strings.HasPrefix(f.Path, prefix) {
 			continue
 		}
-		targetPathTmpl := strings.Replace(f.Path, "/assets/basic", projDir, 1)
+		targetPathTmpl := strings.Replace(f.Path, prefix, projDir, 1)
 		buf := &bytes.Buffer{}
 		if err := template.Must(template.New(f.Path).Parse(targetPathTmpl)).Execute(buf, ne); err != nil {
 			return xerrors.Errorf("failed to scaffold while resolving targetPath %q: %w",
