@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.0](https://github.com/Songmu/godzil/compare/v0.0.3...0.1.0) (2019-02-18)
+
+* implement new subcommand [#13](https://github.com/Songmu/godzil/pull/13) ([Songmu](https://github.com/Songmu))
+*  add -version flag to print version [#12](https://github.com/Songmu/godzil/pull/12) ([Songmu](https://github.com/Songmu))
+
 ## [0.0.3](https://github.com/Songmu/godzil/compare/v0.0.2...0.0.3) (2019-02-17)
 
 * enhance commit log when releasing [#11](https://github.com/Songmu/godzil/pull/11) ([Songmu](https://github.com/Songmu))
