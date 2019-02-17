@@ -98,9 +98,10 @@ func (ne *new) do() error {
 		}
 	}
 
-	// TOOD:
-	// 3. git init && git add
-	// 4. create remote repository?
+	c := &cmd{outStream: ne.outStream, errStream: ne.errStream}
+	c.git("-C", projDir, "init")
+	c.git("-C", projDir, "add", ".")
 
-	return xerrors.New("not implemented")
+	return c.err
+	// 4. create remote repository?
 }
