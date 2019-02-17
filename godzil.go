@@ -12,8 +12,8 @@ import (
 // Run the godzil
 func Run(argv []string, outStream, errStream io.Writer) error {
 	log.SetOutput(errStream)
-	// global flagset
-	fs := flag.NewFlagSet("godzil", flag.ContinueOnError)
+	fs := flag.NewFlagSet(
+		fmt.Sprintf("godzil (v%s rev:%s)", version, revision), flag.ContinueOnError)
 	fs.SetOutput(errStream)
 	ver := fs.Bool("version", false, "display version")
 	if err := fs.Parse(argv); err != nil {
