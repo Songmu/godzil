@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.1.2](https://github.com/Songmu/godzil/compare/v0.1.1...v0.1.2) (2019-02-26)
+
+* introduce each .PHONY style in Makefile [#15](https://github.com/Songmu/godzil/pull/15) ([Songmu](https://github.com/Songmu))
+
 ## [v0.1.1](https://github.com/Songmu/godzil/compare/v0.1.0...v0.1.1) (2019-02-23)
 
 * [bugfix] use next tag correctly when generating changelog [#14](https://github.com/Songmu/godzil/pull/14) ([Songmu](https://github.com/Songmu))
