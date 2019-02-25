@@ -28,7 +28,7 @@ func (ne *new) run(argv []string, outStream, errStream io.Writer) error {
 
 	fs := flag.NewFlagSet("godzil new", flag.ContinueOnError)
 	fs.SetOutput(errStream)
-	fs.StringVar(&ne.Author, "Author", "", "Author name")
+	fs.StringVar(&ne.Author, "author", "", "Author name")
 	if err := fs.Parse(argv); err != nil {
 		return err
 	}
