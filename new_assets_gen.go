@@ -7,91 +7,91 @@ import (
 	"github.com/jessevdk/go-assets"
 )
 
-var _templates305e0b63f67ee005bd502b23fa755fa84b8cf1eb = "package {{.Package}}\n\nconst version = \"0.0.0\"\n\nvar revision = \"HEAD\"\n"
-var _templatesde3186edaa2f6c262c6d4b651b262ad0d207821b = ".*\n!.gitignore\n!.travis.yml\ndist/\n"
-var _templatesd077c642859f12828e4f5a75533296c0a1c15f88 = "Copyright (c) {{.Year}} {{.Author}}\n\nMIT License\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\nLIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\nWITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
-var _templates85bf15ace4e3bc852d0eda34b2b0544d825f2352 = "VERSION = $(shell godzil show-version)\nCURRENT_REVISION = $(shell git rev-parse --short HEAD)\nBUILD_LDFLAGS = \"-s -w -X {{.PackagePath}}.revision=$(CURRENT_REVISION)\"\nifdef update\n  u=-u\nendif\n\nexport GO111MODULE=on\n\ndeps:\n\tgo get ${u} -d\n\ndevel-deps: deps\n\tGO111MODULE=off go get ${u} \\\n\t  golang.org/x/lint/golint            \\\n\t  github.com/mattn/goveralls          \\\n\t  github.com/Songmu/godzil/cmd/godzil \\\n\t  github.com/Songmu/goxz/cmd/goxz     \\\n\t  github.com/tcnksm/ghr\n\ntest: deps\n\tgo test\n\nlint: devel-deps\n\tgo vet\n\tgolint -set_exit_status\n\ncover: devel-deps\n\tgoveralls\n\nbuild: deps\n\tgo build -ldflags=$(BUILD_LDFLAGS) ./cmd/{{.Package}}\n\nbump: devel-deps\n\tgodzil release\n\ncrossbuild:\n\tgoxz -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \\\n      -os=linux,darwin -d=./dist/v$(VERSION) ./cmd/*\n\nupload:\n\tghr v$(VERSION) dist/v$(VERSION)\n\nrelease: bump crossbuild upload\n\n.PHONY: test deps devel-deps lint cover build bump crossbuild upload release\n"
-var _templates0d446dc9c0a5a9676f8a9e0a16b4f0376584f4ae = "{{.Package}}\n=======\n\n[![Build Status](https://travis-ci.org/{{.Owner}}/{{.Package}}.png?branch=master)][travis]\n[![Coverage Status](https://coveralls.io/repos/{{.Owner}}/{{.Package}}/badge.png?branch=master)][coveralls]\n[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)][license]\n[![GoDoc](https://godoc.org/{{.PackagePath}}?status.svg)][godoc]\n\n[travis]: https://travis-ci.org/{{.Owner}}/{{.Package}}\n[coveralls]: https://coveralls.io/r/{{.Owner}}/{{.Package}}?branch=master\n[license]: https://{{.GitHubHost}}/{{.Owner}}/{{.Package}}/blob/master/LICENSE\n[godoc]: https://godoc.org/{{.PackagePath}}\n\n{{.Package}} short description\n\n## Synopsis\n\n```go\n// simple usage here\n```\n\n## Description\n\n## Installation\n\n```console\n% go get {{.PackagePath}}\n```\n\n## Author\n\n[{{.Author}}](https://{{.GitHubHost}}/{{.Author}})\n"
-var _templates12e5356562a3e9d208fb13d6e77c6f5cdc7b6f51 = "package {{.Package}}\n\nimport (\n\t\"flag\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n)\n\nconst cmdName = \"{{.Package}}\"\n\n// Run the {{.Package}}\nfunc Run(argv []string, outStream, errStream io.Writer) error {\n\tlog.SetOutput(errStream)\n\tfs := flag.NewFlagSet(\n\t\tfmt.Sprintf(\"%s (v%s rev:%s)\", cmdName, version, revision), flag.ContinueOnError)\n\tfs.SetOutput(errStream)\n\tver := fs.Bool(\"version\", false, \"display version\")\n\tif err := fs.Parse(argv); err != nil {\n\t\treturn err\n\t}\n\tif *ver {\n\t\treturn printVersion(outStream)\n\t}\n\treturn nil\n}\n\nfunc printVersion(out io.Writer) error {\n\t_, err := fmt.Fprintf(out, \"%s v%s (rev:%s)\\n\", cmdName, version, revision)\n\treturn err\n}\n"
 var _templatesdefe1bc6a18d9fa65ecf0661dd383e81cfb5ba8b = "language: go\ngo:\n- 1.x\nscript:\n- make lint\n- make test\nafter_script:\n- make cover\n"
-var _templates8655c7f1b1eba9da87299d1a39fbca34e3ce2a2b = "package main\n\nimport (\n\t\"flag\"\n\t\"log\"\n\t\"os\"\n\n\t\"{{.PackagePath}}\"\n)\n\nfunc main() {\n\tlog.SetFlags(0)\n\terr := {{.Package}}.Run(os.Args[1:], os.Stdout, os.Stderr)\n\tif err != nil && err != flag.ErrHelp {\n\t\tlog.Println(err)\n\t\texitCode := 1\n\t\tif ecoder, ok := err.(interface{ ExitCode() int }); ok {\n\t\t\texitCode = ecoder.ExitCode()\n\t\t}\n\t\tos.Exit(exitCode)\n\t}\n}\n"
 var _templatesdf33975472a75205b433be640d2a9d6382fd4f34 = "module {{.PackagePath}}\n"
+var _templatesd077c642859f12828e4f5a75533296c0a1c15f88 = "Copyright (c) {{.Year}} {{.Author}}\n\nMIT License\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\nLIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\nWITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+var _templates85bf15ace4e3bc852d0eda34b2b0544d825f2352 = "VERSION = $(shell godzil show-version)\nCURRENT_REVISION = $(shell git rev-parse --short HEAD)\nBUILD_LDFLAGS = \"-s -w -X {{.PackagePath}}.revision=$(CURRENT_REVISION)\"\nifdef update\n  u=-u\nendif\n\nexport GO111MODULE=on\n\n.PHONY: deps\ndeps:\n\tgo get ${u} -d\n\n.PHONY: devel-deps\ndevel-deps: deps\n\tGO111MODULE=off go get ${u} \\\n\t  golang.org/x/lint/golint            \\\n\t  github.com/mattn/goveralls          \\\n\t  github.com/Songmu/godzil/cmd/godzil \\\n\t  github.com/Songmu/goxz/cmd/goxz     \\\n\t  github.com/tcnksm/ghr\n\n.PHONY: test\ntest: deps\n\tgo test\n\n.PHONY: lint\nlint: devel-deps\n\tgo vet\n\tgolint -set_exit_status\n\n.PHONY: cover\ncover: devel-deps\n\tgoveralls\n\n.PHONY: build\nbuild: deps\n\tgo build -ldflags=$(BUILD_LDFLAGS) ./cmd/{{.Package}}\n\n.PHONY: install\ninstall: build\n\tmv {{.Package}} \"$(shell go env GOPATH)/bin/\"\n\n.PHONY: bump\nbump: devel-deps\n\tgodzil release\n\n.PHONY: crossbuild\ncrossbuild:\n\tgoxz -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \\\n      -os=linux,darwin -d=./dist/v$(VERSION) ./cmd/*\n\n.PHONY: upload\nupload:\n\tghr v$(VERSION) dist/v$(VERSION)\n\n.PHONY: release\nrelease: bump crossbuild upload\n"
+var _templates0d446dc9c0a5a9676f8a9e0a16b4f0376584f4ae = "{{.Package}}\n=======\n\n[![Build Status](https://travis-ci.org/{{.Owner}}/{{.Package}}.png?branch=master)][travis]\n[![Coverage Status](https://coveralls.io/repos/{{.Owner}}/{{.Package}}/badge.png?branch=master)][coveralls]\n[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)][license]\n[![GoDoc](https://godoc.org/{{.PackagePath}}?status.svg)][godoc]\n\n[travis]: https://travis-ci.org/{{.Owner}}/{{.Package}}\n[coveralls]: https://coveralls.io/r/{{.Owner}}/{{.Package}}?branch=master\n[license]: https://{{.GitHubHost}}/{{.Owner}}/{{.Package}}/blob/master/LICENSE\n[godoc]: https://godoc.org/{{.PackagePath}}\n\n{{.Package}} short description\n\n## Synopsis\n\n```go\n// simple usage here\n```\n\n## Description\n\n## Installation\n\n```console\n% go get {{.PackagePath}}\n```\n\n## Author\n\n[{{.Author}}](https://{{.GitHubHost}}/{{.Author}})\n"
+var _templates8655c7f1b1eba9da87299d1a39fbca34e3ce2a2b = "package main\n\nimport (\n\t\"flag\"\n\t\"log\"\n\t\"os\"\n\n\t\"{{.PackagePath}}\"\n)\n\nfunc main() {\n\tlog.SetFlags(0)\n\terr := {{.Package}}.Run(os.Args[1:], os.Stdout, os.Stderr)\n\tif err != nil && err != flag.ErrHelp {\n\t\tlog.Println(err)\n\t\texitCode := 1\n\t\tif ecoder, ok := err.(interface{ ExitCode() int }); ok {\n\t\t\texitCode = ecoder.ExitCode()\n\t\t}\n\t\tos.Exit(exitCode)\n\t}\n}\n"
+var _templates305e0b63f67ee005bd502b23fa755fa84b8cf1eb = "package {{.Package}}\n\nconst version = \"0.0.0\"\n\nvar revision = \"HEAD\"\n"
+var _templates12e5356562a3e9d208fb13d6e77c6f5cdc7b6f51 = "package {{.Package}}\n\nimport (\n\t\"flag\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n)\n\nconst cmdName = \"{{.Package}}\"\n\n// Run the {{.Package}}\nfunc Run(argv []string, outStream, errStream io.Writer) error {\n\tlog.SetOutput(errStream)\n\tfs := flag.NewFlagSet(\n\t\tfmt.Sprintf(\"%s (v%s rev:%s)\", cmdName, version, revision), flag.ContinueOnError)\n\tfs.SetOutput(errStream)\n\tver := fs.Bool(\"version\", false, \"display version\")\n\tif err := fs.Parse(argv); err != nil {\n\t\treturn err\n\t}\n\tif *ver {\n\t\treturn printVersion(outStream)\n\t}\n\treturn nil\n}\n\nfunc printVersion(out io.Writer) error {\n\t_, err := fmt.Fprintf(out, \"%s v%s (rev:%s)\\n\", cmdName, version, revision)\n\treturn err\n}\n"
+var _templatesde3186edaa2f6c262c6d4b651b262ad0d207821b = ".*\n!.gitignore\n!.travis.yml\ndist/\n"
 
 // templates returns go-assets FileSystem
-var templates = assets.NewFileSystem(map[string][]string{"/testdata/assets": []string{"basic"}, "/testdata/assets/basic": []string{".gitignore", ".travis.yml", "LICENSE", "Makefile", "README.md", "cmd", "go.mod", "version.go", "{{.Package}}.go"}, "/testdata/assets/basic/cmd": []string{"{{.Package}}"}, "/testdata/assets/basic/cmd/{{.Package}}": []string{"main.go"}, "/": []string{"testdata"}, "/testdata": []string{"assets"}}, map[string]*assets.File{
-	"/testdata/assets/basic/.travis.yml": &assets.File{
-		Path:     "/testdata/assets/basic/.travis.yml",
-		FileMode: 0x1a4,
-		Mtime:    time.Unix(1550411536, 1550411536244268633),
-		Data:     []byte(_templatesdefe1bc6a18d9fa65ecf0661dd383e81cfb5ba8b),
-	}, "/testdata/assets/basic/cmd/{{.Package}}/main.go": &assets.File{
-		Path:     "/testdata/assets/basic/cmd/{{.Package}}/main.go",
-		FileMode: 0x1a4,
-		Mtime:    time.Unix(1550413183, 1550413183180211607),
-		Data:     []byte(_templates8655c7f1b1eba9da87299d1a39fbca34e3ce2a2b),
-	}, "/testdata/assets/basic/go.mod": &assets.File{
-		Path:     "/testdata/assets/basic/go.mod",
-		FileMode: 0x1a4,
-		Mtime:    time.Unix(1550413183, 1550413183181764542),
-		Data:     []byte(_templatesdf33975472a75205b433be640d2a9d6382fd4f34),
+var templates = assets.NewFileSystem(map[string][]string{"/": []string{"testdata"}, "/testdata": []string{"assets"}, "/testdata/assets": []string{"basic"}, "/testdata/assets/basic": []string{".gitignore", ".travis.yml", "LICENSE", "Makefile", "README.md", "cmd", "go.mod", "version.go", "{{.Package}}.go"}, "/testdata/assets/basic/cmd": []string{"{{.Package}}"}, "/testdata/assets/basic/cmd/{{.Package}}": []string{"main.go"}}, map[string]*assets.File{
+	"/testdata": &assets.File{
+		Path:     "/testdata",
+		FileMode: 0x800001ed,
+		Mtime:    time.Unix(1550421388, 1550421388001506804),
+		Data:     nil,
 	}, "/testdata/assets/basic": &assets.File{
 		Path:     "/testdata/assets/basic",
 		FileMode: 0x800001ed,
-		Mtime:    time.Unix(1550413342, 1550413342600786096),
-		Data:     nil,
-	}, "/testdata/assets/basic/cmd": &assets.File{
-		Path:     "/testdata/assets/basic/cmd",
-		FileMode: 0x800001ed,
-		Mtime:    time.Unix(1550412084, 1550412084179167833),
-		Data:     nil,
-	}, "/": &assets.File{
-		Path:     "/",
-		FileMode: 0x800001ed,
-		Mtime:    time.Unix(1550417741, 1550417741911172980),
+		Mtime:    time.Unix(1551110898, 1551110898313287425),
 		Data:     nil,
 	}, "/testdata/assets": &assets.File{
 		Path:     "/testdata/assets",
 		FileMode: 0x800001ed,
-		Mtime:    time.Unix(1550411552, 1550411552215795366),
+		Mtime:    time.Unix(1550421388, 1550421388001614981),
 		Data:     nil,
-	}, "/testdata/assets/basic/.gitignore": &assets.File{
-		Path:     "/testdata/assets/basic/.gitignore",
+	}, "/testdata/assets/basic/.travis.yml": &assets.File{
+		Path:     "/testdata/assets/basic/.travis.yml",
 		FileMode: 0x1a4,
-		Mtime:    time.Unix(1550411536, 1550411536243704544),
-		Data:     []byte(_templatesde3186edaa2f6c262c6d4b651b262ad0d207821b),
-	}, "/testdata/assets/basic/LICENSE": &assets.File{
-		Path:     "/testdata/assets/basic/LICENSE",
-		FileMode: 0x1a4,
-		Mtime:    time.Unix(1550413206, 1550413206705809999),
-		Data:     []byte(_templatesd077c642859f12828e4f5a75533296c0a1c15f88),
+		Mtime:    time.Unix(1550421388, 1550421388002708638),
+		Data:     []byte(_templatesdefe1bc6a18d9fa65ecf0661dd383e81cfb5ba8b),
 	}, "/testdata/assets/basic/cmd/{{.Package}}": &assets.File{
 		Path:     "/testdata/assets/basic/cmd/{{.Package}}",
 		FileMode: 0x800001ed,
-		Mtime:    time.Unix(1550413183, 1550413183179943401),
+		Mtime:    time.Unix(1550421388, 1550421388004149670),
 		Data:     nil,
-	}, "/testdata/assets/basic/version.go": &assets.File{
-		Path:     "/testdata/assets/basic/version.go",
+	}, "/testdata/assets/basic/go.mod": &assets.File{
+		Path:     "/testdata/assets/basic/go.mod",
 		FileMode: 0x1a4,
-		Mtime:    time.Unix(1550413183, 1550413183182114365),
-		Data:     []byte(_templates305e0b63f67ee005bd502b23fa755fa84b8cf1eb),
-	}, "/testdata": &assets.File{
-		Path:     "/testdata",
+		Mtime:    time.Unix(1550421388, 1550421388004949258),
+		Data:     []byte(_templatesdf33975472a75205b433be640d2a9d6382fd4f34),
+	}, "/": &assets.File{
+		Path:     "/",
 		FileMode: 0x800001ed,
-		Mtime:    time.Unix(1550417582, 1550417582123148936),
+		Mtime:    time.Unix(1551110885, 1551110885802189730),
 		Data:     nil,
-	}, "/testdata/assets/basic/README.md": &assets.File{
-		Path:     "/testdata/assets/basic/README.md",
+	}, "/testdata/assets/basic/LICENSE": &assets.File{
+		Path:     "/testdata/assets/basic/LICENSE",
 		FileMode: 0x1a4,
-		Mtime:    time.Unix(1550413342, 1550413342599545867),
-		Data:     []byte(_templates0d446dc9c0a5a9676f8a9e0a16b4f0376584f4ae),
-	}, "/testdata/assets/basic/{{.Package}}.go": &assets.File{
-		Path:     "/testdata/assets/basic/{{.Package}}.go",
+		Mtime:    time.Unix(1550421388, 1550421388003142452),
+		Data:     []byte(_templatesd077c642859f12828e4f5a75533296c0a1c15f88),
+	}, "/testdata/assets/basic/.gitignore": &assets.File{
+		Path:     "/testdata/assets/basic/.gitignore",
 		FileMode: 0x1a4,
-		Mtime:    time.Unix(1550413183, 1550413183182604338),
-		Data:     []byte(_templates12e5356562a3e9d208fb13d6e77c6f5cdc7b6f51),
+		Mtime:    time.Unix(1550421388, 1550421388002148129),
+		Data:     []byte(_templatesde3186edaa2f6c262c6d4b651b262ad0d207821b),
 	}, "/testdata/assets/basic/Makefile": &assets.File{
 		Path:     "/testdata/assets/basic/Makefile",
 		FileMode: 0x1a4,
-		Mtime:    time.Unix(1550413183, 1550413183178451050),
+		Mtime:    time.Unix(1551110898, 1551110898312822400),
 		Data:     []byte(_templates85bf15ace4e3bc852d0eda34b2b0544d825f2352),
+	}, "/testdata/assets/basic/README.md": &assets.File{
+		Path:     "/testdata/assets/basic/README.md",
+		FileMode: 0x1a4,
+		Mtime:    time.Unix(1550421388, 1550421388003795849),
+		Data:     []byte(_templates0d446dc9c0a5a9676f8a9e0a16b4f0376584f4ae),
+	}, "/testdata/assets/basic/cmd": &assets.File{
+		Path:     "/testdata/assets/basic/cmd",
+		FileMode: 0x800001ed,
+		Mtime:    time.Unix(1550421388, 1550421388004044583),
+		Data:     nil,
+	}, "/testdata/assets/basic/cmd/{{.Package}}/main.go": &assets.File{
+		Path:     "/testdata/assets/basic/cmd/{{.Package}}/main.go",
+		FileMode: 0x1a4,
+		Mtime:    time.Unix(1550421388, 1550421388004449564),
+		Data:     []byte(_templates8655c7f1b1eba9da87299d1a39fbca34e3ce2a2b),
+	}, "/testdata/assets/basic/version.go": &assets.File{
+		Path:     "/testdata/assets/basic/version.go",
+		FileMode: 0x1a4,
+		Mtime:    time.Unix(1550421388, 1550421388005710780),
+		Data:     []byte(_templates305e0b63f67ee005bd502b23fa755fa84b8cf1eb),
+	}, "/testdata/assets/basic/{{.Package}}.go": &assets.File{
+		Path:     "/testdata/assets/basic/{{.Package}}.go",
+		FileMode: 0x1a4,
+		Mtime:    time.Unix(1550421388, 1550421388006422163),
+		Data:     []byte(_templates12e5356562a3e9d208fb13d6e77c6f5cdc7b6f51),
 	}}, "")
