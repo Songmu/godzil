@@ -7,9 +7,11 @@ endif
 
 export GO111MODULE=on
 
+.PHONY: deps
 deps:
 	go get ${u} -d
 
+.PHONY: devel-deps
 devel-deps: deps
 	GO111MODULE=off go get ${u} \
 	  golang.org/x/lint/golint            \
@@ -18,29 +20,39 @@ devel-deps: deps
 	  github.com/Songmu/goxz/cmd/goxz     \
 	  github.com/tcnksm/ghr
 
+.PHONY: test
 test: deps
 	go test
 
+.PHONY: lint
 lint: devel-deps
 	go vet
 	golint -set_exit_status
 
+.PHONY: cover
 cover: devel-deps
 	goveralls
 
+.PHONY: build
 build: deps
 	go build -ldflags=$(BUILD_LDFLAGS) ./cmd/{{.Package}}
 
+.PHONY: install
+install: build
+	mv {{.Package}} "$(shell go env GOPATH)/bin/"
+
+.PHONY: bump
 bump: devel-deps
 	godzil release
 
+.PHONY: crossbuild
 crossbuild:
 	goxz -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
       -os=linux,darwin -d=./dist/v$(VERSION) ./cmd/*
 
+.PHONY: upload
 upload:
 	ghr v$(VERSION) dist/v$(VERSION)
 
+.PHONY: release
 release: bump crossbuild upload
-
-.PHONY: test deps devel-deps lint cover build bump crossbuild upload release
