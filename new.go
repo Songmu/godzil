@@ -3,6 +3,7 @@ package godzil
 import (
 	"bytes"
 	"flag"
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -19,6 +20,7 @@ type new struct {
 	GitHubHost, Owner, Package string
 	Year                       int
 
+	profile              string
 	outStream, errStream io.Writer
 }
 
@@ -29,6 +31,7 @@ func (ne *new) run(argv []string, outStream, errStream io.Writer) error {
 	fs := flag.NewFlagSet("godzil new", flag.ContinueOnError)
 	fs.SetOutput(errStream)
 	fs.StringVar(&ne.Author, "author", "", "Author name")
+	fs.StringVar(&ne.profile, "profile", "basic", "template profile")
 	if err := fs.Parse(argv); err != nil {
 		return err
 	}
@@ -67,8 +70,8 @@ func (ne *new) do() error {
 		return xerrors.Errorf("directory %q already exists", projDir)
 	}
 	// create project directory and templating
+	prefix := fmt.Sprintf("/testdata/assets/%s", ne.profile)
 	for _, f := range templates.Files {
-		const prefix = "/testdata/assets/basic"
 		if f.IsDir() {
 			continue
 		}
