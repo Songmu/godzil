@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.1.3](https://github.com/Songmu/godzil/compare/v0.1.2...v0.1.3) (2019-02-27)
+
+* update deps [#17](https://github.com/Songmu/godzil/pull/17) ([Songmu](https://github.com/Songmu))
+* specify template profile in new [#16](https://github.com/Songmu/godzil/pull/16) ([Songmu](https://github.com/Songmu))
+
 ## [v0.1.2](https://github.com/Songmu/godzil/compare/v0.1.1...v0.1.2) (2019-02-26)
 
 * introduce each .PHONY style in Makefile [#15](https://github.com/Songmu/godzil/pull/15) ([Songmu](https://github.com/Songmu))
