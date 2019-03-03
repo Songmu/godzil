@@ -11,6 +11,9 @@ import (
 
 	"github.com/Songmu/gokoku"
 	"golang.org/x/xerrors"
+
+	_ "github.com/Songmu/godzil/statik"
+	"github.com/rakyll/statik/fs"
 )
 
 type new struct {
@@ -68,8 +71,12 @@ func (ne *new) do() error {
 		return xerrors.Errorf("directory %q already exists", projDir)
 	}
 	// create project directory and templating
-	prefix := fmt.Sprintf("/testdata/assets/%s", ne.profile)
-	if err := gokoku.Scaffold(templates, prefix, projDir, ne); err != nil {
+	prefix := fmt.Sprintf("/%s", ne.profile)
+	hfs, err := fs.New()
+	if err != nil {
+		return xerrors.Errorf("failed to load templates: %w", err)
+	}
+	if err := gokoku.Scaffold(hfs, prefix, projDir, ne); err != nil {
 		return xerrors.Errorf("failed to scaffold while templating: %w", err)
 	}
 
