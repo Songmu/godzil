@@ -19,7 +19,7 @@ devel-deps: deps
 	  github.com/Songmu/godzil/cmd/godzil \
 	  github.com/Songmu/goxz/cmd/goxz     \
 	  github.com/tcnksm/ghr               \
-	  github.com/jessevdk/go-assets-builder
+	  github.com/rakyll/statik
 
 .PHONY: test
 test: deps
