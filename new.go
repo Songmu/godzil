@@ -12,6 +12,7 @@ import (
 	"github.com/Songmu/gokoku"
 	"golang.org/x/xerrors"
 
+	// import the statik to Register fs data
 	_ "github.com/Songmu/godzil/statik"
 	"github.com/rakyll/statik/fs"
 )
