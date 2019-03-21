@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.2.0](https://github.com/Songmu/godzil/compare/v0.1.3...v0.2.0) (2019-03-21)
+
+* introduce Songmu/gokoku and rakyll/statik [#18](https://github.com/Songmu/godzil/pull/18) ([Songmu](https://github.com/Songmu))
+
 ## [v0.1.3](https://github.com/Songmu/godzil/compare/v0.1.2...v0.1.3) (2019-02-27)
 
 * update deps [#17](https://github.com/Songmu/godzil/pull/17) ([Songmu](https://github.com/Songmu))
