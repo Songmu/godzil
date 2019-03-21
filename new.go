@@ -2,7 +2,6 @@ package godzil
 
 import (
 	"flag"
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -72,12 +71,11 @@ func (ne *new) do() error {
 		return xerrors.Errorf("directory %q already exists", projDir)
 	}
 	// create project directory and templating
-	prefix := fmt.Sprintf("/%s", ne.profile)
 	hfs, err := fs.New()
 	if err != nil {
 		return xerrors.Errorf("failed to load templates: %w", err)
 	}
-	if err := gokoku.Scaffold(hfs, prefix, projDir, ne); err != nil {
+	if err := gokoku.Scaffold(hfs, "/"+ne.profile, projDir, ne); err != nil {
 		return xerrors.Errorf("failed to scaffold while templating: %w", err)
 	}
 
