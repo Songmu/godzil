@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.2.1](https://github.com/Songmu/godzil/compare/v0.2.0...v0.2.1) (2019-03-24)
+
+* update deps [#20](https://github.com/Songmu/godzil/pull/20) ([Songmu](https://github.com/Songmu))
+* introduce statikp for include dotfiles into asset [#19](https://github.com/Songmu/godzil/pull/19) ([Songmu](https://github.com/Songmu))
+
 ## [v0.2.0](https://github.com/Songmu/godzil/compare/v0.1.3...v0.2.0) (2019-03-21)
 
 * introduce Songmu/gokoku and rakyll/statik [#18](https://github.com/Songmu/godzil/pull/18) ([Songmu](https://github.com/Songmu))
