@@ -9,11 +9,11 @@ godzil
 [license]: https://github.com/Songmu/godzil/blob/master/LICENSE
 [godoc]: https://godoc.org/github.com/Songmu/godzil
 
-A module authorizing tool
+A module authoring tool
 
 ## Description
 
-A module authorizing tool inspired from Minilla.
+A module authoring tool inspired from Minilla. (STILL ALPHA QUALITY)
 
 ## Installation
 
@@ -34,7 +34,7 @@ Built binaries are available on gihub releases.
 
 ## See Also
 
-- Minilla
+[Minilla](https://github.com/tokuhirom/Minilla)
 
 ## Author
 
