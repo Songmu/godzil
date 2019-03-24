@@ -19,7 +19,7 @@ devel-deps: deps
 	  github.com/Songmu/godzil/cmd/godzil \
 	  github.com/Songmu/goxz/cmd/goxz     \
 	  github.com/tcnksm/ghr               \
-	  github.com/rakyll/statik
+	  github.com/Songmu/statikp/cmd/statikp
 
 .PHONY: test
 test: deps
@@ -60,4 +60,4 @@ release: bump crossbuild upload
 
 .PHONY: assets
 assets:
-	statik -m -src testdata/assets
+	statikp -m -src testdata/assets -dotfiles
