@@ -1,8 +1,8 @@
 {{.Package}}
 =======
 
-[![Build Status](https://travis-ci.org/{{.Owner}}/{{.Package}}.png?branch=master)][travis]
-[![Coverage Status](https://coveralls.io/repos/{{.Owner}}/{{.Package}}/badge.png?branch=master)][coveralls]
+[![Build Status](https://travis-ci.org/{{.Owner}}/{{.Package}}.svg?branch=master)][travis]
+[![Coverage Status](https://coveralls.io/repos/{{.Owner}}/{{.Package}}/badge.svg?branch=master)][coveralls]
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)][license]
 [![GoDoc](https://godoc.org/{{.PackagePath}}?status.svg)][godoc]
 
