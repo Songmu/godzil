@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.2.2](https://github.com/Songmu/godzil/compare/v0.2.1...v0.2.2) (2019-04-09)
+
+* update assets [#21](https://github.com/Songmu/godzil/pull/21) ([Songmu](https://github.com/Songmu))
+
 ## [v0.2.1](https://github.com/Songmu/godzil/compare/v0.2.0...v0.2.1) (2019-03-24)
 
 * update deps [#20](https://github.com/Songmu/godzil/pull/20) ([Songmu](https://github.com/Songmu))
