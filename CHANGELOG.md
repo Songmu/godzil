@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.2.3](https://github.com/Songmu/godzil/compare/v0.2.2...v0.2.3) (2019-04-10)
+
+* introduce gocredits to bundle CREDITS to packages [#23](https://github.com/Songmu/godzil/pull/23) ([Songmu](https://github.com/Songmu))
+* dist:xenial in travis [#22](https://github.com/Songmu/godzil/pull/22) ([Songmu](https://github.com/Songmu))
+
 ## [v0.2.2](https://github.com/Songmu/godzil/compare/v0.2.1...v0.2.2) (2019-04-09)
 
 * update assets [#21](https://github.com/Songmu/godzil/pull/21) ([Songmu](https://github.com/Songmu))
