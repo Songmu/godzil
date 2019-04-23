@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.2.4](https://github.com/Songmu/godzil/compare/v0.2.3...v0.2.4) (2019-04-23)
+
+* update assets [#24](https://github.com/Songmu/godzil/pull/24) ([Songmu](https://github.com/Songmu))
+
 ## [v0.2.3](https://github.com/Songmu/godzil/compare/v0.2.2...v0.2.3) (2019-04-10)
 
 * introduce gocredits to bundle CREDITS to packages [#23](https://github.com/Songmu/godzil/pull/23) ([Songmu](https://github.com/Songmu))
