@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"regexp"
 	"strings"
 	"time"
 
@@ -22,6 +23,7 @@ type new struct {
 	Year                       int
 
 	profile              string
+	config               *config
 	outStream, errStream io.Writer
 }
 
@@ -43,18 +45,40 @@ func (ne *new) run(argv []string, outStream, errStream io.Writer) error {
 	if ne.Author == "" {
 		ne.Author, _, _ = git("config", "user.name")
 	}
+	var err error
+	ne.config, err = loadConfig()
+	if err != nil {
+		return err
+	}
 	return ne.do()
 }
 
+var hostReg = regexp.MustCompile(`[A-Za-z0-9]\.[A-Za-z]+$`)
+
 func (ne *new) parsePackage() error {
 	m := strings.Split(ne.PackagePath, "/")
-	if len(m) < 3 {
-		return xerrors.Errorf("invalid pacakge path %q. please specify full package path",
-			ne.PackagePath)
+	switch len(m) {
+	case 2:
+		ne.GitHubHost = ne.config.host()
+		ne.Owner = m[0]
+		ne.Package = m[1]
+	case 1:
+		ne.GitHubHost = ne.config.host()
+		u, err := ne.config.user()
+		if err != nil {
+			return err
+		}
+		ne.Owner = u
+		ne.Package = m[0]
+	default:
+		if !hostReg.MatchString(m[0]) {
+			return xerrors.Errorf("invalid pacakge path %q. please specify full package path",
+				ne.PackagePath)
+		}
+		ne.GitHubHost = m[0]
+		ne.Owner = m[1]
+		ne.Package = m[len(m)-1]
 	}
-	ne.GitHubHost = m[0]
-	ne.Owner = m[1]
-	ne.Package = m[len(m)-1]
 	if ne.Author == "" {
 		ne.Author = ne.Owner
 	}
