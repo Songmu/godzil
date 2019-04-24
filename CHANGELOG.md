@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.3.1](https://github.com/Songmu/godzil/compare/v0.3.0...v0.3.1) (2019-04-25)
+
+* add profile simple [#28](https://github.com/Songmu/godzil/pull/28) ([Songmu](https://github.com/Songmu))
+
 ## [v0.3.0](https://github.com/Songmu/godzil/compare/v0.2.4...v0.3.0) (2019-04-25)
 
 * load custom profile template from .config/godzil/profiles [#27](https://github.com/Songmu/godzil/pull/27) ([Songmu](https://github.com/Songmu))
