@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.3.0](https://github.com/Songmu/godzil/compare/v0.2.4...v0.3.0) (2019-04-25)
+
+* load custom profile template from .config/godzil/profiles [#27](https://github.com/Songmu/godzil/pull/27) ([Songmu](https://github.com/Songmu))
+* creating new project under project root if exists [#26](https://github.com/Songmu/godzil/pull/26) ([Songmu](https://github.com/Songmu))
+* .config/godzil/config.yaml [#25](https://github.com/Songmu/godzil/pull/25) ([Songmu](https://github.com/Songmu))
+
 ## [v0.2.4](https://github.com/Songmu/godzil/compare/v0.2.3...v0.2.4) (2019-04-23)
 
 * update assets [#24](https://github.com/Songmu/godzil/pull/24) ([Songmu](https://github.com/Songmu))
