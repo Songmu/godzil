@@ -13,10 +13,21 @@ import (
 	"github.com/tcnksm/go-gitconfig"
 )
 
+func getGitConfig(k string) (string, error) {
+	u, err := gitconfig.Entire(k)
+	if err != nil {
+		if _, ok := err.(*gitconfig.ErrNotFound); ok {
+			return "", nil
+		}
+		return "", err
+	}
+	return u, nil
+}
+
 type config struct {
-	User string `yaml:"user"`
-	Host string `yaml:"host"`
-	Root string `yaml:"root"`
+	User string `yaml:"user,omitempty"`
+	Host string `yaml:"host,omitempty"`
+	Root string `yaml:"root,omitempty"`
 
 	filepath string
 }
@@ -39,7 +50,7 @@ func (c *config) user() (string, error) {
 		"user.username",
 	}
 	for _, k := range keys {
-		u, err := gitconfig.Entire(k)
+		u, err := getGitConfig(k)
 		if err != nil {
 			return "", err
 		}
@@ -57,6 +68,17 @@ func (c *config) user() (string, error) {
 		return "", err
 	}
 	return c.User, nil
+}
+
+func (c *config) root() (string, error) {
+	if c.Root != "" {
+		return expandTilde(c.Root)
+	}
+	r, err := getGitConfig("ghq.root")
+	if err != nil {
+		return "", err
+	}
+	return expandTilde(r)
 }
 
 func (c *config) save() error {
@@ -90,7 +112,7 @@ func loadConfig() (*config, error) {
 
 func configRoot() (string, error) {
 	root := os.Getenv("XDG_CONFIG_HOME")
-	if root != "" {
+	if root == "" {
 		root = "~/.config"
 	}
 	var err error
@@ -102,6 +124,9 @@ func configRoot() (string, error) {
 }
 
 func expandTilde(p string) (string, error) {
+	if p == "" {
+		return p, nil
+	}
 	if p[0] == '~' && (len(p) == 1 || p[1] == '/') {
 		homeDir, err := os.UserHomeDir()
 		if err != nil {
