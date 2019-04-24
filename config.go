@@ -59,6 +59,17 @@ func (c *config) user() (string, error) {
 	return c.User, nil
 }
 
+func (c *config) root() (string, error) {
+	if c.Root != "" {
+		return expandTilde(c.Root)
+	}
+	r, err := gitconfig.Entire("ghq.root")
+	if err != nil {
+		return "", err
+	}
+	return expandTilde(r)
+}
+
 func (c *config) save() error {
 	if err := os.MkdirAll(filepath.Dir(c.filepath), 0755); err != nil {
 		return err
@@ -102,6 +113,9 @@ func configRoot() (string, error) {
 }
 
 func expandTilde(p string) (string, error) {
+	if p == "" {
+		return p, nil
+	}
 	if p[0] == '~' && (len(p) == 1 || p[1] == '/') {
 		homeDir, err := os.UserHomeDir()
 		if err != nil {

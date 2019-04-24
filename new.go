@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"time"
@@ -90,7 +91,16 @@ func (ne *new) do() error {
 	if err := ne.parsePackage(); err != nil {
 		return err
 	}
-	projDir := ne.Package
+	root, err := ne.config.root()
+	if err != nil {
+		return err
+	}
+	var projDir string
+	if root != "" {
+		projDir = filepath.Join(root, ne.PackagePath)
+	} else {
+		projDir = ne.Package
+	}
 	if _, err := os.Stat(projDir); err == nil {
 		return xerrors.Errorf("directory %q already exists", projDir)
 	}
