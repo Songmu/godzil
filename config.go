@@ -81,6 +81,10 @@ func (c *config) root() (string, error) {
 	return expandTilde(r)
 }
 
+func (c *config) profilesBase() string {
+	return filepath.Join(filepath.Dir(c.filepath), "profiles")
+}
+
 func (c *config) save() error {
 	if err := os.MkdirAll(filepath.Dir(c.filepath), 0755); err != nil {
 		return err
