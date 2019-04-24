@@ -1,5 +1,3 @@
-- custom profile template
-  - `~/.confing/godzil/profiles/...`
 - (?) default profile in config
 - local configration file
   - release hook

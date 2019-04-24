@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"net/http"
 	"os"
 	"path/filepath"
 	"regexp"
@@ -106,9 +107,15 @@ func (ne *new) do() error {
 		return xerrors.Errorf("directory %q already exists", projDir)
 	}
 	// create project directory and templating
-	hfs, err := fs.New()
-	if err != nil {
-		return xerrors.Errorf("failed to load templates: %w", err)
+	var hfs http.FileSystem
+	profDir := filepath.Join(ne.config.profilesBase(), ne.profile)
+	if dir, err := os.Stat(profDir); err == nil && dir.IsDir() {
+		hfs = http.Dir(ne.config.profilesBase())
+	} else {
+		hfs, err = fs.New()
+		if err != nil {
+			return xerrors.Errorf("failed to load templates: %w", err)
+		}
 	}
 	if err := gokoku.Scaffold(hfs, "/"+ne.profile, projDir, ne); err != nil {
 		return xerrors.Errorf("failed to scaffold while templating: %w", err)
