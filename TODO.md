@@ -1,4 +1,5 @@
 - (?) default profile in config
+- remote custom profile feature
 - local configration file
   - release hook
 - (?) suggest next version from compatibility
