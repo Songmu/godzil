@@ -58,19 +58,20 @@ var hostReg = regexp.MustCompile(`[A-Za-z0-9]\.[A-Za-z]+$`)
 
 func (ne *new) parsePackage() error {
 	m := strings.Split(ne.PackagePath, "/")
+	ne.Package = m[len(m)-1]
 	switch len(m) {
-	case 2:
+	case 1, 2:
 		ne.GitHubHost = ne.config.host()
-		ne.Owner = m[0]
-		ne.Package = m[1]
-	case 1:
-		ne.GitHubHost = ne.config.host()
-		u, err := ne.config.user()
-		if err != nil {
-			return err
+		if len(m) == 2 {
+			ne.Owner = m[0]
+		} else {
+			var err error
+			ne.Owner, err = ne.config.user()
+			if err != nil {
+				return err
+			}
 		}
-		ne.Owner = u
-		ne.Package = m[0]
+		ne.PackagePath = strings.Join([]string{ne.GitHubHost, ne.Owner, ne.Package}, "/")
 	default:
 		if !hostReg.MatchString(m[0]) {
 			return xerrors.Errorf("invalid pacakge path %q. please specify full package path",
@@ -78,7 +79,6 @@ func (ne *new) parsePackage() error {
 		}
 		ne.GitHubHost = m[0]
 		ne.Owner = m[1]
-		ne.Package = m[len(m)-1]
 	}
 	if ne.Author == "" {
 		ne.Author = ne.Owner
