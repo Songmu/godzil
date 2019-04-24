@@ -2,6 +2,7 @@ package godzil
 
 import (
 	"flag"
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -122,6 +123,7 @@ func (ne *new) do() error {
 		return c.err
 	}
 	log.Printf("Finished to create %s in %s\n", ne.PackagePath, projDir)
-	return nil
-	// 4. create remote repository?
+	_, err = fmt.Fprintln(ne.outStream, projDir)
+	return err
+	// 4. need to create remote repository?
 }
