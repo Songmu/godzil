@@ -17,7 +17,7 @@ require (
 	github.com/onsi/gomega v1.5.0 // indirect
 	github.com/rakyll/statik v0.1.6
 	github.com/stretchr/testify v1.3.0 // indirect
-	github.com/tcnksm/go-gitconfig v0.1.2
+	github.com/tcnksm/go-gitconfig v0.1.3-0.20150505151006-6411ba19847f
 	golang.org/x/xerrors v0.0.0-20190410155217-1f06c39b4373
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 	gopkg.in/yaml.v2 v2.2.2 // indirect
