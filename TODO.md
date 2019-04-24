@@ -1,0 +1,11 @@
+- custom profile template
+  - `~/.confing/godzil/profiles/...`
+- global configuration file
+  - `~/.config/godzil/config.yaml`
+  - set user/owner name and github hostname
+  - project directory. (ghq.root) github.com / {{.Owner}}
+  - (?) default profile
+- local configration file
+  - release hook
+- (?) suggest next version from compatibility
+- (?) generate doc.go from README.md
