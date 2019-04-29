@@ -10,6 +10,7 @@ export GO111MODULE=on
 .PHONY: deps
 deps:
 	go get ${u} -d
+	go mod tidy
 
 .PHONY: devel-deps
 devel-deps: deps
@@ -40,8 +41,8 @@ build: deps
 	go build -ldflags=$(BUILD_LDFLAGS) ./cmd/godzil
 
 .PHONY: install
-install: build
-	mv godzil "$(shell go env GOPATH)/bin"
+install: deps
+	go install -ldflags=$(BUILD_LDFLAGS) ./cmd/godzil
 
 .PHONY: bump
 bump: devel-deps
