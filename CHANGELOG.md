@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.4.0](https://github.com/Songmu/godzil/compare/v0.3.1...v0.4.0) (2019-04-30)
+
+* update deps [#29](https://github.com/Songmu/godzil/pull/29) ([Songmu](https://github.com/Songmu))
+
 ## [v0.3.1](https://github.com/Songmu/godzil/compare/v0.3.0...v0.3.1) (2019-04-25)
 
 * add profile simple [#28](https://github.com/Songmu/godzil/pull/28) ([Songmu](https://github.com/Songmu))
