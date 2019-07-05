@@ -1,9 +1,7 @@
 VERSION = $(shell godzil show-version)
 CURRENT_REVISION = $(shell git rev-parse --short HEAD)
 BUILD_LDFLAGS = "-s -w -X github.com/Songmu/godzil.revision=$(CURRENT_REVISION)"
-ifdef update
-  u=-u
-endif
+u := $(if $(update),-u)
 
 export GO111MODULE=on
 

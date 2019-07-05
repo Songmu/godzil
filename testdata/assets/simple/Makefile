@@ -1,6 +1,4 @@
-ifdef update
-  u=-u
-endif
+u := $(if $(update),-u)
 
 export GO111MODULE=on
 
