@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.5.0](https://github.com/Songmu/godzil/compare/v0.4.0...v0.5.0) (2019-09-22)
+
+* Go1.13 [#31](https://github.com/Songmu/godzil/pull/31) ([Songmu](https://github.com/Songmu))
+* update assets [#30](https://github.com/Songmu/godzil/pull/30) ([Songmu](https://github.com/Songmu))
+
 ## [v0.4.0](https://github.com/Songmu/godzil/compare/v0.3.1...v0.4.0) (2019-04-30)
 
 * update deps [#29](https://github.com/Songmu/godzil/pull/29) ([Songmu](https://github.com/Songmu))
