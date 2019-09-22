@@ -6,7 +6,7 @@ import (
 	"io"
 	"log"
 
-	"golang.org/x/xerrors"
+	"errors"
 )
 
 // Run the godzil
@@ -26,11 +26,11 @@ func Run(argv []string, outStream, errStream io.Writer) error {
 
 	argv = fs.Args()
 	if len(argv) < 1 {
-		return xerrors.New("no subcommand specified")
+		return errors.New("no subcommand specified")
 	}
 	rnr, ok := dispatch[argv[0]]
 	if !ok {
-		return xerrors.Errorf("unknown subcommand: %s", argv[0])
+		return fmt.Errorf("unknown subcommand: %s", argv[0])
 	}
 	return rnr.run(argv[1:], outStream, errStream)
 }
