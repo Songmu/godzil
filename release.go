@@ -13,7 +13,6 @@ import (
 	"github.com/Songmu/ghch"
 	"github.com/Songmu/prompter"
 	"github.com/motemen/gobump"
-	"golang.org/x/xerrors"
 )
 
 type release struct {
@@ -47,33 +46,33 @@ func (re *release) do() error {
 	if !re.allowDirty {
 		out, _, err := git("status", "--porcelain")
 		if err != nil {
-			return xerrors.Errorf("faild to release when git status: %w", err)
+			return fmt.Errorf("faild to release when git status: %w", err)
 		}
 		if strings.TrimSpace(out) != "" {
-			return xerrors.Errorf("can't release on dirty index (or you can use --allow-dirty)\n%s", out)
+			return fmt.Errorf("can't release on dirty index (or you can use --allow-dirty)\n%s", out)
 		}
 	}
 	branch, _, err := git("symbolic-ref", "--short", "HEAD")
 	if err != nil {
-		return xerrors.Errorf("faild to release when git symbolic-ref: %w", err)
+		return fmt.Errorf("faild to release when git symbolic-ref: %w", err)
 	}
 	if branch != re.branch {
-		return xerrors.Errorf("you are not on releasing branch %q, current branch is %q",
+		return fmt.Errorf("you are not on releasing branch %q, current branch is %q",
 			re.branch, branch)
 	}
 	remote, _, err := git("config", fmt.Sprintf("branch.%s.remote", branch))
 	if err != nil {
-		return xerrors.Errorf("can't find a remote branch of %q: %w", branch, err)
+		return fmt.Errorf("can't find a remote branch of %q: %w", branch, err)
 	}
 	apibase := os.Getenv("GITHUB_API")
 	if apibase == "" {
 		remoteURL, _, err := git("config", fmt.Sprintf("remote.%s.url", remote))
 		if err != nil {
-			return xerrors.Errorf("can't find a remote URL of %q: %w", remote, err)
+			return fmt.Errorf("can't find a remote URL of %q: %w", remote, err)
 		}
 		m := gitReg.FindStringSubmatch(remoteURL)
 		if len(m) < 2 {
-			return xerrors.Errorf("strange remote URL: %s", remoteURL)
+			return fmt.Errorf("strange remote URL: %s", remoteURL)
 		}
 		if m[1] != "github.com" {
 			apibase = fmt.Sprintf("https://%s/api/v3", m[1])
@@ -86,7 +85,7 @@ func (re *release) do() error {
 		OutStream: buf,
 	}
 	if _, err := gb.Run(); err != nil {
-		return xerrors.Errorf("no version declaraion found: %w", err)
+		return fmt.Errorf("no version declaraion found: %w", err)
 	}
 	currVerStr := strings.TrimSpace(buf.String())
 	vers := strings.Split(currVerStr, "\n")
@@ -94,10 +93,10 @@ func (re *release) do() error {
 	fmt.Fprintf(re.outStream, "current version: %s\n", currVer.Original())
 	nextVer, err := semver.NewVersion(prompter.Prompt("input next version", ""))
 	if err != nil {
-		return xerrors.Errorf("invalid version: %w", err)
+		return fmt.Errorf("invalid version: %w", err)
 	}
 	if !nextVer.GreaterThan(currVer) {
-		return xerrors.Errorf("next version %q isn't greather than current version %q",
+		return fmt.Errorf("next version %q isn't greather than current version %q",
 			nextVer.Original(),
 			currVer.Original())
 	}

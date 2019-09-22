@@ -8,7 +8,6 @@ import (
 	"strings"
 
 	"github.com/motemen/gobump"
-	"golang.org/x/xerrors"
 )
 
 type showVersion struct {
@@ -30,7 +29,7 @@ func (sv *showVersion) run(argv []string, outStream, errStream io.Writer) error 
 		OutStream: buf,
 	}
 	if _, err := gb.Run(); err != nil {
-		return xerrors.Errorf("no version declaraion found: %w", err)
+		return fmt.Errorf("no version declaraion found: %w", err)
 	}
 	vers := strings.Split(strings.TrimSpace(buf.String()), "\n")
 	_, err := fmt.Fprintln(sv.outStream, vers[0])

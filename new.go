@@ -12,8 +12,9 @@ import (
 	"strings"
 	"time"
 
+	"errors"
+
 	"github.com/Songmu/gokoku"
-	"golang.org/x/xerrors"
 
 	// import the statik to Register fs data
 	_ "github.com/Songmu/godzil/statik"
@@ -43,7 +44,7 @@ func (ne *new) run(argv []string, outStream, errStream io.Writer) error {
 	}
 	ne.PackagePath = fs.Arg(0)
 	if ne.PackagePath == "" {
-		return xerrors.New("no package specified")
+		return errors.New("no package specified")
 	}
 	if ne.Author == "" {
 		ne.Author, _, _ = git("config", "user.name")
@@ -76,7 +77,7 @@ func (ne *new) parsePackage() error {
 		ne.PackagePath = strings.Join([]string{ne.GitHubHost, ne.Owner, ne.Package}, "/")
 	default:
 		if !hostReg.MatchString(m[0]) {
-			return xerrors.Errorf("invalid pacakge path %q. please specify full package path",
+			return fmt.Errorf("invalid pacakge path %q. please specify full package path",
 				ne.PackagePath)
 		}
 		ne.GitHubHost = m[0]
@@ -104,7 +105,7 @@ func (ne *new) do() error {
 		projDir = ne.Package
 	}
 	if _, err := os.Stat(projDir); err == nil {
-		return xerrors.Errorf("directory %q already exists", projDir)
+		return fmt.Errorf("directory %q already exists", projDir)
 	}
 	// create project directory and templating
 	var hfs http.FileSystem
@@ -114,11 +115,11 @@ func (ne *new) do() error {
 	} else {
 		hfs, err = fs.New()
 		if err != nil {
-			return xerrors.Errorf("failed to load templates: %w", err)
+			return fmt.Errorf("failed to load templates: %w", err)
 		}
 	}
 	if err := gokoku.Scaffold(hfs, "/"+ne.profile, projDir, ne); err != nil {
-		return xerrors.Errorf("failed to scaffold while templating: %w", err)
+		return fmt.Errorf("failed to scaffold while templating: %w", err)
 	}
 
 	log.Println("% git init && git add .")
