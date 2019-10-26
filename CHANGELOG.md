@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.6.2](https://github.com/Songmu/godzil/compare/v0.6.1...v0.6.2) (2019-10-27)
+
+* go mod tidy before gocredits [#36](https://github.com/Songmu/godzil/pull/36) ([Songmu](https://github.com/Songmu))
+
 ## [v0.6.1](https://github.com/Songmu/godzil/compare/v0.6.0...v0.6.1) (2019-10-27)
 
 * adjust assets [#35](https://github.com/Songmu/godzil/pull/35) ([Songmu](https://github.com/Songmu))
