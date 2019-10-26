@@ -11,7 +11,7 @@ deps:
 	go mod tidy
 
 .PHONY: devel-deps
-devel-deps: deps
+devel-deps:
 	GO111MODULE=off go get ${u} \
 	  golang.org/x/lint/golint                  \
 	  github.com/Songmu/godzil/cmd/godzil       \
@@ -39,7 +39,7 @@ install:
 bump: devel-deps
 	godzil release
 
-CREDITS: go.sum devel-deps
+CREDITS: go.sum deps devel-deps
 	gocredits -w
 
 .PHONY: crossbuild
