@@ -2,7 +2,7 @@ name: test
 on: [push]
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: {{ "${{ matrix.os }}" }}
     strategy:
       fail-fast: false
       matrix:
@@ -35,6 +35,6 @@ jobs:
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
-        github-token: ${{ secrets.github_token }}
+        github-token: {{ "${{ secrets.GITHUB_TOKEN }}" }}
         path-to-lcov: coverage.lcov
       if: "matrix.os == 'ubuntu-latest'"
