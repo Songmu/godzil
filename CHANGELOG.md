@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.6.4](https://github.com/Songmu/godzil/compare/v0.6.3...v0.6.4) (2019-10-27)
+
+* update assets [#38](https://github.com/Songmu/godzil/pull/38) ([Songmu](https://github.com/Songmu))
+
 ## [v0.6.3](https://github.com/Songmu/godzil/compare/v0.6.2...v0.6.3) (2019-10-27)
 
 * fix broken assets [#37](https://github.com/Songmu/godzil/pull/37) ([Songmu](https://github.com/Songmu))
