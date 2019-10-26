@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.6.0](https://github.com/Songmu/godzil/compare/v0.5.0...v0.6.0) (2019-10-26)
+
+*  contextize default assets [#34](https://github.com/Songmu/godzil/pull/34) ([Songmu](https://github.com/Songmu))
+* use GitHub Actions for CI [#33](https://github.com/Songmu/godzil/pull/33) ([Songmu](https://github.com/Songmu))
+
 ## [v0.5.0](https://github.com/Songmu/godzil/compare/v0.4.0...v0.5.0) (2019-09-22)
 
 * Go1.13 [#31](https://github.com/Songmu/godzil/pull/31) ([Songmu](https://github.com/Songmu))
