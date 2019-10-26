@@ -14,31 +14,25 @@ deps:
 devel-deps: deps
 	GO111MODULE=off go get ${u} \
 	  golang.org/x/lint/golint                  \
-	  github.com/mattn/goveralls                \
 	  github.com/Songmu/godzil/cmd/godzil       \
 	  github.com/Songmu/goxz/cmd/goxz           \
 	  github.com/Songmu/gocredits/cmd/gocredits \
 	  github.com/tcnksm/ghr
 
 .PHONY: test
-test: deps
+test:
 	go test
 
 .PHONY: lint
 lint: devel-deps
-	go vet
 	golint -set_exit_status
 
-.PHONY: cover
-cover: devel-deps
-	goveralls
-
 .PHONY: build
-build: deps
+build:
 	go build -ldflags=$(BUILD_LDFLAGS) ./cmd/{{.Package}}
 
 .PHONY: install
-install: build
+install:
 	go install -ldflags=$(BUILD_LDFLAGS) ./cmd/{{.Package}}
 
 .PHONY: bump
@@ -58,4 +52,4 @@ upload:
 	ghr v$(VERSION) dist/v$(VERSION)
 
 .PHONY: release
-release: bump crossbuild upload
+release: crossbuild upload

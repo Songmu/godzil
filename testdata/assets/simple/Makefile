@@ -8,24 +8,18 @@ deps:
 	go mod tidy
 
 .PHONY: devel-deps
-devel-deps: deps
+devel-deps:
 	GO111MODULE=off go get ${u} \
 	  golang.org/x/lint/golint            \
-	  github.com/mattn/goveralls          \
 	  github.com/Songmu/godzil/cmd/godzil
 
 .PHONY: test
-test: deps
+test:
 	go test
 
 .PHONY: lint
 lint: devel-deps
-	go vet
 	golint -set_exit_status
-
-.PHONY: cover
-cover: devel-deps
-	goveralls
 
 .PHONY: release
 release: devel-deps

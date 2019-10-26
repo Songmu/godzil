@@ -17,7 +17,8 @@ import (
 
 type release struct {
 	allowDirty, dryRun   bool
-	branch, path         string
+	branch, repoPath     string
+	path                 string
 	outStream, errStream io.Writer
 }
 
@@ -29,14 +30,15 @@ func (re *release) run(argv []string, outStream, errStream io.Writer) error {
 	fs.StringVar(&re.branch, "branch", "master", "releasing branch")
 	fs.BoolVar(&re.allowDirty, "allow-dirty", false, "allow dirty index")
 	fs.BoolVar(&re.dryRun, "dry-run", false, "dry run")
+	fs.StringVar(&re.repoPath, "C", "", "repository path")
 
 	if err := fs.Parse(argv); err != nil {
 		return err
 	}
-	re.path = fs.Arg(0)
-	if re.path != "" {
-		re.path = "."
+	if re.repoPath == "" {
+		re.repoPath = "."
 	}
+	re.path = fs.Arg(0)
 	return re.do()
 }
 
@@ -82,6 +84,7 @@ func (re *release) do() error {
 	gb := &gobump.Gobump{
 		Show:      true,
 		Raw:       true,
+		Target:    re.path,
 		OutStream: buf,
 	}
 	if _, err := gb.Run(); err != nil {
@@ -120,7 +123,7 @@ func (re *release) do() error {
 	fmt.Fprintln(re.outStream, "following changes will be released")
 	buf2 := &bytes.Buffer{}
 	gh := &ghch.Ghch{
-		RepoPath:    re.path,
+		RepoPath:    re.repoPath,
 		NextVersion: nextTag,
 		BaseURL:     apibase,
 		Format:      "markdown",
