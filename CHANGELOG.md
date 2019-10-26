@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.6.1](https://github.com/Songmu/godzil/compare/v0.6.0...v0.6.1) (2019-10-27)
+
+* adjust assets [#35](https://github.com/Songmu/godzil/pull/35) ([Songmu](https://github.com/Songmu))
+
 ## [v0.6.0](https://github.com/Songmu/godzil/compare/v0.5.0...v0.6.0) (2019-10-26)
 
 *  contextize default assets [#34](https://github.com/Songmu/godzil/pull/34) ([Songmu](https://github.com/Songmu))
