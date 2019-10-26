@@ -1,10 +1,5 @@
 name: release
-on:
-  create:
-    branches:
-    - master
-    tags:
-    - "v[0-9]+.[0-9]+.[0-9]+"
+on: [create]
 jobs:
   release:
     runs-on: ubuntu-latest
