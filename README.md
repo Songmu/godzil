@@ -1,11 +1,11 @@
 godzil
 =======
 
-[![Build Status](https://travis-ci.org/Songmu/godzil.svg?branch=master)][travis]
+[![Test Status](https://github.com/Songmu/godzil/workflows/test/badge.svg?branch=master)][actions]
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)][license]
 [![GoDoc](https://godoc.org/github.com/Songmu/godzil?status.svg)][godoc]
 
-[travis]: https://travis-ci.org/Songmu/godzil
+[actions]: https://github.com/Songmu/godzil/actions?workflow=test
 [license]: https://github.com/Songmu/godzil/blob/master/LICENSE
 [godoc]: https://godoc.org/github.com/Songmu/godzil
 
