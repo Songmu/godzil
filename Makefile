@@ -11,10 +11,9 @@ deps:
 	go mod tidy
 
 .PHONY: devel-deps
-devel-deps: deps
+devel-deps:
 	GO111MODULE=off go get ${u} \
 	  golang.org/x/lint/golint                  \
-	  github.com/mattn/goveralls                \
 	  github.com/Songmu/godzil/cmd/godzil       \
 	  github.com/Songmu/goxz/cmd/goxz           \
 	  github.com/Songmu/gocredits/cmd/gocredits \
@@ -22,7 +21,7 @@ devel-deps: deps
 	  github.com/Songmu/statikp/cmd/statikp
 
 .PHONY: test
-test: deps
+test:
 	go test
 
 .PHONY: lint
@@ -30,16 +29,12 @@ lint: devel-deps
 	go vet
 	golint -set_exit_status
 
-.PHONY: cover
-cover: devel-deps
-	goveralls
-
 .PHONY: build
-build: deps
+build:
 	go build -ldflags=$(BUILD_LDFLAGS) ./cmd/godzil
 
 .PHONY: install
-install: deps
+install:
 	go install -ldflags=$(BUILD_LDFLAGS) ./cmd/godzil
 
 .PHONY: bump
@@ -52,14 +47,14 @@ CREDITS: devel-deps go.sum
 .PHONY: crossbuild
 crossbuild: CREDITS
 	goxz -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
-      -os=linux,darwin -d=./dist/v$(VERSION) ./cmd/*
+      -os=linux,darwin,windows -d=./dist/v$(VERSION) ./cmd/*
 
 .PHONY: upload
 upload:
 	ghr v$(VERSION) dist/v$(VERSION)
 
 .PHONY: release
-release: bump crossbuild upload
+release: crossbuild upload
 
 .PHONY: assets
 assets:
