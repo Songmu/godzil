@@ -1,16 +1,16 @@
 package godzil
 
 import (
+	"context"
+	"errors"
 	"flag"
 	"fmt"
 	"io"
 	"log"
-
-	"errors"
 )
 
 // Run the godzil
-func Run(argv []string, outStream, errStream io.Writer) error {
+func Run(ctx context.Context, argv []string, outStream, errStream io.Writer) error {
 	log.SetOutput(errStream)
 	log.SetPrefix("[godzil] ")
 	fs := flag.NewFlagSet(
