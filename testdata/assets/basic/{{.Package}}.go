@@ -1,6 +1,7 @@
 package {{.Package}}
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"io"
@@ -10,7 +11,7 @@ import (
 const cmdName = "{{.Package}}"
 
 // Run the {{.Package}}
-func Run(argv []string, outStream, errStream io.Writer) error {
+func Run(ctx context.Context, argv []string, outStream, errStream io.Writer) error {
 	log.SetOutput(errStream)
 	fs := flag.NewFlagSet(
 		fmt.Sprintf("%s (v%s rev:%s)", cmdName, version, revision), flag.ContinueOnError)
