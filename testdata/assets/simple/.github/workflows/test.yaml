@@ -7,9 +7,9 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - ubuntu-latest
-          - macOS-latest
-          - windows-latest
+        - ubuntu-latest
+        - macOS-latest
+        - windows-latest
     steps:
     - name: setup go
       uses: actions/setup-go@v1
@@ -25,12 +25,12 @@ jobs:
         bin/golint -set_exit_status ./...
       if: "matrix.os == 'ubuntu-latest' || matrix.os == 'macOS-latest'"
     - name: test
-      run: go test -coverprofile coverage.out ./...
+      run: go test -coverprofile coverage.out -covermode atomic ./...
     - name: Convert coverage to lcov
       uses: jandelgado/gcov2lcov-action@v1.0.0
       with:
-          infile: coverage.out
-          outfile: coverage.lcov
+        infile: coverage.out
+        outfile: coverage.lcov
       if: "matrix.os == 'ubuntu-latest'"
     - name: Coveralls
       uses: coverallsapp/github-action@master
