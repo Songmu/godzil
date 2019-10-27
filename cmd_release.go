@@ -105,7 +105,8 @@ func (re *release) do() error {
 	}
 
 	gb2 := &gobump.Gobump{
-		Write: true,
+		Write:  true,
+		Target: re.path,
 		Config: gobump.Config{
 			Exact: nextVer.Original(),
 		},
