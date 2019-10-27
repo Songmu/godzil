@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.6.5](https://github.com/Songmu/godzil/compare/v0.6.4...v0.6.5) (2019-10-27)
+
+* bugfix around bumping [#39](https://github.com/Songmu/godzil/pull/39) ([Songmu](https://github.com/Songmu))
+
 ## [v0.6.4](https://github.com/Songmu/godzil/compare/v0.6.3...v0.6.4) (2019-10-27)
 
 * update assets [#38](https://github.com/Songmu/godzil/pull/38) ([Songmu](https://github.com/Songmu))
