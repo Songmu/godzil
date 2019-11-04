@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.6.7](https://github.com/Songmu/godzil/compare/v0.6.6...v0.6.7) (2019-11-05)
+
+* adjust assets again [#41](https://github.com/Songmu/godzil/pull/41) ([Songmu](https://github.com/Songmu))
+
 ## [v0.6.6](https://github.com/Songmu/godzil/compare/v0.6.5...v0.6.6) (2019-10-27)
 
 * update workflow files [#40](https://github.com/Songmu/godzil/pull/40) ([Songmu](https://github.com/Songmu))
