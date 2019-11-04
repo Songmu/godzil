@@ -55,6 +55,3 @@ crossbuild: CREDITS
 .PHONY: upload
 upload:
 	ghr v$(VERSION) dist/v$(VERSION)
-
-.PHONY: release
-release: crossbuild upload
