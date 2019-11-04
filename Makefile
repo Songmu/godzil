@@ -20,13 +20,16 @@ devel-deps:
 	  github.com/tcnksm/ghr                     \
 	  github.com/Songmu/statikp/cmd/statikp
 
+.PHONY: assets
+assets:
+	statikp -m -src testdata/assets -dotfiles
+
 .PHONY: test
 test:
 	go test
 
 .PHONY: lint
 lint: devel-deps
-	go vet
 	golint -set_exit_status
 
 .PHONY: build
@@ -37,8 +40,8 @@ build:
 install:
 	go install -ldflags=$(BUILD_LDFLAGS) ./cmd/godzil
 
-.PHONY: bump
-bump: devel-deps
+.PHONY: release
+release: devel-deps
 	godzil release
 
 CREDITS: deps devel-deps go.sum
@@ -55,7 +58,3 @@ upload:
 
 .PHONY: release
 release: crossbuild upload
-
-.PHONY: assets
-assets:
-	statikp -m -src testdata/assets -dotfiles

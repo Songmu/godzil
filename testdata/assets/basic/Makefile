@@ -35,8 +35,8 @@ build:
 install:
 	go install -ldflags=$(BUILD_LDFLAGS) ./cmd/{{.Package}}
 
-.PHONY: bump
-bump: devel-deps
+.PHONY: release
+release: devel-deps
 	godzil release
 
 CREDITS: go.sum deps devel-deps
@@ -50,6 +50,3 @@ crossbuild: CREDITS
 .PHONY: upload
 upload:
 	ghr v$(VERSION) dist/v$(VERSION)
-
-.PHONY: release
-release: crossbuild upload
