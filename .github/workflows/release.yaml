@@ -20,4 +20,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.github_token }}
       run: |
         export GOBIN=$(pwd)/bin
-        PATH=$GOBIN:$PATH make release
+        PATH=$GOBIN:$PATH make crossbuild upload
