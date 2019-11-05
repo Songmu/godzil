@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.7.0](https://github.com/Songmu/godzil/compare/v0.6.7...v0.7.0) (2019-11-06)
+
+* add ghch subcommand [#42](https://github.com/Songmu/godzil/pull/42) ([Songmu](https://github.com/Songmu))
+
 ## [v0.6.7](https://github.com/Songmu/godzil/compare/v0.6.6...v0.6.7) (2019-11-05)
 
 * adjust assets again [#41](https://github.com/Songmu/godzil/pull/41) ([Songmu](https://github.com/Songmu))
