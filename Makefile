@@ -12,12 +12,17 @@ deps:
 
 .PHONY: devel-deps
 devel-deps:
-	GO111MODULE=off go get ${u} \
-	  golang.org/x/lint/golint                  \
-	  github.com/Songmu/godzil/cmd/godzil       \
-	  github.com/Songmu/gocredits/cmd/gocredits \
-	  github.com/tcnksm/ghr                     \
-	  github.com/Songmu/statikp/cmd/statikp
+	sh -c '\
+      tmpdir=$$(mktemp -d); \
+	  cd $$tmpdir; \
+	  go get ${u} \
+	    golang.org/x/lint/golint                  \
+	    github.com/Songmu/godzil/cmd/godzil       \
+	    github.com/Songmu/gocredits/cmd/gocredits \
+	    github.com/tcnksm/ghr                     \
+	    github.com/Songmu/statikp/cmd/statikp;    \
+	  rm -rf $$tmpdir \
+    '
 
 .PHONY: assets
 assets:
