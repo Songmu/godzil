@@ -15,7 +15,6 @@ devel-deps:
 	GO111MODULE=off go get ${u} \
 	  golang.org/x/lint/golint                  \
 	  github.com/Songmu/godzil/cmd/godzil       \
-	  github.com/Songmu/goxz/cmd/goxz           \
 	  github.com/Songmu/gocredits/cmd/gocredits \
 	  github.com/tcnksm/ghr                     \
 	  github.com/Songmu/statikp/cmd/statikp
@@ -49,7 +48,7 @@ CREDITS: deps devel-deps go.sum
 
 .PHONY: crossbuild
 crossbuild: CREDITS
-	goxz -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
+	godzil crossbuild -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
       -os=linux,darwin,windows -d=./dist/v$(VERSION) ./cmd/*
 
 .PHONY: upload
