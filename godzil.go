@@ -44,7 +44,7 @@ var dispatch = map[string]runner{
 	"release":      &release{},
 	"new":          &new{},
 	"show-version": &showVersion{},
-	"ghch":         &ghchCmd{},
+	"changelog":    &changelog{},
 }
 
 type runner interface {
