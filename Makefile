@@ -1,4 +1,4 @@
-VERSION = $(shell godzil show-version)
+VERSION = $(shell ./godzil show-version)
 CURRENT_REVISION = $(shell git rev-parse --short HEAD)
 BUILD_LDFLAGS = "-s -w -X github.com/Songmu/godzil.revision=$(CURRENT_REVISION)"
 u := $(if $(update),-u)
@@ -11,7 +11,7 @@ deps:
 	go mod tidy
 
 .PHONY: devel-deps
-devel-deps:
+devel-deps: build
 	sh -c '\
       tmpdir=$$(mktemp -d); \
 	  cd $$tmpdir; \
@@ -45,16 +45,16 @@ install:
 
 .PHONY: release
 release: devel-deps
-	godzil release
+	./godzil release
 
 CREDITS: deps devel-deps go.sum
-	godzil credits -w
+	./godzil credits -w
 
 .PHONY: crossbuild
 crossbuild: CREDITS
-	godzil crossbuild -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
+	./godzil crossbuild -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
       -os=linux,darwin,windows -d=./dist/v$(VERSION) ./cmd/*
 
 .PHONY: upload
 upload:
-	ghr -body="$$(godzil changelog --latest -F markdown)" v$(VERSION) dist/v$(VERSION)
+	ghr -body="$$(./godzil changelog --latest -F markdown)" v$(VERSION) dist/v$(VERSION)
