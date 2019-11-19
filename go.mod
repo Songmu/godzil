@@ -5,6 +5,7 @@ go 1.13
 require (
 	github.com/Masterminds/semver v1.5.0
 	github.com/Songmu/ghch v0.10.1
+	github.com/Songmu/gocredits v0.1.0
 	github.com/Songmu/gokoku v0.1.0
 	github.com/Songmu/goxz v0.5.0
 	github.com/Songmu/prompter v0.2.0

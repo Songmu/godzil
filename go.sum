@@ -7,6 +7,8 @@ github.com/Songmu/gitmock v0.0.0-20181014095242-fa197bca6712 h1:mi6/BLesmGZSWZCk
 github.com/Songmu/gitmock v0.0.0-20181014095242-fa197bca6712/go.mod h1:/GsiyEs6MfsiOJ7kV2Fubp8RKtTAAMC+oHZP2Gg/hPs=
 github.com/Songmu/gitsemvers v0.0.1 h1:KjekOA6kEuKW20b9Ws3j9El2rqQSFNkuOQdYUZMbDNo=
 github.com/Songmu/gitsemvers v0.0.1/go.mod h1:3Pz60HfJXd/t1WPctJ/4TNwP/j0vwQQz4dnjI8Bgf3U=
+github.com/Songmu/gocredits v0.1.0 h1:kvF4MYjGXpts+FhxlfmI15mHh0PApML9u7qQU91goYw=
+github.com/Songmu/gocredits v0.1.0/go.mod h1:5OhTh3YD/zUrdWAYuhMO2n3m7Ql+xRAnRLIGUEFABpQ=
 github.com/Songmu/gokoku v0.1.0 h1:o8EM2h7VVgXNWgflZVWdYCkhWqnf4fi0+3yAoUOk78I=
 github.com/Songmu/gokoku v0.1.0/go.mod h1:R4YU/6EPlPPjgGn89MtF/ZIh+1vzddoI5KQNN4rQF+w=
 github.com/Songmu/goxz v0.5.0 h1:JZDtkrHii2pCMnj4YAsJ9OT3WhzcK8GAlVk+iOOxF+g=
