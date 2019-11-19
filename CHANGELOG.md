@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.8.0](https://github.com/Songmu/godzil/compare/v0.7.0...v0.8.0) (2019-11-19)
+
+* add credits subcommand [#45](https://github.com/Songmu/godzil/pull/45) ([Songmu](https://github.com/Songmu))
+* enable Go Modules when get dev tools [#44](https://github.com/Songmu/godzil/pull/44) ([Songmu](https://github.com/Songmu))
+* add "changelog" and "crossbuild" subcommand and drop "ghch" subcommand [#43](https://github.com/Songmu/godzil/pull/43) ([Songmu](https://github.com/Songmu))
+
 ## [v0.7.0](https://github.com/Songmu/godzil/compare/v0.6.7...v0.7.0) (2019-11-06)
 
 * add ghch subcommand [#42](https://github.com/Songmu/godzil/pull/42) ([Songmu](https://github.com/Songmu))
