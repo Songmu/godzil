@@ -9,9 +9,13 @@ deps:
 
 .PHONY: devel-deps
 devel-deps:
-	GO111MODULE=off go get ${u} \
-	  golang.org/x/lint/golint            \
-	  github.com/Songmu/godzil/cmd/godzil
+	sh -c '\
+      tmpdir=$$(mktemp -d); \
+      cd $$tmpdir; \
+      go get ${u} \
+        golang.org/x/lint/golint \
+        github.com/Songmu/godzil/cmd/godzil; \
+      rm -rf $$tmpdir'
 
 .PHONY: test
 test:
