@@ -16,11 +16,10 @@ devel-deps:
       tmpdir=$$(mktemp -d); \
 	  cd $$tmpdir; \
 	  go get ${u} \
-	    golang.org/x/lint/golint                  \
-	    github.com/Songmu/godzil/cmd/godzil       \
-	    github.com/Songmu/gocredits/cmd/gocredits \
-	    github.com/tcnksm/ghr                     \
-	    github.com/Songmu/statikp/cmd/statikp;    \
+	    golang.org/x/lint/golint               \
+	    github.com/Songmu/godzil/cmd/godzil    \
+	    github.com/tcnksm/ghr                  \
+	    github.com/Songmu/statikp/cmd/statikp; \
 	  rm -rf $$tmpdir \
     '
 
@@ -49,7 +48,7 @@ release: devel-deps
 	godzil release
 
 CREDITS: deps devel-deps go.sum
-	gocredits -w
+	godzil credits -w
 
 .PHONY: crossbuild
 crossbuild: CREDITS
