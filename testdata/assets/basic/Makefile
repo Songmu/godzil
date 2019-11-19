@@ -12,11 +12,15 @@ deps:
 
 .PHONY: devel-deps
 devel-deps:
-	GO111MODULE=off go get ${u} \
-	  golang.org/x/lint/golint                  \
-	  github.com/Songmu/godzil/cmd/godzil       \
-	  github.com/Songmu/gocredits/cmd/gocredits \
-	  github.com/tcnksm/ghr
+	sh -c '\
+      tmpdir=$$(mktemp -d); \
+      cd $$tmpdir; \
+      go get ${u} \
+        golang.org/x/lint/golint                  \
+        github.com/Songmu/godzil/cmd/godzil       \
+        github.com/Songmu/gocredits/cmd/gocredits \
+        github.com/tcnksm/ghr; \
+      rm -rf $$tmpdir'
 
 .PHONY: test
 test:
