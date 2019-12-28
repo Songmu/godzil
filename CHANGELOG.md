@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.8.1](https://github.com/Songmu/godzil/compare/v0.8.0...v0.8.1) (2019-12-29)
+
+* fix assets .github/workflows/test.yaml [#49](https://github.com/Songmu/godzil/pull/49) ([Songmu](https://github.com/Songmu))
+* migrate to Songmu/gitconfig from tcnksm/go-gitconfig [#48](https://github.com/Songmu/godzil/pull/48) ([Songmu](https://github.com/Songmu))
+* allow empty git repository on new subcommand [#47](https://github.com/Songmu/godzil/pull/47) ([Songmu](https://github.com/Songmu))
+* define cmd.dir string [#46](https://github.com/Songmu/godzil/pull/46) ([Songmu](https://github.com/Songmu))
+
 ## [v0.8.0](https://github.com/Songmu/godzil/compare/v0.7.0...v0.8.0) (2019-11-19)
 
 * add credits subcommand [#45](https://github.com/Songmu/godzil/pull/45) ([Songmu](https://github.com/Songmu))
