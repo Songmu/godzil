@@ -2,21 +2,20 @@ package godzil
 
 import (
 	"bytes"
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 
+	"github.com/Songmu/gitconfig"
 	"github.com/Songmu/prompter"
 	"github.com/go-yaml/yaml"
 	"github.com/natefinch/atomic"
-	"github.com/tcnksm/go-gitconfig"
 )
 
 func getGitConfig(k string) (string, error) {
-	u, err := gitconfig.Entire(k)
+	u, err := gitconfig.Get(k)
 	if err != nil {
-		if _, ok := err.(*gitconfig.ErrNotFound); ok {
+		if gitconfig.IsNotFound(err) {
 			return "", nil
 		}
 		return "", err
@@ -43,20 +42,9 @@ func (c *config) user() (string, error) {
 	if c.User != "" {
 		return c.User, nil
 	}
-	// ref. https://git-scm.com/docs/gitcredentials
-	keys := []string{
-		fmt.Sprintf("credential.https://%s.username", c.host()),
-		"github.user",
-		"user.username",
-	}
-	for _, k := range keys {
-		u, err := getGitConfig(k)
-		if err != nil {
-			return "", err
-		}
-		if u != "" {
-			return u, nil
-		}
+	c.User, _ = gitconfig.GitHubUser(c.host())
+	if c.User != "" {
+		return c.User, nil
 	}
 
 	var githubID string
