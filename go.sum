@@ -3,6 +3,8 @@ github.com/Masterminds/semver v1.5.0 h1:H65muMkzWKEuNDnfl9d70GUjFniHKHRbFPGBuZ3Q
 github.com/Masterminds/semver v1.5.0/go.mod h1:MB6lktGJrhw8PrUyiEoblNEGEQ+RzHPF078ddwwvV3Y=
 github.com/Songmu/ghch v0.10.1 h1:F0XAr9LrgAlqgTCL4lryG0kCYqcIH6D21RQcAsmJlPk=
 github.com/Songmu/ghch v0.10.1/go.mod h1:suFP1Xmwgiq+3r13iq7J0y8qygny6RqZo0dprEygQmo=
+github.com/Songmu/gitconfig v0.0.2 h1:KBMYIgFddPe4F+A8XAezw60dMMpf2/a1h30g3ZR9MMI=
+github.com/Songmu/gitconfig v0.0.2/go.mod h1:ynNIqTQeA19lPihVePetAfR4TF/TRaEcVeaF4F/fU/s=
 github.com/Songmu/gitmock v0.0.0-20181014095242-fa197bca6712 h1:mi6/BLesmGZSWZCkuWB8X5jMYDQGo6G/sMXSv97Tiwo=
 github.com/Songmu/gitmock v0.0.0-20181014095242-fa197bca6712/go.mod h1:/GsiyEs6MfsiOJ7kV2Fubp8RKtTAAMC+oHZP2Gg/hPs=
 github.com/Songmu/gitsemvers v0.0.1 h1:KjekOA6kEuKW20b9Ws3j9El2rqQSFNkuOQdYUZMbDNo=
@@ -117,3 +119,5 @@ gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 h1:uRGJdciOHaEIrze2W8Q3AKkep
 gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58zS4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=
 gopkg.in/yaml.v2 v2.2.1 h1:mUhvW9EsL+naU5Q3cakzfE91YhliOondGd6ZrsDBHQE=
 gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
+gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
+gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
