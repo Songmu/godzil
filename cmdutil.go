@@ -21,6 +21,7 @@ func git(args ...string) (string, string, error) {
 
 type cmd struct {
 	outStream, errStream io.Writer
+	dir                  string
 	err                  error
 }
 
@@ -39,6 +40,9 @@ func (c *cmd) run(prog string, args ...string) (string, string) {
 	cmd := exec.Command(prog, args...)
 	cmd.Stdout = io.MultiWriter(&outBuf, c.outStream)
 	cmd.Stderr = io.MultiWriter(&errBuf, c.errStream)
+	if c.dir != "" {
+		cmd.Dir = c.dir
+	}
 	c.err = cmd.Run()
 	return outBuf.String(), errBuf.String()
 }

@@ -123,9 +123,9 @@ func (ne *new) do() error {
 	}
 
 	log.Println("% git init && git add .")
-	c := &cmd{outStream: ne.outStream, errStream: ne.errStream}
-	c.git("-C", projDir, "init")
-	c.git("-C", projDir, "add", ".")
+	c := &cmd{outStream: ne.outStream, errStream: ne.errStream, dir: projDir}
+	c.git("init")
+	c.git("add", ".")
 
 	if c.err != nil {
 		return c.err
