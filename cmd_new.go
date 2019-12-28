@@ -14,8 +14,6 @@ import (
 	"strings"
 	"time"
 
-	"errors"
-
 	"github.com/Songmu/gokoku"
 
 	// import the statik to Register fs data
@@ -28,6 +26,7 @@ type new struct {
 	GitHubHost, Owner, Package string
 	Year                       int
 
+	projDir              string
 	profile              string
 	config               *config
 	outStream, errStream io.Writer
@@ -46,7 +45,7 @@ func (ne *new) run(argv []string, outStream, errStream io.Writer) error {
 	}
 	ne.PackagePath = fs.Arg(0)
 	if ne.PackagePath == "" {
-		return errors.New("no package specified")
+		ne.PackagePath = "."
 	}
 	if ne.Author == "" {
 		ne.Author, _, _ = git("config", "user.name")
@@ -59,9 +58,26 @@ func (ne *new) run(argv []string, outStream, errStream io.Writer) error {
 	return ne.do()
 }
 
-var hostReg = regexp.MustCompile(`[A-Za-z0-9]\.[A-Za-z]+$`)
+var (
+	hostReg    = regexp.MustCompile(`^[A-Za-z0-9](?:\.[A-Za-z]+)+$`)
+	packageReg = regexp.MustCompile(`([A-Za-z0-9](?:\.[A-Za-z]+)+(?:/[^/]+){2,})$`)
+)
 
 func (ne *new) parsePackage() error {
+	if strings.HasPrefix(ne.PackagePath, ".") {
+		abs, err := filepath.Abs(ne.PackagePath)
+		if err != nil {
+			return err
+		}
+		abs = filepath.ToSlash(abs)
+		m := packageReg.FindStringSubmatch(abs)
+		if len(m) < 2 {
+			return fmt.Errorf("invalid package path: %q", abs)
+		}
+		ne.PackagePath = m[1]
+		ne.projDir = abs
+	}
+
 	m := strings.Split(ne.PackagePath, "/")
 	ne.Package = m[len(m)-1]
 	switch len(m) {
@@ -100,14 +116,16 @@ func (ne *new) do() error {
 	if err != nil {
 		return err
 	}
-	var projDir string
-	if root != "" {
-		projDir = filepath.Join(root, ne.PackagePath)
-	} else {
-		projDir = ne.Package
+
+	if ne.projDir == "" {
+		if root != "" {
+			ne.projDir = filepath.Join(root, ne.PackagePath)
+		} else {
+			ne.projDir = ne.Package
+		}
 	}
 
-	if d, err := os.Open(projDir); err == nil {
+	if d, err := os.Open(ne.projDir); err == nil {
 		err := func() error {
 			for i := 0; i < 2; i++ {
 				fis, err := d.Readdir(1)
@@ -121,18 +139,18 @@ func (ne *new) do() error {
 					break
 				}
 			}
-			return fmt.Errorf("directory %q already exists", projDir)
+			return fmt.Errorf("directory %q already exists", ne.projDir)
 		}()
 		if err != nil {
 			return err
 		}
 		cmd := exec.Command("git", "rev-parse", "HEAD")
-		cmd.Dir = projDir
+		cmd.Dir = ne.projDir
 		cmd.Stdout = ioutil.Discard
 		cmd.Stderr = ioutil.Discard
 		err = cmd.Run()
 		if err == nil {
-			return fmt.Errorf("non-empty repository exists on %q", projDir)
+			return fmt.Errorf("non-empty repository exists on %q", ne.projDir)
 		}
 	}
 	// create project directory and templating
@@ -146,20 +164,20 @@ func (ne *new) do() error {
 			return fmt.Errorf("failed to load templates: %w", err)
 		}
 	}
-	if err := gokoku.Scaffold(hfs, "/"+ne.profile, projDir, ne); err != nil {
+	if err := gokoku.Scaffold(hfs, "/"+ne.profile, ne.projDir, ne); err != nil {
 		return fmt.Errorf("failed to scaffold while templating: %w", err)
 	}
 
 	log.Println("% git init && git add .")
-	c := &cmd{outStream: ne.outStream, errStream: ne.errStream, dir: projDir}
+	c := &cmd{outStream: ne.outStream, errStream: ne.errStream, dir: ne.projDir}
 	c.git("init")
 	c.git("add", ".")
 
 	if c.err != nil {
 		return c.err
 	}
-	log.Printf("Finished to create %s in %s\n", ne.PackagePath, projDir)
-	_, err = fmt.Fprintln(ne.outStream, projDir)
+	log.Printf("Finished to create %s in %s\n", ne.PackagePath, ne.projDir)
+	_, err = fmt.Fprintln(ne.outStream, ne.projDir)
 	return err
 	// 4. need to create remote repository?
 }
