@@ -4,9 +4,11 @@ import (
 	"flag"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -104,8 +106,34 @@ func (ne *new) do() error {
 	} else {
 		projDir = ne.Package
 	}
-	if _, err := os.Stat(projDir); err == nil {
-		return fmt.Errorf("directory %q already exists", projDir)
+
+	if d, err := os.Open(projDir); err == nil {
+		err := func() error {
+			for i := 0; i < 2; i++ {
+				fis, err := d.Readdir(1)
+				if err != nil {
+					if err == io.EOF {
+						return nil
+					}
+					return err
+				}
+				if fis[0].Name() != ".git" || !fis[0].IsDir() {
+					break
+				}
+			}
+			return fmt.Errorf("directory %q already exists", projDir)
+		}()
+		if err != nil {
+			return err
+		}
+		cmd := exec.Command("git", "rev-parse", "HEAD")
+		cmd.Dir = projDir
+		cmd.Stdout = ioutil.Discard
+		cmd.Stderr = ioutil.Discard
+		err = cmd.Run()
+		if err == nil {
+			return fmt.Errorf("non-empty repository exists on %q", projDir)
+		}
 	}
 	// create project directory and templating
 	var hfs http.FileSystem
