@@ -18,7 +18,7 @@ import (
 type release struct {
 	allowDirty, dryRun   bool
 	branch, repoPath     string
-	path                 string
+	path                 string // version.go location
 	outStream, errStream io.Writer
 }
 
@@ -104,6 +104,15 @@ func (re *release) do() error {
 			currVer.Original())
 	}
 
+	nextTag := fmt.Sprintf("v%s", nextVer)
+	out, _, err := git("-C", re.repoPath, "ls-remote", remote, "refs/tags/"+nextTag)
+	if err != nil {
+		return fmt.Errorf("failed to check remote tags: %w", err)
+	}
+	if out != "" {
+		return fmt.Errorf("tag %s already exists on remote %s", nextTag, remote)
+	}
+
 	gb2 := &gobump.Gobump{
 		Write:  true,
 		Target: re.path,
@@ -120,7 +129,6 @@ func (re *release) do() error {
 		versions = append(versions, f)
 	}
 
-	nextTag := fmt.Sprintf("v%s", nextVer)
 	fmt.Fprintln(re.outStream, "following changes will be released")
 	buf2 := &bytes.Buffer{}
 	gh := &ghch.Ghch{
@@ -138,7 +146,7 @@ func (re *release) do() error {
 		return err
 	}
 
-	c := &cmd{outStream: re.outStream, errStream: re.errStream}
+	c := &cmd{outStream: re.outStream, errStream: re.errStream, dir: re.repoPath}
 	c.git(append([]string{"add", gh.ChangelogMd}, versions...)...)
 	if re.dryRun {
 		return c.err
