@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.8.2](https://github.com/Songmu/godzil/compare/v0.8.1...v0.8.2) (2020-01-12)
+
+* check if the target version is tagged before starting releng [#50](https://github.com/Songmu/godzil/pull/50) ([Songmu](https://github.com/Songmu))
+* push tags only the new version [#51](https://github.com/Songmu/godzil/pull/51) ([Songmu](https://github.com/Songmu))
+
 ## [v0.8.1](https://github.com/Songmu/godzil/compare/v0.8.0...v0.8.1) (2019-12-29)
 
 * fix assets .github/workflows/test.yaml [#49](https://github.com/Songmu/godzil/pull/49) ([Songmu](https://github.com/Songmu))
