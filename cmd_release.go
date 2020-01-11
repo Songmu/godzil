@@ -149,6 +149,6 @@ func (re *release) do() error {
 			strings.TrimSpace(buf2.String())))
 	c.git("tag", nextTag)
 	c.git("push")
-	c.git("push", "--tags")
+	c.git("push", remote, nextTag)
 	return c.err
 }
