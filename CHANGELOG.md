@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.8.3](https://github.com/Songmu/godzil/compare/v0.8.2...v0.8.3) (2020-01-13)
+
+* update assets [#52](https://github.com/Songmu/godzil/pull/52) ([Songmu](https://github.com/Songmu))
+
 ## [v0.8.2](https://github.com/Songmu/godzil/compare/v0.8.1...v0.8.2) (2020-01-12)
 
 * check if the target version is tagged before starting releng [#50](https://github.com/Songmu/godzil/pull/50) ([Songmu](https://github.com/Songmu))
