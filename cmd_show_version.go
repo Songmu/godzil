@@ -7,7 +7,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/motemen/gobump"
+	"github.com/x-motemen/gobump"
 )
 
 type showVersion struct {

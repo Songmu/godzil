@@ -12,7 +12,7 @@ import (
 	"github.com/Masterminds/semver"
 	"github.com/Songmu/ghch"
 	"github.com/Songmu/prompter"
-	"github.com/motemen/gobump"
+	"github.com/x-motemen/gobump"
 )
 
 type release struct {
