@@ -8,8 +8,8 @@ github.com/Masterminds/semver/v3 v3.1.0 h1:Y2lUDsFKVRSYGojLJ1yLxSXdMmMYTYls0rCvo
 github.com/Masterminds/semver/v3 v3.1.0/go.mod h1:VPu/7SZ7ePZ3QOrcuXROw5FAcLl4a0cBrbBpGY/8hQs=
 github.com/Songmu/ghch v0.10.2 h1:yvp86VGTSAvqDIF3Ya18lfohh9WtB3+XVGlPrIFKdLE=
 github.com/Songmu/ghch v0.10.2/go.mod h1:cb7CxAVS2TD5qsv+cixbwqktLC4UEaOKPYkR0yeQclE=
-github.com/Songmu/gitconfig v0.0.3 h1:mLLrCol+zLOxbX/0Pp+O8VgEjBPEMu3bZyw+vs/wBY8=
-github.com/Songmu/gitconfig v0.0.3/go.mod h1:0b3ML3J86L0tp1SB7qU4vZfezHS2s+PIczPsf23GAdk=
+github.com/Songmu/gitconfig v0.1.0 h1:JsaQ6rh3Lnig0Xvo4t4nj7Xu6pXrMfyCOPJ6iRriuKY=
+github.com/Songmu/gitconfig v0.1.0/go.mod h1:kVksEBYKkMQuZ5BumlnW7KBDBreiySMbf50dseHYOpQ=
 github.com/Songmu/gitmock v0.0.0-20181014095242-fa197bca6712 h1:mi6/BLesmGZSWZCkuWB8X5jMYDQGo6G/sMXSv97Tiwo=
 github.com/Songmu/gitmock v0.0.0-20181014095242-fa197bca6712/go.mod h1:/GsiyEs6MfsiOJ7kV2Fubp8RKtTAAMC+oHZP2Gg/hPs=
 github.com/Songmu/gitsemvers v0.0.1 h1:KjekOA6kEuKW20b9Ws3j9El2rqQSFNkuOQdYUZMbDNo=
@@ -240,9 +240,7 @@ gopkg.in/go-playground/validator.v9 v9.30.0/go.mod h1:+c9/zcJMFNgbLvly1L1V+PpxWd
 gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 h1:uRGJdciOHaEIrze2W8Q3AKkepLTh2hOroT7a+7czfdQ=
 gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7/go.mod h1:dt/ZhP58zS4L8KSrWDmTeBkI65Dw0HsyUHuEVlX15mw=
 gopkg.in/yaml.v2 v2.2.1/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
+gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=
 gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-gopkg.in/yaml.v2 v2.2.7/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-gopkg.in/yaml.v2 v2.3.0 h1:clyUAQHOM3G0M3f5vQj7LuJrETvjVot3Z5el9nffUtU=
-gopkg.in/yaml.v2 v2.3.0/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
 honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
 honnef.co/go/tools v0.0.0-20190523083050-ea95bdfd59fc/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
