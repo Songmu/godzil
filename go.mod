@@ -3,7 +3,6 @@ module github.com/Songmu/godzil
 go 1.14
 
 require (
-	github.com/Masterminds/semver v1.5.0
 	github.com/Masterminds/semver/v3 v3.1.0 // indirect
 	github.com/Songmu/ghch v0.10.2
 	github.com/Songmu/gitconfig v0.0.3
@@ -18,10 +17,10 @@ require (
 	github.com/nwaples/rardecode v1.1.0 // indirect
 	github.com/pierrec/lz4 v2.5.2+incompatible // indirect
 	github.com/rakyll/statik v0.1.7
-	github.com/tcnksm/go-gitconfig v0.1.3-0.20150505151006-6411ba19847f // indirect
 	github.com/ulikunitz/xz v0.5.7 // indirect
 	github.com/x-motemen/gobump v0.2.0
 	golang.org/x/crypto v0.0.0-20200709230013-948cd5f35899 // indirect
+	golang.org/x/mod v0.3.0
 	golang.org/x/net v0.0.0-20200707034311-ab3426394381 // indirect
 	golang.org/x/sync v0.0.0-20200625203802-6e8e738ad208 // indirect
 	golang.org/x/sys v0.0.0-20200722175500-76b94024e4b6 // indirect

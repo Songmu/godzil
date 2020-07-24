@@ -9,10 +9,10 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Masterminds/semver"
 	"github.com/Songmu/ghch"
 	"github.com/Songmu/prompter"
 	"github.com/x-motemen/gobump"
+	"golang.org/x/mod/semver"
 )
 
 type release struct {
@@ -92,16 +92,16 @@ func (re *release) do() error {
 	}
 	currVerStr := strings.TrimSpace(buf.String())
 	vers := strings.Split(currVerStr, "\n")
-	currVer, _ := semver.NewVersion(vers[0])
-	fmt.Fprintf(re.outStream, "current version: %s\n", currVer.Original())
-	nextVer, err := semver.NewVersion(prompter.Prompt("input next version", ""))
-	if err != nil {
-		return fmt.Errorf("invalid version: %w", err)
+	currVer := vers[0]
+	fmt.Fprintf(re.outStream, "current version: %s\n", currVer)
+	nextVer := prompter.Prompt("input next version", "")
+	if !semver.IsValid("v" + nextVer) {
+		return fmt.Errorf("invalid version: %s", nextVer)
 	}
-	if !nextVer.GreaterThan(currVer) {
+	if semver.Compare("v"+nextVer, "v"+currVer) != 1 {
 		return fmt.Errorf("next version %q isn't greather than current version %q",
-			nextVer.Original(),
-			currVer.Original())
+			nextVer,
+			currVer)
 	}
 
 	nextTag := fmt.Sprintf("v%s", nextVer)
@@ -117,7 +117,7 @@ func (re *release) do() error {
 		Write:  true,
 		Target: re.path,
 		Config: gobump.Config{
-			Exact: nextVer.Original(),
+			Exact: nextVer,
 		},
 	}
 	filesMap, err := gb2.Run()
