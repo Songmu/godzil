@@ -10,7 +10,8 @@ require (
 	github.com/Songmu/gokoku v0.1.0
 	github.com/Songmu/goxz v0.6.0
 	github.com/Songmu/prompter v0.3.0
-	github.com/go-yaml/yaml v2.1.0+incompatible
+	github.com/fatih/color v1.9.0 // indirect
+	github.com/goccy/go-yaml v1.8.0
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/natefinch/atomic v0.0.0-20200526193002-18c0533a5b09
