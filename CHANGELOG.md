@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.9.0](https://github.com/Songmu/godzil/compare/v0.8.5...v0.9.0) (2020-07-24)
+
+* switch to goccy/go-yaml from go-yaml/yaml [#57](https://github.com/Songmu/godzil/pull/57) ([Songmu](https://github.com/Songmu))
+* switch to x/mod/semver from Masterminds/semver [#56](https://github.com/Songmu/godzil/pull/56) ([Songmu](https://github.com/Songmu))
+* Update GitHub Actions workflows [#55](https://github.com/Songmu/godzil/pull/55) ([Songmu](https://github.com/Songmu))
+
 ## [v0.8.5](https://github.com/Songmu/godzil/compare/v0.8.4...v0.8.5) (2020-01-24)
 
 * update deps [#54](https://github.com/Songmu/godzil/pull/54) ([Songmu](https://github.com/Songmu))
