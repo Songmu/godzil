@@ -1,0 +1,10 @@
+{
+  "name": "{{.Package}}",
+  "description": "",
+  "keywords": [
+    "go"
+  ],
+  "website": "http://github.com/{{.Owner}}/{{.Package}}",
+  "repository": "http://github.com/{{.Owner}}/{{.Package}}",
+  "env": {}
+}
