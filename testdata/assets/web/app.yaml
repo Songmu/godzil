@@ -1,0 +1,4 @@
+runtime: go113
+main: ./cmd/{{.Package}}
+includes:
+- secret.yaml

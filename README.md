@@ -3,11 +3,11 @@ godzil
 
 [![Test Status](https://github.com/Songmu/godzil/workflows/test/badge.svg?branch=master)][actions]
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)][license]
-[![GoDoc](https://godoc.org/github.com/Songmu/godzil?status.svg)][godoc]
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/Songmu/godzil)][PkgGoDev]
 
 [actions]: https://github.com/Songmu/godzil/actions?workflow=test
 [license]: https://github.com/Songmu/godzil/blob/master/LICENSE
-[godoc]: https://godoc.org/github.com/Songmu/godzil
+[PkgGoDev]: https://pkg.go.dev/github.com/Songmu/godzil
 
 A module authoring tool
 
