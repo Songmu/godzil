@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.10.0](https://github.com/Songmu/godzil/compare/v0.9.0...v0.10.0) (2020-07-28)
+
+* add web profile [#58](https://github.com/Songmu/godzil/pull/58) ([Songmu](https://github.com/Songmu))
+
 ## [v0.9.0](https://github.com/Songmu/godzil/compare/v0.8.5...v0.9.0) (2020-07-24)
 
 * switch to goccy/go-yaml from go-yaml/yaml [#57](https://github.com/Songmu/godzil/pull/57) ([Songmu](https://github.com/Songmu))
