@@ -17,7 +17,6 @@ devel-deps: build
 	  cd $$tmpdir; \
 	  go get ${u} \
 	    golang.org/x/lint/golint               \
-	    github.com/Songmu/godzil/cmd/godzil    \
 	    github.com/tcnksm/ghr                  \
 	    github.com/Songmu/statikp/cmd/statikp; \
 	  rm -rf $$tmpdir \
