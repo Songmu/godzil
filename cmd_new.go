@@ -111,12 +111,16 @@ func (ne *new) parsePackage() error {
 
 func (ne *new) do() error {
 	if ne.Branch == "" {
-		b, _, err := git("config", "init.defaultBranch")
-		if err != nil {
-			return err
+		b, e, err := git("config", "init.defaultBranch")
+		b = strings.TrimSpace(b)
+		e = strings.TrimSpace(e)
+		// ignore empty config error
+		if err != nil && (err.Error() != "exit status 1" || b != "" || e != "") {
+			return fmt.Errorf("failed to detect default branch: %w", err)
 		}
-		ne.Branch = strings.TrimSpace(b)
-		if ne.Branch == "" {
+		if b != "" {
+			ne.Branch = b
+		} else {
 			ne.Branch = "master"
 		}
 	}
