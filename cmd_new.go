@@ -22,9 +22,9 @@ import (
 )
 
 type new struct {
-	Author, PackagePath        string
-	GitHubHost, Owner, Package string
-	Year                       int
+	Author, PackagePath, Branch string
+	GitHubHost, Owner, Package  string
+	Year                        int
 
 	projDir              string
 	profile              string
@@ -40,6 +40,7 @@ func (ne *new) run(argv []string, outStream, errStream io.Writer) error {
 	fs.SetOutput(errStream)
 	fs.StringVar(&ne.Author, "author", "", "Author name")
 	fs.StringVar(&ne.profile, "profile", "basic", "template profile")
+	fs.StringVar(&ne.Branch, "branch", "", "release branch")
 	if err := fs.Parse(argv); err != nil {
 		return err
 	}
@@ -109,6 +110,20 @@ func (ne *new) parsePackage() error {
 }
 
 func (ne *new) do() error {
+	if ne.Branch == "" {
+		b, e, err := git("config", "init.defaultBranch")
+		b = strings.TrimSpace(b)
+		e = strings.TrimSpace(e)
+		// ignore empty config error
+		if err != nil && (err.Error() != "exit status 1" || b != "" || e != "") {
+			return fmt.Errorf("failed to detect default branch: %w", err)
+		}
+		if b != "" {
+			ne.Branch = b
+		} else {
+			ne.Branch = "master"
+		}
+	}
 	if err := ne.parsePackage(); err != nil {
 		return err
 	}
