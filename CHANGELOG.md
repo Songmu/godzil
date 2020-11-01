@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.11.0](https://github.com/Songmu/godzil/compare/v0.10.0...v0.11.0) (2020-11-01)
+
+*  detect release branch on godzil new [#60](https://github.com/Songmu/godzil/pull/60) ([Songmu](https://github.com/Songmu))
+* detect default branch from remote and stop using hard-coded 'master' [#59](https://github.com/Songmu/godzil/pull/59) ([Songmu](https://github.com/Songmu))
+
 ## [v0.10.0](https://github.com/Songmu/godzil/compare/v0.9.0...v0.10.0) (2020-07-28)
 
 * add web profile [#58](https://github.com/Songmu/godzil/pull/58) ([Songmu](https://github.com/Songmu))
