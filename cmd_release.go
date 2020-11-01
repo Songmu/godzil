@@ -2,6 +2,7 @@ package godzil
 
 import (
 	"bytes"
+	"errors"
 	"flag"
 	"fmt"
 	"io"
@@ -16,10 +17,10 @@ import (
 )
 
 type release struct {
-	allowDirty, dryRun   bool
-	branch, repoPath     string
-	path                 string // version.go location
-	outStream, errStream io.Writer
+	allowDirty, dryRun       bool
+	branch, remote, repoPath string
+	path                     string // version.go location
+	outStream, errStream     io.Writer
 }
 
 func (re *release) run(argv []string, outStream, errStream io.Writer) error {
@@ -27,7 +28,8 @@ func (re *release) run(argv []string, outStream, errStream io.Writer) error {
 	re.errStream = errStream
 	fs := flag.NewFlagSet("godzil release", flag.ContinueOnError)
 	fs.SetOutput(errStream)
-	fs.StringVar(&re.branch, "branch", "master", "releasing branch")
+	fs.StringVar(&re.branch, "branch", "", "releasing branch (default branch is used by default)")
+	fs.StringVar(&re.remote, "remote", "", "remote repository name (Optional)")
 	fs.BoolVar(&re.allowDirty, "allow-dirty", false, "allow dirty index")
 	fs.BoolVar(&re.dryRun, "dry-run", false, "dry run")
 	fs.StringVar(&re.repoPath, "C", "", "repository path")
@@ -42,6 +44,46 @@ func (re *release) run(argv []string, outStream, errStream io.Writer) error {
 	return re.do()
 }
 
+var headBranchReg = regexp.MustCompile(`(?m)^\s*HEAD branch: (.*)$`)
+
+func defaultBranch(remote string) (string, error) {
+	if remote == "" {
+		var err error
+		remote, err = detectRemote()
+		if err != nil {
+			return "", err
+		}
+	}
+	// `git symbolic-ref refs/remotes/origin/HEAD` sometimes doesn't work
+	// So use `git remote show origin` for detecting default branch
+	show, _, err := git("remote", "show", remote)
+	if err != nil {
+		return "", fmt.Errorf("failed to detect defaut branch: %w", err)
+	}
+	m := headBranchReg.FindStringSubmatch(show)
+	if len(m) < 2 {
+		return "", fmt.Errorf("failed to detect default branch from remote: %s", remote)
+	}
+	return m[1], nil
+}
+
+func detectRemote() (string, error) {
+	remotesStr, _, err := git("remote")
+	if err != nil {
+		return "", fmt.Errorf("failed to detect remote: %s", err)
+	}
+	remotes := strings.Fields(remotesStr)
+	if len(remotes) == 1 {
+		return remotes[0], nil
+	}
+	for _, r := range remotes {
+		if r == "origin" {
+			return r, nil
+		}
+	}
+	return "", errors.New("failed to detect remote")
+}
+
 var gitReg = regexp.MustCompile(`^(?:git|https)(?:@|://)([^/:]+(?::[0-9]{1,5})?)[/:](.*)$`)
 
 func (re *release) do() error {
@@ -53,6 +95,13 @@ func (re *release) do() error {
 		if strings.TrimSpace(out) != "" {
 			return fmt.Errorf("can't release on dirty index (or you can use --allow-dirty)\n%s", out)
 		}
+	}
+	if re.branch == "" {
+		b, err := defaultBranch(re.remote)
+		if err != nil {
+			return err
+		}
+		re.branch = b
 	}
 	branch, _, err := git("symbolic-ref", "--short", "HEAD")
 	if err != nil {
