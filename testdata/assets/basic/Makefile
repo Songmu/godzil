@@ -3,8 +3,6 @@ CURRENT_REVISION = $(shell git rev-parse --short HEAD)
 BUILD_LDFLAGS = "-s -w -X {{.PackagePath}}.revision=$(CURRENT_REVISION)"
 u := $(if $(update),-u)
 
-export GO111MODULE=on
-
 .PHONY: deps
 deps:
 	go get ${u} -d
@@ -12,22 +10,12 @@ deps:
 
 .PHONY: devel-deps
 devel-deps:
-	sh -c '\
-      tmpdir=$$(mktemp -d); \
-      cd $$tmpdir; \
-      go get ${u} \
-        golang.org/x/lint/golint            \
-        github.com/Songmu/godzil/cmd/godzil \
-        github.com/tcnksm/ghr; \
-      rm -rf $$tmpdir'
+	go install github.com/Songmu/godzil/cmd/godzil@latest
+	go install github.com/tcnksm/ghr@latest
 
 .PHONY: test
 test:
 	go test
-
-.PHONY: lint
-lint: devel-deps
-	golint -set_exit_status
 
 .PHONY: build
 build:
