@@ -24,8 +24,22 @@
 ## Installation
 
 ```console
-% go get {{.PackagePath}}
+% go install {{.PackagePath}}/cmd/{{.Package}}@latest
 ```
+## Deployment
+
+### Deply to heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+### Deploy to Google App Engine
+
+1. Install `gcloud` command and create new app on GCP
+    - ref. https://cloud.google.com/appengine/docs/standard/go/quickstart#before-you-begin
+2. Clone this repository
+-   - `git clone https://{{.PackagePath}}.git`
+3. Describe the configuration items in `secret.yaml` (refer to `secret.yaml.example`)
+4. Deploy app with `gcloud app deploy`
 
 ## Author
 
