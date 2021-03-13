@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.20.0](https://github.com/Songmu/godzil/compare/v0.11.0...v0.20.0) (2021-03-13)
+
+* udpate deps [#64](https://github.com/Songmu/godzil/pull/64) ([Songmu](https://github.com/Songmu))
+* adjust templates [#63](https://github.com/Songmu/godzil/pull/63) ([Songmu](https://github.com/Songmu))
+* introduce codecov [#62](https://github.com/Songmu/godzil/pull/62) ([Songmu](https://github.com/Songmu))
+* drop rakyll/statik dependency [#61](https://github.com/Songmu/godzil/pull/61) ([Songmu](https://github.com/Songmu))
+
 ## [v0.11.0](https://github.com/Songmu/godzil/compare/v0.10.0...v0.11.0) (2020-11-01)
 
 *  detect release branch on godzil new [#60](https://github.com/Songmu/godzil/pull/60) ([Songmu](https://github.com/Songmu))
