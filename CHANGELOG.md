@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.20.1](https://github.com/Songmu/godzil/compare/v0.20.0...v0.20.1) (2021-03-13)
+
+* enhance testing for godzil new [#67](https://github.com/Songmu/godzil/pull/67) ([Songmu](https://github.com/Songmu))
+* describe deploy setting in README.md of web profile [#66](https://github.com/Songmu/godzil/pull/66) ([Songmu](https://github.com/Songmu))
+* add codecov.yml to templates [#65](https://github.com/Songmu/godzil/pull/65) ([Songmu](https://github.com/Songmu))
+
 ## [v0.20.0](https://github.com/Songmu/godzil/compare/v0.11.0...v0.20.0) (2021-03-13)
 
 * udpate deps [#64](https://github.com/Songmu/godzil/pull/64) ([Songmu](https://github.com/Songmu))
