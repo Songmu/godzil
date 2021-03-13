@@ -186,7 +186,7 @@ func (ne *new) do() error {
 
 	log.Println("% go mod init && go mod tidy")
 	c := &cmd{outStream: ne.outStream, errStream: ne.errStream, dir: ne.projDir}
-	c.run("go", "mod", "init")
+	c.run("go", "mod", "init", ne.PackagePath)
 	c.run("go", "mod", "tidy")
 
 	log.Println("% git init && git add .")
