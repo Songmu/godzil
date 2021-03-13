@@ -102,8 +102,10 @@ func loadConfig() (*config, error) {
 	return &c, err
 }
 
+const xdgConfigHomeEnv = "XDG_CONFIG_HOME"
+
 func configRoot() (string, error) {
-	root := os.Getenv("XDG_CONFIG_HOME")
+	root := os.Getenv(xdgConfigHomeEnv)
 	if root == "" {
 		root = "~/.config"
 	}
