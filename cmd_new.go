@@ -1,12 +1,13 @@
 package godzil
 
 import (
+	"embed"
 	"flag"
 	"fmt"
 	"io"
+	"io/fs"
 	"io/ioutil"
 	"log"
-	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -15,11 +16,10 @@ import (
 	"time"
 
 	"github.com/Songmu/gokoku"
-
-	// import the statik to Register fs data
-	_ "github.com/Songmu/godzil/statik"
-	"github.com/rakyll/statik/fs"
 )
+
+//go:embed testdata/assets/*
+var embedFs embed.FS
 
 type new struct {
 	Author, PackagePath, Branch string
@@ -169,22 +169,27 @@ func (ne *new) do() error {
 		}
 	}
 	// create project directory and templating
-	var hfs http.FileSystem
+	var (
+		hfs     fs.FS
+		baseDir = ""
+	)
 	profDir := filepath.Join(ne.config.profilesBase(), ne.profile)
 	if dir, err := os.Stat(profDir); err == nil && dir.IsDir() {
-		hfs = http.Dir(ne.config.profilesBase())
+		hfs = os.DirFS(ne.config.profilesBase())
 	} else {
-		hfs, err = fs.New()
-		if err != nil {
-			return fmt.Errorf("failed to load templates: %w", err)
-		}
+		hfs = embedFs
+		baseDir = "testdata/assets/"
 	}
-	if err := gokoku.Scaffold(hfs, "/"+ne.profile, ne.projDir, ne); err != nil {
+	if err := gokoku.Scaffold(hfs, baseDir+ne.profile, ne.projDir, ne); err != nil {
 		return fmt.Errorf("failed to scaffold while templating: %w", err)
 	}
 
-	log.Println("% git init && git add .")
+	log.Println("% go mod init && go mod tidy")
 	c := &cmd{outStream: ne.outStream, errStream: ne.errStream, dir: ne.projDir}
+	c.run("go", "mod", "init")
+	c.run("go", "mod", "tidy")
+
+	log.Println("% git init && git add .")
 	c.git("init")
 	c.git("add", ".")
 
