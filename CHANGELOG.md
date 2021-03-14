@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.20.2](https://github.com/Songmu/godzil/compare/v0.20.1...v0.20.2) (2021-03-14)
+
+* include SHA256SUMS in releases on basic profile [#70](https://github.com/Songmu/godzil/pull/70) ([Songmu](https://github.com/Songmu))
+* [bugfix] care dotfiles [#69](https://github.com/Songmu/godzil/pull/69) ([Songmu](https://github.com/Songmu))
+
 ## [v0.20.1](https://github.com/Songmu/godzil/compare/v0.20.0...v0.20.1) (2021-03-13)
 
 * enhance testing for godzil new [#67](https://github.com/Songmu/godzil/pull/67) ([Songmu](https://github.com/Songmu))
