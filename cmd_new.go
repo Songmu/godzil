@@ -183,6 +183,15 @@ func (ne *new) do() error {
 	if err := gokoku.Scaffold(hfs, baseDir+ne.profile, ne.projDir, ne); err != nil {
 		return fmt.Errorf("failed to scaffold while templating: %w", err)
 	}
+	switch ne.profile {
+	case "basic", "simple", "web":
+		// dirty... because go:embed don't collect dotfiles
+		dotfilesSrc := filepath.Join(ne.projDir, "dot-github")
+		dotfilesDst := filepath.Join(ne.projDir, ".github")
+		if err := os.Rename(dotfilesSrc, dotfilesDst); err != nil {
+			return err
+		}
+	}
 
 	log.Println("% go mod init && go mod tidy")
 	c := &cmd{outStream: ne.outStream, errStream: ne.errStream, dir: ne.projDir}

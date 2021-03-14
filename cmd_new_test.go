@@ -37,5 +37,12 @@ root: %q
 		if err := (&new{}).run([]string{"-profile", p, p}, os.Stderr, os.Stderr); err != nil {
 			t.Error(err)
 		}
+		if p == "basic" {
+			dotfile := filepath.Join(projRoot, "github.com", "Songmu", "basic", ".github", "workflows", "test.yaml")
+			_, err := os.Stat(dotfile)
+			if err != nil {
+				t.Errorf("%q should be exists, but error: %s", dotfile, err)
+			}
+		}
 	}
 }
