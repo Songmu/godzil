@@ -17,9 +17,9 @@ A module authoring tool inspired from Minilla. (STILL ALPHA QUALITY)
 
 ## Installation
 
-### go get
+### go install
 
-    % go get github.com/Songmu/godzil/cmd/godzil
+    % go install github.com/Songmu/godzil/cmd/godzil@latest
 
 ### homebrew
 

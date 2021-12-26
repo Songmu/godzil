@@ -33,7 +33,7 @@
 # In alpine linux (as it does not come with curl by default)
 % wget -O - -q https://raw.githubusercontent.com/{{.Owner}}/{{.Package}}/main/install.sh | sh -s [vX.Y.Z]
 
-# go get
+# go install
 % go install github.com/{{.Owner}}/{{.Package}}/cmd/{{.Package}}@latest
 ```
 
