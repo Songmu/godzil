@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.20.5](https://github.com/Songmu/godzil/compare/v0.20.4...v0.20.5) (2021-12-26)
+
+* update deps and CREDITS [#74](https://github.com/Songmu/godzil/pull/74) ([Songmu](https://github.com/Songmu))
+
 ## [v0.20.4](https://github.com/Songmu/godzil/compare/v0.20.3...v0.20.4) (2021-12-26)
 
 * update deps [#73](https://github.com/Songmu/godzil/pull/73) ([Songmu](https://github.com/Songmu))
