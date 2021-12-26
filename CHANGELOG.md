@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.20.3](https://github.com/Songmu/godzil/compare/v0.20.2...v0.20.3) (2021-12-26)
+
+* go 1.17 and update deps [#71](https://github.com/Songmu/godzil/pull/71) ([Songmu](https://github.com/Songmu))
+
 ## [v0.20.2](https://github.com/Songmu/godzil/compare/v0.20.1...v0.20.2) (2021-03-14)
 
 * include SHA256SUMS in releases on basic profile [#70](https://github.com/Songmu/godzil/pull/70) ([Songmu](https://github.com/Songmu))
