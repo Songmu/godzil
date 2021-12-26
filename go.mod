@@ -3,7 +3,7 @@ module github.com/Songmu/godzil
 go 1.17
 
 require (
-	github.com/Songmu/ghch v0.10.2
+	github.com/Songmu/ghch v0.10.3
 	github.com/Songmu/gitconfig v0.1.0
 	github.com/Songmu/gocredits v0.2.0
 	github.com/Songmu/gokoku v0.2.0
@@ -36,7 +36,6 @@ require (
 	github.com/nwaples/rardecode v1.1.2 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/tcnksm/go-gitconfig v0.1.2 // indirect
 	github.com/ulikunitz/xz v0.5.10 // indirect
 	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
 	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3 // indirect
