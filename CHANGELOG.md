@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.20.4](https://github.com/Songmu/godzil/compare/v0.20.3...v0.20.4) (2021-12-26)
+
+* update deps [#73](https://github.com/Songmu/godzil/pull/73) ([Songmu](https://github.com/Songmu))
+* adjust install.sh [#72](https://github.com/Songmu/godzil/pull/72) ([Songmu](https://github.com/Songmu))
+
 ## [v0.20.3](https://github.com/Songmu/godzil/compare/v0.20.2...v0.20.3) (2021-12-26)
 
 * go 1.17 and update deps [#71](https://github.com/Songmu/godzil/pull/71) ([Songmu](https://github.com/Songmu))
