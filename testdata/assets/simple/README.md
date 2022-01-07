@@ -3,7 +3,7 @@
 
 [![Test Status](https://github.com/{{.Owner}}/{{.Package}}/workflows/test/badge.svg?branch={{.Branch}})][actions]
 [![Coverage Status](https://codecov.io/gh/{{.Owner}}/{{.Package}}/branch/{{.Branch}}/graph/badge.svg)][codecov]
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)][license]
+[![MIT License](https://img.shields.io/github/license/{{.Owner}}/{{.Package}})][license]
 [![PkgGoDev](https://pkg.go.dev/badge/{{.PackagePath}})][PkgGoDev]
 
 [actions]: https://github.com/{{.Owner}}/{{.Package}}/actions?workflow=test
