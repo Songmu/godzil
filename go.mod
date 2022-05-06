@@ -1,6 +1,6 @@
 module github.com/Songmu/godzil
 
-go 1.17
+go 1.18
 
 require (
 	github.com/Songmu/ghch v0.10.4
