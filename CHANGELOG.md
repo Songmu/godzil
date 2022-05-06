@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.20.7](https://github.com/Songmu/godzil/compare/v0.20.6...v0.20.7) (2022-05-06)
+
+* build with go 1.18 and update metafiles [#76](https://github.com/Songmu/godzil/pull/76) ([Songmu](https://github.com/Songmu))
+
 ## [v0.20.6](https://github.com/Songmu/godzil/compare/v0.20.5...v0.20.6) (2022-01-07)
 
 * fix license shields [#75](https://github.com/Songmu/godzil/pull/75) ([Songmu](https://github.com/Songmu))
