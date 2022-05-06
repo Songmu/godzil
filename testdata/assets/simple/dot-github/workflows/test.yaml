@@ -16,7 +16,7 @@ jobs:
         - windows-latest
     steps:
     - name: setup go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v3
       with:
         go-version: 1.x
     - name: Set git to use LF
@@ -25,11 +25,7 @@ jobs:
         git config --global core.eol lf
       if: "matrix.os == 'windows-latest'"
     - name: checkout
-      uses: actions/checkout@v2
-    - name: lint
-      run: |
-        go install golang.org/x/lint/golint@latest
-        golint -set_exit_status ./...
+      uses: actions/checkout@v3
     - name: test
       run: go test -coverprofile coverage.out -covermode atomic ./...
     - name: Send coverage
