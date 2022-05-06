@@ -10,16 +10,11 @@ deps:
 
 .PHONY: devel-deps
 devel-deps: build
-	go install golang.org/x/lint/golint@latest
 	go install github.com/tcnksm/ghr@latest
 
 .PHONY: test
 test:
 	go test
-
-.PHONY: lint
-lint: devel-deps
-	golint -set_exit_status
 
 .PHONY: build
 build:

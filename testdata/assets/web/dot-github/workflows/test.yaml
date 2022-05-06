@@ -26,10 +26,6 @@ jobs:
       if: "matrix.os == 'windows-latest'"
     - name: checkout
       uses: actions/checkout@v3
-    - name: lint
-      run: |
-        go install golang.org/x/lint/golint@latest
-        golint -set_exit_status ./...
     - name: test
       run: go test -coverprofile coverage.out -covermode atomic ./...
     - name: Send coverage
