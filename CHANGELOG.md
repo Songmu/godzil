@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.20.8](https://github.com/Songmu/godzil/compare/v0.20.7...v0.20.8) (2022-05-22)
+
+* remove unintentionally remained coveralls settings [#77](https://github.com/Songmu/godzil/pull/77) ([Songmu](https://github.com/Songmu))
+
 ## [v0.20.7](https://github.com/Songmu/godzil/compare/v0.20.6...v0.20.7) (2022-05-06)
 
 * build with go 1.18 and update metafiles [#76](https://github.com/Songmu/godzil/pull/76) ([Songmu](https://github.com/Songmu))
