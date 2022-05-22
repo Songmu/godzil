@@ -15,6 +15,13 @@ devel-deps: build
 .PHONY: test
 test:
 	go test
+	make assets-test
+
+.PHONY: assets-test
+assets-test:
+	make assets
+	@git diff --exit-code --quiet testdata/assets || \
+      (echo '💢 Inconsistency in testdata/assets' && false)
 
 .PHONY: build
 build:
