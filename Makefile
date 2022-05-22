@@ -20,6 +20,12 @@ test:
 build:
 	go build -ldflags=$(BUILD_LDFLAGS) ./cmd/godzil
 
+.PHONY: assets
+assets:
+	for profile in simple basic web; do \
+      cp -r testdata/assets/_common/ testdata/assets/$$profile; \
+    done
+
 .PHONY: install
 install:
 	go install -ldflags=$(BUILD_LDFLAGS) ./cmd/godzil
