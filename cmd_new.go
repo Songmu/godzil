@@ -18,7 +18,7 @@ import (
 	"github.com/Songmu/gokoku"
 )
 
-//go:embed all:testdata/assets/*
+//go:embed all:testdata/assets/basic all:testdata/assets/simple all:testdata/assets/web
 var embedFs embed.FS
 
 type new struct {
