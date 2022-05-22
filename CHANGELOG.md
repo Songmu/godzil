@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.20.10](https://github.com/Songmu/godzil/compare/v0.20.9...v0.20.10) (2022-05-22)
+
+* with fetch-depth:0 in release.yaml [#81](https://github.com/Songmu/godzil/pull/81) ([Songmu](https://github.com/Songmu))
+
 ## [v0.20.9](https://github.com/Songmu/godzil/compare/v0.20.8...v0.20.9) (2022-05-22)
 
 * group common parts of profile into testdata/assets/_common [#80](https://github.com/Songmu/godzil/pull/80) ([Songmu](https://github.com/Songmu))
