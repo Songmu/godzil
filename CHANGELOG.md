@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.20.9](https://github.com/Songmu/godzil/compare/v0.20.8...v0.20.9) (2022-05-22)
+
+* group common parts of profile into testdata/assets/_common [#80](https://github.com/Songmu/godzil/pull/80) ([Songmu](https://github.com/Songmu))
+* update deps [#79](https://github.com/Songmu/godzil/pull/79) ([Songmu](https://github.com/Songmu))
+* use go:embed all: feature for dotfiles [#78](https://github.com/Songmu/godzil/pull/78) ([Songmu](https://github.com/Songmu))
+
 ## [v0.20.8](https://github.com/Songmu/godzil/compare/v0.20.7...v0.20.8) (2022-05-22)
 
 * remove unintentionally remained coveralls settings [#77](https://github.com/Songmu/godzil/pull/77) ([Songmu](https://github.com/Songmu))
