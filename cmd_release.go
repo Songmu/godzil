@@ -205,7 +205,6 @@ func (re *release) do() error {
 			nextVer,
 			strings.TrimSpace(buf2.String())))
 	c.git("tag", nextTag)
-	c.git("push")
-	c.git("push", remote, nextTag)
+	c.git("push", "--atomic", remote, branch, "tag", nextTag)
 	return c.err
 }
