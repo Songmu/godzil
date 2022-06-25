@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.20.11](https://github.com/Songmu/godzil/compare/v0.20.10...v0.20.11) (2022-06-25)
+
+* update deps [#83](https://github.com/Songmu/godzil/pull/83) ([Songmu](https://github.com/Songmu))
+* Push releasing branch and next tag atomically [#82](https://github.com/Songmu/godzil/pull/82) ([itchyny](https://github.com/itchyny))
+
 ## [v0.20.10](https://github.com/Songmu/godzil/compare/v0.20.9...v0.20.10) (2022-05-22)
 
 * with fetch-depth:0 in release.yaml [#81](https://github.com/Songmu/godzil/pull/81) ([Songmu](https://github.com/Songmu))
