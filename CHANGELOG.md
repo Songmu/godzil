@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.20.12](https://github.com/Songmu/godzil/compare/v0.20.11...v0.20.12) (2022-08-18)
+
+* update deps [#85](https://github.com/Songmu/godzil/pull/85) ([Songmu](https://github.com/Songmu))
+* update profiles [#84](https://github.com/Songmu/godzil/pull/84) ([Songmu](https://github.com/Songmu))
+
 ## [v0.20.11](https://github.com/Songmu/godzil/compare/v0.20.10...v0.20.11) (2022-06-25)
 
 * update deps [#83](https://github.com/Songmu/godzil/pull/83) ([Songmu](https://github.com/Songmu))
