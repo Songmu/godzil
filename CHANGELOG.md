@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.20.13](https://github.com/Songmu/godzil/compare/v0.20.12...v0.20.13) - 2023-06-16
+- Bump golang.org/x/net from 0.0.0-20220812174116-3211cb980234 to 0.7.0 by @dependabot in https://github.com/Songmu/godzil/pull/86
+- introduce tagpr by @Songmu in https://github.com/Songmu/godzil/pull/87
+- update templates with tagpr by @Songmu in https://github.com/Songmu/godzil/pull/89
+- update deps with go 1.20 by @Songmu in https://github.com/Songmu/godzil/pull/90
+
 ## [v0.20.12](https://github.com/Songmu/godzil/compare/v0.20.11...v0.20.12) (2022-08-18)
 
 * update deps [#85](https://github.com/Songmu/godzil/pull/85) ([Songmu](https://github.com/Songmu))
@@ -222,4 +228,3 @@
 * detect version declaration files [#1](https://github.com/Songmu/godzil/pull/1) ([Songmu](https://github.com/Songmu))
 
 ## [v0.0.1](https://github.com/Songmu/gauthor/compare/0a300d82cbed...v0.0.1) (2019-02-15)
-
