@@ -1,0 +1,16 @@
+name: release
+description: release {{.Package}}
+inputs:
+  tag:
+    description: tag name to be released
+    default: ''
+  token:
+    description: GitHub token
+    required: true
+runs:
+  using: composite
+  steps:
+  - name: release
+    run: |
+      echo done
+    shell: bash
