@@ -1,0 +1,26 @@
+name: release
+description: release {{.Package}}
+inputs:
+  tag:
+    description: tag name to be released
+    default: ''
+  token:
+    description: GitHub token
+    required: true
+runs:
+  using: composite
+  steps:
+  - name: checkout
+    uses: actions/checkout@v3
+    with:
+      fetch-depth: 0
+  - name: setup go
+    uses: actions/setup-go@v3
+    with:
+      go-version-file: go.mod
+  - name: release
+    env:
+      GITHUB_TOKEN: {{ "${{ inputs.token }}" }}
+    run: |
+      make crossbuild upload
+    shell: bash
