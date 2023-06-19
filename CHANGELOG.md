@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.20.14](https://github.com/Songmu/godzil/compare/v0.20.13...v0.20.14) - 2023-06-19
+- introduce setup-go@v4 by @Songmu in https://github.com/Songmu/godzil/pull/91
+
 ## [v0.20.13](https://github.com/Songmu/godzil/compare/v0.20.12...v0.20.13) - 2023-06-16
 - Bump golang.org/x/net from 0.0.0-20220812174116-3211cb980234 to 0.7.0 by @dependabot in https://github.com/Songmu/godzil/pull/86
 - introduce tagpr by @Songmu in https://github.com/Songmu/godzil/pull/87
