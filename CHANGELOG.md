@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.20.15](https://github.com/Songmu/godzil/compare/v0.20.14...v0.20.15) - 2023-10-08
+- update templates by @Songmu in https://github.com/Songmu/godzil/pull/93
+- Go 1.21 and update deps by @Songmu in https://github.com/Songmu/godzil/pull/95
+
 ## [v0.20.14](https://github.com/Songmu/godzil/compare/v0.20.13...v0.20.14) - 2023-06-19
 - introduce setup-go@v4 by @Songmu in https://github.com/Songmu/godzil/pull/91
 
