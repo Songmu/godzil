@@ -5,9 +5,11 @@ jobs:
     name: staticcheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: reviewdog/action-staticcheck@v1
-        with:
-          github_token: {{ "${{ secrets.github_token }}" }}
-          reporter: github-pr-review
-          fail_on_error: true
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - uses: reviewdog/action-staticcheck@v1
+      with:
+        github_token: {{ "${{ secrets.github_token }}" }}
+        reporter: github-pr-review
+        fail_on_error: true
