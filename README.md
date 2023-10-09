@@ -29,6 +29,10 @@ A module authoring tool inspired from Minilla. (STILL ALPHA QUALITY)
 
     % ghg get Songmu/godzil
 
+### using [aqua](https://aquaproj.github.io/)
+
+    % aqua g -i Songmu/godzil
+
 Built binaries are available on gihub releases.
 <https://github.com/Songmu/godzil/releases>
 
