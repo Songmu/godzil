@@ -15,9 +15,9 @@ runs:
     with:
       fetch-depth: 0
   - name: setup go
-    uses: actions/setup-go@v4
+    uses: actions/setup-go@v5
     with:
-      go-version-file: go.mod
+      go-version: stable
   - name: release
     env:
       GITHUB_TOKEN: {{ "${{ inputs.token }}" }}
