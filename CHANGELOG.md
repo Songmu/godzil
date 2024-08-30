@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.20.16](https://github.com/Songmu/godzil/compare/v0.20.15...v0.20.16) - 2024-08-30
+- docs: add the installation guide with aqua by @suzuki-shunsuke in https://github.com/Songmu/godzil/pull/97
+- Update .github by @Songmu in https://github.com/Songmu/godzil/pull/101
+- Bump google.golang.org/protobuf from 1.31.0 to 1.33.0 by @dependabot in https://github.com/Songmu/godzil/pull/99
+- Bump golang.org/x/crypto from 0.14.0 to 0.17.0 by @dependabot in https://github.com/Songmu/godzil/pull/98
+- go 1.23 and update deps by @Songmu in https://github.com/Songmu/godzil/pull/102
+
 ## [v0.20.15](https://github.com/Songmu/godzil/compare/v0.20.14...v0.20.15) - 2023-10-08
 - update templates by @Songmu in https://github.com/Songmu/godzil/pull/93
 - Go 1.21 and update deps by @Songmu in https://github.com/Songmu/godzil/pull/95
