@@ -25,12 +25,12 @@ jobs:
     - name: checkout
       uses: actions/checkout@v4
     - name: setup go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       with:
-        go-version-file: go.mod
+        go-version: stable
     - run: make assets-test
       if: "matrix.os == 'ubuntu-latest'"
     - name: test
       run: go test -race -coverprofile coverage.out -covermode atomic
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
+      uses: codecov/codecov-action@v4
