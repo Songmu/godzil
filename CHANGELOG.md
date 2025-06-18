@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.21.0](https://github.com/Songmu/godzil/compare/v0.20.16...v0.21.0) - 2025-06-18
+- Bump golang.org/x/crypto from 0.26.0 to 0.31.0 by @dependabot in https://github.com/Songmu/godzil/pull/103
+- Bump golang.org/x/crypto from 0.31.0 to 0.35.0 by @dependabot in https://github.com/Songmu/godzil/pull/105
+- update deps by @Songmu in https://github.com/Songmu/godzil/pull/106
+- [maint] update deps by @Songmu in https://github.com/Songmu/godzil/pull/107
+- update GitHub Actions related stuffs by @Songmu in https://github.com/Songmu/godzil/pull/108
+
 ## [v0.20.16](https://github.com/Songmu/godzil/compare/v0.20.15...v0.20.16) - 2024-08-30
 - docs: add the installation guide with aqua by @suzuki-shunsuke in https://github.com/Songmu/godzil/pull/97
 - Update .github by @Songmu in https://github.com/Songmu/godzil/pull/101
