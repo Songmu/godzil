@@ -3,9 +3,22 @@ on:
   push:
     branches:
     - "**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: {{ "${{ github.workflow }}-${{ github.ref }}" }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
 jobs:
   test:
     runs-on: {{ "${{ matrix.os }}" }}
+    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
@@ -28,4 +41,4 @@ jobs:
     - name: test
       run: go test -race -coverprofile coverage.out -covermode atomic ./...
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v5
