@@ -3,9 +3,17 @@ on:
   push:
     branches:
     - "main"
+
+permissions:
+  actions: read
+  contents: write
+  pull-requests: write
+  issues: write
+
 jobs:
   tagpr:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
     - name: setup go
       uses: actions/setup-go@v5

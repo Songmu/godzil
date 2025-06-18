@@ -1,9 +1,19 @@
 name: reviewdog
 on: [pull_request]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: {{ "${{ github.workflow }}-${{ github.ref }}" }}
+  cancel-in-progress: true
+
 jobs:
   staticcheck:
     name: staticcheck
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
     - uses: actions/checkout@v4
       with:
@@ -15,6 +25,7 @@ jobs:
   misspell:
     name: misspell
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
     - uses: actions/checkout@v4
       with:
@@ -27,6 +38,7 @@ jobs:
         locale: "US"
   actionlint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
