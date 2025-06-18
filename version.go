@@ -1,5 +1,5 @@
 package godzil
 
-const version = "0.20.16"
+const version = "0.21.0"
 
 var revision = "HEAD"
