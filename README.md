@@ -1,7 +1,7 @@
 godzil
 =======
 
-[![Test Status](https://github.com/Songmu/godzil/workflows/test/badge.svg?branch=main)][actions]
+[![Test Status](https://github.com/Songmu/godzil/actions/workflows/test.yaml/badge.svg?branch=main)][actions]
 [![MIT License](https://img.shields.io/github/license/Songmu/godzil)][license]
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/Songmu/godzil)][PkgGoDev]
 

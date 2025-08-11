@@ -1,7 +1,7 @@
 {{.Package}}
 =======
 
-[![Test Status](https://github.com/{{.Owner}}/{{.Package}}/workflows/test/badge.svg?branch={{.Branch}})][actions]
+[![Test Status](https://github.com/{{.Owner}}/{{.Package}}/actions/workflows/test.yaml/badge.svg?branch={{.Branch}})][actions]
 [![Coverage Status](https://codecov.io/gh/{{.Owner}}/{{.Package}}/branch/{{.Branch}}/graph/badge.svg)][codecov]
 [![MIT License](https://img.shields.io/github/license/{{.Owner}}/{{.Package}})][license]
 [![PkgGoDev](https://pkg.go.dev/badge/{{.PackagePath}})][PkgGoDev]
