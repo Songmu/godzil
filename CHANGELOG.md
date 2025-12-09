@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.21.1](https://github.com/Songmu/godzil/compare/v0.21.0...v0.21.1) - 2025-12-09
+- Bump golang.org/x/mod from 0.25.0 to 0.26.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/109
+- chore: fix badge path for github actions by @Songmu in https://github.com/Songmu/godzil/pull/111
+- Bump actions/setup-go from 5 to 6 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/114
+- Bump golang.org/x/mod from 0.27.0 to 0.28.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/113
+- Bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/112
+- Bump golang.org/x/mod from 0.28.0 to 0.30.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/116
+- Bump golang.org/x/crypto from 0.41.0 to 0.45.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/117
+- Bump github.com/goccy/go-yaml from 1.18.0 to 1.19.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/119
+- Bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/118
+- Bump golang.org/x/mod from 0.30.0 to 0.31.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/120
+
 ## [v0.21.0](https://github.com/Songmu/godzil/compare/v0.20.16...v0.21.0) - 2025-06-18
 - Bump golang.org/x/crypto from 0.26.0 to 0.31.0 by @dependabot in https://github.com/Songmu/godzil/pull/103
 - Bump golang.org/x/crypto from 0.31.0 to 0.35.0 by @dependabot in https://github.com/Songmu/godzil/pull/105
