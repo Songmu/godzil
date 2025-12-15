@@ -5,7 +5,7 @@ go 1.24.6
 require (
 	github.com/Songmu/ghch v0.10.4
 	github.com/Songmu/gitconfig v0.2.1
-	github.com/Songmu/gocredits v0.3.1
+	github.com/Songmu/gocredits v0.4.0
 	github.com/Songmu/gokoku v0.2.0
 	github.com/Songmu/goxz v0.10.1
 	github.com/Songmu/prompter v0.5.1
