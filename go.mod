@@ -9,7 +9,7 @@ require (
 	github.com/Songmu/gokoku v0.2.0
 	github.com/Songmu/goxz v0.10.1
 	github.com/Songmu/prompter v0.5.1
-	github.com/goccy/go-yaml v1.19.0
+	github.com/goccy/go-yaml v1.19.1
 	github.com/natefinch/atomic v1.0.1
 	github.com/x-motemen/gobump v0.3.0
 	golang.org/x/mod v0.31.0
