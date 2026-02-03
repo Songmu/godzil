@@ -1,10 +1,10 @@
 module github.com/Songmu/godzil
 
-go 1.24.6
+go 1.25.0
 
 require (
 	github.com/Songmu/ghch v0.10.4
-	github.com/Songmu/gitconfig v0.2.1
+	github.com/Songmu/gitconfig v0.2.2
 	github.com/Songmu/gocredits v0.4.0
 	github.com/Songmu/gokoku v0.2.0
 	github.com/Songmu/goxz v0.10.1
@@ -19,7 +19,7 @@ require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
 	github.com/Songmu/gitsemvers v0.0.3 // indirect
 	github.com/chzyer/readline v1.5.1 // indirect
-	github.com/cli/go-gh/v2 v2.12.2 // indirect
+	github.com/cli/go-gh/v2 v2.13.0 // indirect
 	github.com/cli/safeexec v1.0.1 // indirect
 	github.com/google/go-github/v41 v41.0.0 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
