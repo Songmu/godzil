@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.21.2](https://github.com/Songmu/godzil/compare/v0.21.1...v0.21.2) - 2026-02-25
+- make workflow files safer by @Songmu in https://github.com/Songmu/godzil/pull/128
+
 ## [v0.21.1](https://github.com/Songmu/godzil/compare/v0.21.0...v0.21.1) - 2026-02-25
 - Bump golang.org/x/mod from 0.25.0 to 0.26.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/109
 - chore: fix badge path for github actions by @Songmu in https://github.com/Songmu/godzil/pull/111
