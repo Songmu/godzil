@@ -12,6 +12,9 @@ concurrency:
 jobs:
   staticcheck:
     name: staticcheck
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -24,6 +27,9 @@ jobs:
         fail_on_error: true
   misspell:
     name: misspell
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -37,6 +43,9 @@ jobs:
         level: warning
         locale: "US"
   actionlint:
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
