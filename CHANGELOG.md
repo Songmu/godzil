@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.21.3](https://github.com/Songmu/godzil/compare/v0.21.2...v0.21.3) - 2026-05-12
+- Bump actions/setup-go from 6.2.0 to 6.3.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/130
+- Bump golang.org/x/mod from 0.33.0 to 0.34.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/131
+- Bump golang.org/x/mod from 0.34.0 to 0.36.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/140
+- Bump codecov/codecov-action from 5.5.2 to 6.0.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/134
+- Bump actions/setup-go from 6.3.0 to 6.4.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/135
+- Bump Songmu/tagpr from 1.17.1 to 1.19.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/141
+
 ## [v0.21.2](https://github.com/Songmu/godzil/compare/v0.21.1...v0.21.2) - 2026-02-25
 - make workflow files safer by @Songmu in https://github.com/Songmu/godzil/pull/128
 
