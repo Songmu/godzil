@@ -16,12 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+    - name: checkout
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: false
     - name: setup go
       uses: actions/setup-go@v5
       with:
-        go-version: stable
-    - name: checkout
-      uses: actions/checkout@v4
+        go-version-file: go.mod
     - name: tagpr
       id: tagpr
       uses: Songmu/tagpr@v1
