@@ -10,7 +10,6 @@ deps:
 
 .PHONY: devel-deps
 devel-deps: build
-	go install github.com/tcnksm/ghr@latest
 
 .PHONY: test
 test:
@@ -49,6 +48,3 @@ crossbuild: CREDITS
 	./godzil crossbuild -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
       -os=linux,darwin,windows -d=./dist/v$(VERSION) ./cmd/*
 
-.PHONY: upload
-upload:
-	ghr -body="$$(./godzil changelog --latest -F markdown)" v$(VERSION) dist/v$(VERSION)
