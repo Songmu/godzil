@@ -26,4 +26,4 @@ runs:
     with:
       tag: {{ "${{ inputs.tag }}" }}
       token: {{ "${{ inputs.token }}" }}
-      path: {{ "\"dist/${{ inputs.tag }}\"" }}
+      path: "dist"

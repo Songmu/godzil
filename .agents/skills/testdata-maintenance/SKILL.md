@@ -78,4 +78,4 @@ Keep the pinned SHAs in `_common` and the profiles in sync via `make assets`.
 The release flow uses the composite action `.github/actions/release` plus the
 `tcnksm/ghr` action (not a Makefile-installed `ghr` CLI). `.tagpr` sets
 `release = draft`, so tagpr creates a draft release carrying the changelog
-body and `ghr` only uploads the built artifacts from `dist/<tag>`.
+body and `ghr` only uploads the built artifacts from `dist`.

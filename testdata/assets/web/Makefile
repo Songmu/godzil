@@ -33,5 +33,6 @@ CREDITS: go.sum deps devel-deps
 
 .PHONY: crossbuild
 crossbuild: CREDITS
+	rm -rf ./dist
 	godzil crossbuild -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
-      -os=linux,darwin -d=./dist/v$(VERSION) ./cmd/*
+      -os=linux,darwin -d=./dist ./cmd/*
