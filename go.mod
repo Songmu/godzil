@@ -1,6 +1,8 @@
 module github.com/Songmu/godzil
 
-go 1.26.0
+go 1.26
+
+toolchain go1.26.5
 
 require (
 	github.com/Songmu/ghch v0.10.4
@@ -16,7 +18,7 @@ require (
 )
 
 require (
-	github.com/Masterminds/semver/v3 v3.4.0 // indirect
+	github.com/Masterminds/semver/v3 v3.5.0 // indirect
 	github.com/Songmu/gitsemvers v0.1.0 // indirect
 	github.com/chzyer/readline v1.5.1 // indirect
 	github.com/cli/go-gh/v2 v2.13.0 // indirect
@@ -26,13 +28,13 @@ require (
 	github.com/jessevdk/go-flags v1.6.1 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/manifoldco/promptui v0.9.0 // indirect
-	github.com/mattn/go-isatty v0.0.20 // indirect
-	github.com/mattn/go-tty v0.0.7 // indirect
+	github.com/mattn/go-isatty v0.0.22 // indirect
+	github.com/mattn/go-tty v0.0.8 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	golang.org/x/crypto v0.52.0 // indirect
-	golang.org/x/oauth2 v0.35.0 // indirect
-	golang.org/x/sync v0.19.0 // indirect
-	golang.org/x/sys v0.45.0 // indirect
-	golang.org/x/term v0.43.0 // indirect
+	golang.org/x/crypto v0.54.0 // indirect
+	golang.org/x/oauth2 v0.36.0 // indirect
+	golang.org/x/sync v0.22.0 // indirect
+	golang.org/x/sys v0.47.0 // indirect
+	golang.org/x/term v0.45.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
