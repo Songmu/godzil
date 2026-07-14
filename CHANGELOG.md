@@ -1,5 +1,22 @@
 # Changelog
 
+## [v0.22.0](https://github.com/Songmu/godzil/compare/v0.21.2...v0.22.0) - 2026-07-14
+
+- Bump actions/setup-go from 6.2.0 to 6.3.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/130
+- Bump golang.org/x/mod from 0.33.0 to 0.34.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/131
+- Bump golang.org/x/mod from 0.34.0 to 0.36.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/140
+- Bump codecov/codecov-action from 5.5.2 to 6.0.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/134
+- Bump actions/setup-go from 6.3.0 to 6.4.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/135
+- Bump Songmu/tagpr from 1.17.1 to 1.19.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/141
+- Bump golang.org/x/crypto from 0.48.0 to 0.52.0 in the go_modules group across 1 directory by @dependabot[bot] in https://github.com/Songmu/godzil/pull/150
+- Bump actions/setup-go from 6.4.0 to 6.5.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/149
+- Bump codecov/codecov-action from 6.0.0 to 7.0.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/146
+- Bump Songmu/tagpr from 1.19.0 to 1.20.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/144
+- Bump reviewdog/action-staticcheck from 1.28.0 to 1.29.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/147
+- Bump actions/checkout from 6.0.2 to 7.0.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/148
+- Bump golang.org/x/mod from 0.36.0 to 0.38.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/151
+- Maintain release pipeline and testdata scaffolding templates by @Songmu in https://github.com/Songmu/godzil/pull/152
+
 ## [v0.21.2](https://github.com/Songmu/godzil/compare/v0.21.1...v0.21.2) - 2026-02-25
 - make workflow files safer by @Songmu in https://github.com/Songmu/godzil/pull/128
 
