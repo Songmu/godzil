@@ -14,7 +14,7 @@ require (
 	github.com/goccy/go-yaml v1.19.2
 	github.com/natefinch/atomic v1.0.1
 	github.com/x-motemen/gobump v0.3.0
-	golang.org/x/mod v0.38.0
+	golang.org/x/mod v0.40.0
 )
 
 require (
