@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.22.1](https://github.com/Songmu/godzil/compare/v0.22.0...v0.22.1) - 2026-08-30
+
+- Bump the actions group across 1 directory with 2 updates by @dependabot[bot] in https://github.com/Songmu/godzil/pull/155
+- Bump golang.org/x/mod from 0.38.0 to 0.40.0 in the golang-x group by @dependabot[bot] in https://github.com/Songmu/godzil/pull/156
+- Bump reviewdog/action-staticcheck from 1.29.0 to 1.31.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/158
+- Bump Songmu/tagpr from 1.20.0 to 1.20.2 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/159
+
 ## [v0.22.0](https://github.com/Songmu/godzil/compare/v0.21.2...v0.22.0) - 2026-07-14
 
 - Bump actions/setup-go from 6.2.0 to 6.3.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/130
