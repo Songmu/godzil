@@ -1,6 +1,6 @@
 module github.com/Songmu/godzil
 
-go 1.26
+go 1.26.0
 
 toolchain go1.26.5
 
@@ -14,7 +14,7 @@ require (
 	github.com/goccy/go-yaml v1.19.2
 	github.com/natefinch/atomic v1.0.1
 	github.com/x-motemen/gobump v0.3.0
-	golang.org/x/mod v0.40.0
+	golang.org/x/mod v0.41.0
 )
 
 require (
