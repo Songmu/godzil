@@ -8,7 +8,7 @@ runs:
     - name: Install godzil
       shell: bash
       run: |
-        version="v0.22.0"
+        version="v0.22.1"
         bindir="${RUNNER_TEMP%/}/godzil/bin"
 
         sh "${GITHUB_ACTION_PATH}/install.sh" \
