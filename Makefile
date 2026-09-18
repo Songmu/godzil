@@ -43,9 +43,10 @@ release: devel-deps
 CREDITS: deps devel-deps go.sum
 	./godzil credits -w
 
+DIST_DIR = dist
 .PHONY: crossbuild
 crossbuild: CREDITS
-	rm -rf ./dist
+	rm -rf $(DIST_DIR)
 	./godzil crossbuild -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
-      -os=linux,darwin,windows -d=./dist ./cmd/*
-
+      -os=linux,darwin,windows -d=$(DIST_DIR) ./cmd/*
+	cd $(DIST_DIR) && shasum -a 256 $$(find * -type f -maxdepth 0) > SHA256SUMS

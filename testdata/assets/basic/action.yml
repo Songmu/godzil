@@ -1,0 +1,20 @@
+name: Set up {{.Package}}
+description: Install {{.Package}} and add it to PATH
+author: {{.Author}}
+
+runs:
+  using: composite
+  steps:
+    - name: Install {{.Package}}
+      shell: bash
+      run: |
+        version="v0.0.0"
+        bindir="${RUNNER_TEMP%/}/{{.Package}}/bin"
+
+        sh "${GITHUB_ACTION_PATH}/install.sh" \
+          -b "${bindir}" "${version}"
+        echo "${bindir}" >> "${GITHUB_PATH}"
+
+branding:
+  icon: package
+  color: blue

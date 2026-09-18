@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -42,6 +43,21 @@ root: %q
 			_, err := os.Stat(dotfile)
 			if err != nil {
 				t.Errorf("%q should be exists, but error: %s", dotfile, err)
+			}
+		}
+		if p == "basic" || p == "web" {
+			projectDir := filepath.Join(projRoot, "github.com", "Songmu", p)
+			for _, name := range []string{"action.yml", "install.sh"} {
+				if _, err := os.Stat(filepath.Join(projectDir, name)); err != nil {
+					t.Errorf("%s profile should generate %s: %s", p, name, err)
+				}
+			}
+			action, err := os.ReadFile(filepath.Join(projectDir, "action.yml"))
+			if err != nil {
+				t.Fatal(err)
+			}
+			if !strings.Contains(string(action), `version="v0.0.0"`) {
+				t.Errorf("%s profile action has unexpected version:\n%s", p, action)
 			}
 		}
 	}
