@@ -1,6 +1,6 @@
 name: Set up {{.Package}}
 description: Install {{.Package}} and add it to PATH
-author: {{.Author}}
+author: {{printf "%q" .Author}}
 
 runs:
   using: composite
