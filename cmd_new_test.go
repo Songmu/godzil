@@ -47,7 +47,12 @@ root: %q
 		}
 		if p == "basic" || p == "web" {
 			projectDir := filepath.Join(projRoot, "github.com", "Songmu", p)
-			for _, name := range []string{"action.yml", "install.sh"} {
+			for _, name := range []string{
+				"action.yml",
+				"install.sh",
+				filepath.Join(".github", "workflows", "release-build.yaml"),
+				filepath.Join(".github", "workflows", "release.yaml"),
+			} {
 				if _, err := os.Stat(filepath.Join(projectDir, name)); err != nil {
 					t.Errorf("%s profile should generate %s: %s", p, name, err)
 				}
@@ -58,6 +63,16 @@ root: %q
 			}
 			if !strings.Contains(string(action), `version="v0.0.0"`) {
 				t.Errorf("%s profile action has unexpected version:\n%s", p, action)
+			}
+			if !strings.Contains(string(action), `GH_TOKEN: ${{ github.token }}`) {
+				t.Errorf("%s profile action should authenticate attestation verification:\n%s", p, action)
+			}
+			installer, err := os.ReadFile(filepath.Join(projectDir, "install.sh"))
+			if err != nil {
+				t.Fatal(err)
+			}
+			if !strings.Contains(string(installer), `WORKFLOW='Songmu/`+p+`/.github/workflows/release-build.yaml'`) {
+				t.Errorf("%s profile installer has unexpected workflow identity", p)
 			}
 		}
 	}
