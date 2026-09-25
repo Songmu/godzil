@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.23.0](https://github.com/Songmu/godzil/compare/v0.22.1...v0.23.0) - 2026-09-25
+
+- Bump codecov/codecov-action from 7.0.0 to 7.1.1 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/167
+- Bump reviewdog/action-misspell from 1.28.0 to 1.29.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/166
+- Bump reviewdog/action-staticcheck from 1.31.0 to 1.32.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/165
+- Modernize release flow and installers by @Songmu in https://github.com/Songmu/godzil/pull/169
+
 ## [v0.22.1](https://github.com/Songmu/godzil/compare/v0.22.0...v0.22.1) - 2026-09-18
 
 - Bump the actions group across 1 directory with 2 updates by @dependabot[bot] in https://github.com/Songmu/godzil/pull/155
