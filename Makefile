@@ -1,4 +1,3 @@
-VERSION = $(shell ./godzil show-version)
 CURRENT_REVISION = $(shell git rev-parse --short HEAD)
 BUILD_LDFLAGS = "-s -w -X github.com/Songmu/godzil.revision=$(CURRENT_REVISION)"
 u := $(if $(update),-u)
@@ -9,7 +8,8 @@ deps:
 	go mod tidy
 
 .PHONY: devel-deps
-devel-deps: build
+devel-deps:
+	go install github.com/Songmu/gocredits/cmd/gocredits@v0.5.0
 
 .PHONY: test
 test:
@@ -36,17 +36,11 @@ assets:
 install:
 	go install -ldflags=$(BUILD_LDFLAGS) ./cmd/godzil
 
-.PHONY: release
-release: devel-deps
-	./godzil release
+.PHONY: prepare-release
+prepare-release: devel-deps
+	go mod tidy
+	gocredits -w
+	git update-index --add --remove -- go.mod go.sum CREDITS
 
 CREDITS: deps devel-deps go.sum
-	./godzil credits -w
-
-DIST_DIR = dist
-.PHONY: crossbuild
-crossbuild: CREDITS
-	rm -rf $(DIST_DIR)
-	./godzil crossbuild -pv=v$(VERSION) -build-ldflags=$(BUILD_LDFLAGS) \
-      -os=linux,darwin,windows -d=$(DIST_DIR) ./cmd/*
-	cd $(DIST_DIR) && shasum -a 256 $$(find * -type f -maxdepth 0) > SHA256SUMS
+	gocredits -w

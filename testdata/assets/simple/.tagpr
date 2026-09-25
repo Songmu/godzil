@@ -3,3 +3,4 @@
 	releaseBranch = main
 	versionFile = version.go
 	release = draft
+	command = make prepare-release

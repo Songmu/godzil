@@ -7,12 +7,14 @@ deps:
 
 .PHONY: devel-deps
 devel-deps:
-	go install github.com/Songmu/godzil/cmd/godzil@latest
+	go install github.com/Songmu/gocredits/cmd/gocredits@v0.5.0
 
 .PHONY: test
 test:
 	go test
 
-.PHONY: release
-release: devel-deps
-	godzil release
+.PHONY: prepare-release
+prepare-release: devel-deps
+	go mod tidy
+	gocredits -w
+	git update-index --add --remove -- go.mod go.sum CREDITS
