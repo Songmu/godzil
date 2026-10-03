@@ -7,7 +7,7 @@ toolchain go1.26.5
 require (
 	github.com/Songmu/ghch v0.11.0
 	github.com/Songmu/gitconfig v0.2.2
-	github.com/Songmu/gocredits v0.5.0
+	github.com/Songmu/gocredits v1.1.0
 	github.com/Songmu/gokoku v0.2.0
 	github.com/Songmu/goxz v0.13.0
 	github.com/Songmu/prompter v0.5.1
