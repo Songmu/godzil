@@ -39,7 +39,7 @@ jobs:
       with:
         persist-credentials: false
     - name: misspell
-      uses: reviewdog/action-misspell@da40ce414be6ce320a9322aa2bae10bd3b9e6ef3 # v1.29.0
+      uses: reviewdog/action-misspell@ce198e1db0d029be165f2d3e809c1a42353446b0 # v1.30.2
       with:
         reporter: github-pr-review
         level: warning
