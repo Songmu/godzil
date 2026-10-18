@@ -41,6 +41,12 @@
 3. Describe the configuration items in `secret.yaml` (refer to `secret.yaml.example`)
 4. Deploy app with `gcloud app deploy`
 
+## Development
+
+After changing GitHub Actions dependencies, run `gh actions-lock` and commit
+`.github/workflows/actions.lock` with the workflow changes. Install the tool
+with `gh extension install github/gh-actions-lock`.
+
 ## Author
 
 [{{.Author}}](https://{{.GitHubHost}}/{{.Author}})
