@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.23.1](https://github.com/Songmu/godzil/compare/v0.23.0...v0.23.1) - 2026-10-18
+
+- Modernize Actions dependencies and release templates by @Songmu in https://github.com/Songmu/godzil/pull/179
+- Bump golang.org/x/mod from 0.41.0 to 0.42.0 in the golang-x group by @dependabot[bot] in https://github.com/Songmu/godzil/pull/178
+- Bump github.com/Songmu/gocredits from 0.5.0 to 1.1.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/172
+
 ## [v0.23.0](https://github.com/Songmu/godzil/compare/v0.22.1...v0.23.0) - 2026-09-25
 
 - Bump codecov/codecov-action from 7.0.0 to 7.1.1 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/167
