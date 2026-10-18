@@ -1,6 +1,6 @@
 [tagpr]
 	vPrefix = true
-	releaseBranch = main
+	releaseBranch = {{.Branch}}
 	versionFile = version.go,action.yml
 	release = draft
 	command = make prepare-release

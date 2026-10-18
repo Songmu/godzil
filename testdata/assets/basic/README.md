@@ -37,6 +37,12 @@
 % go install github.com/{{.Owner}}/{{.Package}}/cmd/{{.Package}}@latest
 ```
 
+## Development
+
+After changing GitHub Actions dependencies, run `gh actions-lock` and commit
+`.github/workflows/actions.lock` with the workflow changes. Install the tool
+with `gh extension install github/gh-actions-lock`.
+
 ## Author
 
 [{{.Author}}](https://{{.GitHubHost}}/{{.Author}})
