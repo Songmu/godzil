@@ -10,7 +10,7 @@ require (
 	github.com/Songmu/gocredits v1.1.0
 	github.com/Songmu/gokoku v0.2.0
 	github.com/Songmu/goxz v0.13.0
-	github.com/Songmu/prompter v0.5.1
+	github.com/Songmu/prompter v1.0.0
 	github.com/goccy/go-yaml v1.19.2
 	github.com/natefinch/atomic v1.0.1
 	github.com/x-motemen/gobump v0.3.0
@@ -32,7 +32,7 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	golang.org/x/oauth2 v0.37.0 // indirect
 	golang.org/x/sync v0.23.0 // indirect
-	golang.org/x/sys v0.48.0 // indirect
-	golang.org/x/term v0.46.0 // indirect
+	golang.org/x/sys v0.49.0 // indirect
+	golang.org/x/term v0.47.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
