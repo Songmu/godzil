@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.23.2](https://github.com/Songmu/godzil/compare/v0.23.1...v0.23.2) - 2026-11-02
+
+- Bump reviewdog/action-misspell from 1.30.2 to 1.30.4 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/183
+- Bump github.com/Songmu/prompter from 0.5.1 to 1.0.0 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/181
+- Bump Songmu/tagpr from 1.21.3 to 1.21.4 by @dependabot[bot] in https://github.com/Songmu/godzil/pull/184
+- Update profile dependencies and simplify library releases by @Songmu in https://github.com/Songmu/godzil/pull/186
+
 ## [v0.23.1](https://github.com/Songmu/godzil/compare/v0.23.0...v0.23.1) - 2026-10-18
 
 - Modernize Actions dependencies and release templates by @Songmu in https://github.com/Songmu/godzil/pull/179
