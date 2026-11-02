@@ -47,12 +47,21 @@ func TestWorkflowTemplates(t *testing.T) {
 				`GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}`,
 			}, []string{"create-github-app-token"})
 			release := "draft"
+			versionFile := "version.go,action.yml"
 			if profile == "simple" {
 				release = "true"
+				versionFile = "-"
+				if _, err := os.Stat(filepath.Join(dir, "version.go")); !os.IsNotExist(err) {
+					t.Fatalf("simple profile should not have version.go: %v", err)
+				}
+				checkFile("Makefile", []string{
+					"prepare-release:\n\tgo mod tidy\n\tgit update-index --add --remove -- go.mod go.sum",
+				}, []string{"gocredits", "CREDITS", "devel-deps"})
 				if _, err := os.Stat(filepath.Join(dir, ".github/workflows/release.yaml")); !os.IsNotExist(err) {
 					t.Fatalf("simple profile should not have a binary release workflow: %v", err)
 				}
 			} else {
+				checkFile("version.go", []string{`const version = "0.0.0"`, `var revision = "HEAD"`}, nil)
 				checkFile(".github/workflows/tagpr.yaml", []string{
 					"if: needs.tagpr.outputs.tag != ''",
 					`TAG: ${{ needs.tagpr.outputs.tag }}`,
@@ -74,6 +83,7 @@ func TestWorkflowTemplates(t *testing.T) {
 			checkFile(".tagpr", []string{
 				"releaseBranch = release",
 				"release = " + release,
+				"versionFile = " + versionFile,
 				"command = make prepare-release",
 			}, nil)
 		})
