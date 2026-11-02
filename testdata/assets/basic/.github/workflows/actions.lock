@@ -16,13 +16,13 @@ workflows:
         - 'tcnksm/ghr@v0.18.5'
     '.github/workflows/reviewdog.yaml':
         - 'actions/checkout@v7.0.1'
-        - 'reviewdog/action-actionlint@v1.80.4'
-        - 'reviewdog/action-misspell@v1.30.2'
+        - 'reviewdog/action-actionlint@v1.81.1'
+        - 'reviewdog/action-misspell@v1.30.4'
         - 'reviewdog/action-staticcheck@v1.33.0'
     '.github/workflows/tagpr.yaml':
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-go@v7.0.0'
-        - 'songmu/tagpr@v1.21.3'
+        - 'songmu/tagpr@v1.21.4'
     '.github/workflows/test.yaml':
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-go@v7.0.0'
@@ -89,14 +89,14 @@ dependencies:
         commit: 'sha1-7d2c558640ea49e798d46539536190aff8c18715'
         owner_id: 3797062
         repo_id: 225328382
-    'reviewdog/action-actionlint@v1.80.4':
-        ref: 'v1.80.4'
-        commit: 'sha1-419a49378266e892f40c773b4f2fc6de9aa87499'
+    'reviewdog/action-actionlint@v1.81.1':
+        ref: 'v1.81.1'
+        commit: 'sha1-619a81ec64ff8c0211cd6146eb2b21e8f1d7f440'
         owner_id: 48765237
         repo_id: 385059686
-    'reviewdog/action-misspell@v1.30.2':
-        ref: 'v1.30.2'
-        commit: 'sha1-ce198e1db0d029be165f2d3e809c1a42353446b0'
+    'reviewdog/action-misspell@v1.30.4':
+        ref: 'v1.30.4'
+        commit: 'sha1-840bfbe9f804da9afb0bd739dc4689012f3fdd2d'
         owner_id: 48765237
         repo_id: 208637003
     'reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f':
@@ -116,9 +116,9 @@ dependencies:
         commit: 'sha1-b7b74d681760746882693f3db7c94a0888a4b714'
         owner_id: 177122
         repo_id: 115265377
-    'songmu/tagpr@v1.21.3':
-        ref: 'v1.21.3'
-        commit: 'sha1-1fcd7292d1fe8ea9a8313eef46b8d80b7a15d227'
+    'songmu/tagpr@v1.21.4':
+        ref: 'v1.21.4'
+        commit: 'sha1-e1250d6c84e4425db82b5e90549d62dfe23e9ebe'
         owner_id: 177122
         repo_id: 524603982
     'tcnksm/ghr@v0.18.5':
