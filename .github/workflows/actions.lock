@@ -16,7 +16,7 @@ workflows:
         - 'tcnksm/ghr@v0.18.5'
     '.github/workflows/reviewdog.yaml':
         - 'actions/checkout@v7.0.1'
-        - 'reviewdog/action-misspell@v1.30.4'
+        - 'reviewdog/action-misspell@v1.31.0'
         - 'reviewdog/action-staticcheck@v1.33.0'
     '.github/workflows/tagpr.yaml':
         - 'actions/checkout@v7.0.1'
@@ -88,9 +88,9 @@ dependencies:
         commit: 'sha1-7d2c558640ea49e798d46539536190aff8c18715'
         owner_id: 3797062
         repo_id: 225328382
-    'reviewdog/action-misspell@v1.30.4':
-        ref: 'v1.30.4'
-        commit: 'sha1-840bfbe9f804da9afb0bd739dc4689012f3fdd2d'
+    'reviewdog/action-misspell@v1.31.0':
+        ref: 'v1.31.0'
+        commit: 'sha1-c846b6b0996029d2d39540c8ffebebbd957072db'
         owner_id: 48765237
         repo_id: 208637003
     'reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f':
